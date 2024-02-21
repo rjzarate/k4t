@@ -5,6 +5,25 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    public static InputHandler Instance
+    {
+        get; private set;
+    }
+
+    private bool heldDown = false;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +41,12 @@ public class InputHandler : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("Tap!");
+            OnTapEvent();
         }
     }
+
+    public delegate void TapEventHandler();
+    public event TapEventHandler OnTapEvent;
 
     public void ConsecutiveTap(InputAction.CallbackContext context)
     {
@@ -35,13 +58,26 @@ public class InputHandler : MonoBehaviour
 
     public void Press(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.canceled)
+        {
+            if (heldDown)
+            {
+                Debug.Log("Release!");
+                OnReleaseEvent();
+            }
+            heldDown = false;
+        }
+        else if (context.performed)
         {
             Debug.Log("Press!");
-        }
-        else if (context.canceled)
-        {
-            Debug.Log("Release!");
+            OnPressEvent();
+            heldDown = true;
         }
     }
+
+    public delegate void PressEventHandler();
+    public event PressEventHandler OnPressEvent;
+
+    public delegate void ReleaseEventHandler();
+    public event ReleaseEventHandler OnReleaseEvent;
 }
