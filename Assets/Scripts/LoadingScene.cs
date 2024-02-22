@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // used for tracking the progress of the loading bar (future use)
+// Implement the set of LoadingScene objects from the LoadingScene scene to any scene that you want to exit from, 
+//      and edit a button's "On Click" to load into the desired scene using said set of LoadingScene objects
 public class LoadingScene : MonoBehaviour
 {
     // instantiation of variables to reference the loading screen
@@ -19,6 +21,7 @@ public class LoadingScene : MonoBehaviour
     }
 
     // continues up the loading screen
+    // the desired scene's id is loaded when the "On Click" option for a button calls the set of LoadingScene objects
     IEnumerator LoadSceneAsync(int sceneId)
     {
         // operation is run
