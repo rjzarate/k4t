@@ -1,3 +1,4 @@
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,16 +14,30 @@ public class AspectRatio : MonoBehaviour
     // The distance affect IF AND ONLY IF the respective axis is Bounded
     public Vector2 BoundDistance;
 
+    // The screen's width / height
+    private float screenRatio;
+
+    // Game is deigned around 9:16, or 0.5625, but for testing purposes I'm doing 16:9
+    private float DEFAULT_SCREEN_RATIO = 1.775281f;
+
+    // Initial scale of obj
+    private Vector2 initialScale;
+
     Camera cam;
 
     void Start()
     {
         // Declared in start to prevent unnecssary looping of this declaration
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        initialScale = transform.localScale;
     }
 
     void Update()
     {
+        screenRatio = (float)Screen.width / Screen.height;
+        scaleObject();
+
         // newPosition will be updating transform position
         Vector3 newPosition = transform.position;
 
@@ -74,5 +89,11 @@ public class AspectRatio : MonoBehaviour
 
         // update the transform position
         transform.position = newPosition;
+    }
+
+    private void scaleObject()
+    {
+        float changeSize = screenRatio / DEFAULT_SCREEN_RATIO;
+        transform.localScale = initialScale * changeSize;
     }
 }
