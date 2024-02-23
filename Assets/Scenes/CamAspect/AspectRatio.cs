@@ -6,7 +6,7 @@ using UnityEngine;
 public class AspectRatio : MonoBehaviour
 {
     // options for the bounds
-    public enum SelectBound { left, right, top, bottom, topLeft, topRight, bottomLeft, bottomRight };
+    public enum SelectBound { left, right, top, bottom, topLeft, topRight, bottomLeft, bottomRight, middle};
 
     // Bound Selected, this will be selected in the inspector as a dropdown
     public SelectBound BoundSelected;
@@ -22,6 +22,9 @@ public class AspectRatio : MonoBehaviour
 
     // Initial scale of obj
     private Vector2 initialScale;
+
+    // this this scaler for changing the size
+    public float scaleSize;
 
     Camera cam;
 
@@ -85,6 +88,11 @@ public class AspectRatio : MonoBehaviour
                 newPosition.x = screenWidth - BoundDistance.x;
                 newPosition.y = -screenHeight + BoundDistance.y;
                 break;
+            case SelectBound.middle:
+                newPosition.x = BoundDistance.x;
+                newPosition.y = BoundDistance.y;
+                break;
+
         }
 
         // update the transform position
@@ -94,6 +102,6 @@ public class AspectRatio : MonoBehaviour
     private void scaleObject()
     {
         float changeSize = screenRatio / DEFAULT_SCREEN_RATIO;
-        transform.localScale = initialScale * changeSize;
+        transform.localScale = initialScale * changeSize * scaleSize;
     }
 }

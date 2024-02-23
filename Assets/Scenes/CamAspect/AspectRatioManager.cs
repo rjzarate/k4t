@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class AspectRatioManager : MonoBehaviour
 {
-    GameObject[] arrayScaleObj;
-    
+    AspectRatio[] arrayScaleObj;
+    [SerializeField] float globalScaleSize = 1;
+
 
     void Start() 
     {
-        arrayScaleObj = GameObject.FindGameObjectsWithTag("scaleTag");
+        arrayScaleObj = GameObject.FindObjectsOfType<AspectRatio>();
     }
 
 
     void Update()
     {
-        foreach ( GameObject scaleObj in arrayScaleObj) {
-            scaleObj.getComponent<AspectRatio>().initialScale;
-            scaleObj.getComponent<AspectRatio>();
+        // Loop through the array of GameObjects and do something with them
+        foreach (AspectRatio aspectRatioObject in arrayScaleObj)
+        {
+            aspectRatioObject.scaleSize = globalScaleSize;
         }
     }
 }
