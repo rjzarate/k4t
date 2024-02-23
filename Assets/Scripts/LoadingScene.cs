@@ -22,30 +22,31 @@ public class LoadingScene : MonoBehaviour
 
     public void LoadScene()
     {
-        switch (sceneType)
-        {
-            case SceneType.SCENE1:
-                StartCoroutine(LoadSceneAsync(1));
-                return;
-            case SceneType.SCENE2:
-                StartCoroutine(LoadSceneAsync(2));
-                return; 
-        }
+        // switch (sceneType)
+        // {
+        //     case SceneType.SCENE1:
+        //         StartCoroutine(LoadSceneAsync(1));
+        //         return;
+        //     case SceneType.SCENE2:
+        //         StartCoroutine(LoadSceneAsync(2));
+        //         return; 
+        // }
     }
 
     // starts up the loading screen (sceneId can be found in File -> BuildSettings)
-    public void LoadScene(int sceneId)
+    public void LoadScene(string sceneName)
     {
         // attempt to load the screen parallel to other operations
-        StartCoroutine(LoadSceneAsync(sceneId));
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
 
     // continues up the loading screen
     // the desired scene's id is loaded when the "On Click" option for a button calls the set of LoadingScene objects
-    IEnumerator LoadSceneAsync(int sceneId)
+    IEnumerator LoadSceneAsync(string sceneName)
     {
         // operation is run
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
         LoadingScreen.SetActive(true);
 
         // updates the fullness of the bar while loading is being done
