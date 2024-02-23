@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    // Singleton instance
     public static InputHandler Instance
     {
         get; private set;
@@ -12,6 +13,7 @@ public class InputHandler : MonoBehaviour
 
     private bool heldDown = false;
     private float timeLeftToTapInSeconds = 0;
+    // For taps to be considered consecutive, must be done with less than the below time in between
     [SerializeField] private float consecutiveTapWindowSeconds = 0.5f;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class InputHandler : MonoBehaviour
     }
 
     // Update is called once per frame
+    // If time left to tap is above 0, decrements using delta time
     void Update()
     {
         if (timeLeftToTapInSeconds > 0)
@@ -45,6 +48,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    // Triggers tap event, triggers consecutive tap if valid
     public void Tap(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -72,6 +76,7 @@ public class InputHandler : MonoBehaviour
     public delegate void ConsecutiveTapEventHandler();
     public event ConsecutiveTapEventHandler OnConsecutiveTapEvent;
 
+    // Triggers press event and release event when done
     public void Press(InputAction.CallbackContext context)
     {
         if (context.canceled)

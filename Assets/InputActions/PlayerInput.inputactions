@@ -15,15 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Consecutive Tap",
-                    "type": "Button",
-                    "id": "49aabdfb-8cbf-4b54-ab2b-9f3baa154774",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "MultiTap(tapDelay=0.5)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Press",
                     "type": "Button",
                     "id": "fc429996-43d3-4577-84dd-43361b2d4ea3",
@@ -53,28 +44,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ff227d9-3443-4fbd-a60d-357f4b0cc7f8",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Consecutive Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3263a317-bea0-4069-95e5-ca1e9e02771f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Consecutive Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -10,28 +10,8 @@ using UnityEngine.SceneManagement;
 public class LoadingScene : MonoBehaviour
 {
     // instantiation of variables to reference the loading screen
-    public GameObject LoadingScreen;
-    public Image LoadingBarFilled;
-
-    private enum SceneType
-    {
-        SCENE1, SCENE2
-    }
-
-    [SerializeField] private SceneType sceneType;
-
-    public void LoadScene()
-    {
-        // switch (sceneType)
-        // {
-        //     case SceneType.SCENE1:
-        //         StartCoroutine(LoadSceneAsync(1));
-        //         return;
-        //     case SceneType.SCENE2:
-        //         StartCoroutine(LoadSceneAsync(2));
-        //         return; 
-        // }
-    }
+    [SerializeField] private GameObject LoadingScreen;
+    [SerializeField] private Image LoadingBarFilled;
 
     // starts up the loading screen (sceneId can be found in File -> BuildSettings)
     public void LoadScene(string sceneName)

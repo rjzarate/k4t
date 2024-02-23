@@ -10,10 +10,10 @@ public class AspectRatio : MonoBehaviour
     public enum SelectBound { left, right, top, bottom, topLeft, topRight, bottomLeft, bottomRight, middle};
 
     // Bound Selected, this will be selected in the inspector as a dropdown
-    public SelectBound BoundSelected;
+    [SerializeField] private SelectBound BoundSelected;
 
     // The distance affect IF AND ONLY IF the respective axis is Bounded
-    public Vector2 BoundDistance;
+    [SerializeField] private Vector2 BoundDistance;
 
     // The screen's width / height
     private float screenRatio;
@@ -25,7 +25,7 @@ public class AspectRatio : MonoBehaviour
     private Vector2 initialScale;
 
     // this this scaler for changing the size
-    public float scaleSize;
+    [SerializeField] private float scaleSize;
 
     Camera cam;
 
@@ -36,8 +36,10 @@ public class AspectRatio : MonoBehaviour
 
         
         AspectRatioManager.Instance.OnCameraChanged += AspectRatioManager_OnCameraChanged;
-
+        
         initialScale = transform.localScale;
+        // sets the objects at the right spot and scale at the start
+        AspectRatioManager_OnCameraChanged(null, EventArgs.Empty);
     }
 
     private void AspectRatioManager_OnCameraChanged(object sender, EventArgs e)

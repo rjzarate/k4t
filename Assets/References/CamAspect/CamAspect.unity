@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoundSelected: 1
   BoundDistance: {x: 1.5, y: 0}
-  scaleSize: 0
+  scaleSize: 1
 --- !u!4 &365816802
 Transform:
   m_ObjectHideFlags: 0
@@ -859,7 +859,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: b3cd8cb11bf85804ab5542e82c710914, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.78867924, g: 0.31398356, b: 0.31398356, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1373,7 +1373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoundSelected: 0
   BoundDistance: {x: 1.5, y: 0}
-  scaleSize: 0
+  scaleSize: 1
 --- !u!1 &2127409379
 GameObject:
   m_ObjectHideFlags: 0
