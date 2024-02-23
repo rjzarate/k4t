@@ -10,6 +10,7 @@ public class InputSubscriber : MonoBehaviour
         InputHandler.Instance.OnTapEvent += HandleTap;
         InputHandler.Instance.OnPressEvent += HandlePress;
         InputHandler.Instance.OnReleaseEvent += HandleRelease;
+        InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
     }
 
     // Update is called once per frame
@@ -21,6 +22,11 @@ public class InputSubscriber : MonoBehaviour
     public void HandleTap()
     {
         Debug.Log("Tap detected!");
+    }
+
+    public void HandleConsecutiveTap()
+    {
+        Debug.Log("Consecutive Tap detected!");
     }
 
     public void HandlePress()
