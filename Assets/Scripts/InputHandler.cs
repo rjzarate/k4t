@@ -12,6 +12,7 @@ public class InputHandler : MonoBehaviour
 
     private bool heldDown = false;
     private float timeLeftToTapInSeconds = 0;
+    [SerializeField] private float consecutiveTapWindowSeconds = 0.5f;
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class InputHandler : MonoBehaviour
                     OnConsecutiveTapEvent();
                 }
             }
-            timeLeftToTapInSeconds = 0.5f;
+            timeLeftToTapInSeconds = consecutiveTapWindowSeconds;
         }
     }
 
