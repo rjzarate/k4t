@@ -1,3 +1,4 @@
+using System;
 using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,10 +34,13 @@ public class AspectRatio : MonoBehaviour
         // Declared in start to prevent unnecssary looping of this declaration
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
+        
+        AspectRatioManager.Instance.OnCameraChanged += AspectRatioManager_OnCameraChanged;
+
         initialScale = transform.localScale;
     }
 
-    void Update()
+    private void AspectRatioManager_OnCameraChanged(object sender, EventArgs e)
     {
         screenRatio = (float)Screen.width / Screen.height;
         scaleObject();
@@ -98,6 +102,7 @@ public class AspectRatio : MonoBehaviour
         // update the transform position
         transform.position = newPosition;
     }
+
 
     private void scaleObject()
     {
