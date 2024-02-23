@@ -13,6 +13,26 @@ public class LoadingScene : MonoBehaviour
     public GameObject LoadingScreen;
     public Image LoadingBarFilled;
 
+    private enum SceneType
+    {
+        SCENE1, SCENE2
+    }
+
+    [SerializeField] private SceneType sceneType;
+
+    public void LoadScene()
+    {
+        switch (sceneType)
+        {
+            case SceneType.SCENE1:
+                StartCoroutine(LoadSceneAsync(1));
+                return;
+            case SceneType.SCENE2:
+                StartCoroutine(LoadSceneAsync(2));
+                return; 
+        }
+    }
+
     // starts up the loading screen (sceneId can be found in File -> BuildSettings)
     public void LoadScene(int sceneId)
     {
@@ -33,6 +53,7 @@ public class LoadingScene : MonoBehaviour
         {
             // grabs the percent of operation done for loading bar to fill
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            Debug.Log(progressValue);
             LoadingBarFilled.fillAmount = progressValue;
             
             // yields the operation to continue on a later frame (related to StartCoroutine)
