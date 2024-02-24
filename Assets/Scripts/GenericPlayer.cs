@@ -1,14 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericPlayerMovement : MonoBehaviour
+public class GenericPlayer : MonoBehaviour
 {
-    // 
-    public event EventHandler On 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +15,4 @@ public class GenericPlayerMovement : MonoBehaviour
     {
         
     }
-
-
-
 }
