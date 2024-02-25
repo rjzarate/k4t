@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GenericPlayer : MonoBehaviour
 {
+/*
+    
     // allows for an instance of the GenericPlayer to exist
     private static GenericPlayer instance;
     public static GenericPlayer Instance
@@ -139,4 +141,6 @@ public class GenericPlayer : MonoBehaviour
     {
 
     }
+
+    */
 }

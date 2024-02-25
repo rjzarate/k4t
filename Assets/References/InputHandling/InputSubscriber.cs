@@ -100,6 +100,7 @@ public class InputSubscriber : MonoBehaviour
     {
         Vector3 playerMovementVector = new Vector3(playerMovementAmountAlongX, 0f, 0f);
 
-        transform.forward = playerMovementVector;
+        transform.position += playerMovementVector;
+        Debug.Log(playerMovementVector);
     }
 }
