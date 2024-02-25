@@ -5,20 +5,26 @@ using UnityEngine;
 public class InputSubscriber : MonoBehaviour
 {
     // enums
-    public enum PlayerMoveDirection
+    public enum PlayerMoveDirection // Labels for movement direction
     {
-        Left,
-        Right
+        Negative_X,
+        Positive_X
     }
 
 
-    // initialize variables
 
-    private PlayerMoveDirection playerMoveDirection = PlayerMoveDirection.Right; // starting movement direction of right
+    // initialize variables:
 
-    private const int AMOUNT_TO_MOVE_LEFT = 1;
-    private const int AMOUNT_TO_MOVE_RIGHT = -1;
+    private PlayerMoveDirection playerMoveDirection = PlayerMoveDirection.Positive_X; // starting movement direction of right
 
+    private const int AMOUNT_TO_MOVE_IN_NEGATIVE_X = -1; // amount for the player to move in the negative x direction (possibly left)
+    private const int AMOUNT_TO_MOVE_IN_POSITIVE_X = 1; // amount for the player to move in the negative x direction (possibly right)
+
+    private bool playerCanMove = false; // variable to determine whether the player can move or not
+
+    [SerializeField] private float moveSpeed = 7f; // configurable speed of the player's movement
+
+    private InputHandler inputHandler; // instance of the inputHandler for the InputSubscriber class
 
 
 
@@ -32,75 +38,100 @@ public class InputSubscriber : MonoBehaviour
         InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        
+        // checks whether the player is allowed to move, which is dependent on the press event
+        if (playerCanMove) // true if the player is allowed to move
+        {
+            // calls function to move the player
+            PlayerMove(); 
+        }
+
+        // TODO: Implement the HandleTap() and HandleConsecutiveTap() methods
     }
+
+
 
     // What to do on Tap
     public void HandleTap()
     {
         Debug.Log("Tap detected!");
 
-
         // TODO
     }
+
 
     // What to do on Consecutive Tap
     public void HandleConsecutiveTap()
     {
         Debug.Log("Consecutive Tap detected!");
 
-
         // TODO
     }
+
 
     // What to do when the player starts pressing
     public void HandlePress()
     {
+        // used to ensure the event launches correctly
         Debug.Log("Press detected!");
 
-        // checks which direction for the player to move 
-        if (playerMoveDirection == PlayerMoveDirection.Left) // true if the current direction for the player to move is left
-        {
-            // moves the player to the left
-
-            PlayerMovement(AMOUNT_TO_MOVE_LEFT);
-
-        }
-        else if (playerMoveDirection == PlayerMoveDirection.Right) // true if the current direction for the player to move is right
-        {
-            // moves the player to the right
-
-            PlayerMovement(AMOUNT_TO_MOVE_RIGHT);
-        }
-
+        // sets the status of playerCanMove to true since the player is pressing
+        playerCanMove = true; 
     }
+
 
     // What to do when the player releases a press
     public void HandleRelease()
     {
-        Debug.Log("Release detected!");
-
+        // used to ensure the event launches correctly
+        Debug.Log("Release detected!"); 
 
         // switches direction of player movement for next press
-        if (playerMoveDirection == PlayerMoveDirection.Left) // true if the current direction for the player to move is left
+        if (playerMoveDirection == PlayerMoveDirection.Negative_X) // true if the current direction for the player to move is left
         {
-            playerMoveDirection = PlayerMoveDirection.Right; // switches the next direction to right
+            // switches the next direction to right
+            playerMoveDirection = PlayerMoveDirection.Positive_X; 
         }
-        else if (playerMoveDirection == PlayerMoveDirection.Right) // true if the current direction for the player to move is right
+        else if (playerMoveDirection == PlayerMoveDirection.Positive_X) // true if the current direction for the player to move is right
         {
-            playerMoveDirection = PlayerMoveDirection.Left; // switches the next direction to left
+            // switches the next direction to left
+            playerMoveDirection = PlayerMoveDirection.Negative_X;
         }
 
+        // sets the status of playerCanMove to false sicne the player isn't pressing any longer
+        playerCanMove = false; 
     }
 
+
+
+
+    // function to determine the direction 
+    private void PlayerMove()
+    {
+        // determines the direction that the player will move as the player presses
+        if (playerMoveDirection == PlayerMoveDirection.Negative_X) // true if the current direction for the player to move is left
+        {
+            // moves the player to the left
+            PlayerMovement(AMOUNT_TO_MOVE_IN_NEGATIVE_X); 
+
+        }
+        else if (playerMoveDirection == PlayerMoveDirection.Positive_X) // true if the current direction for the player to move is right
+        {
+            // moves the player to the right
+            PlayerMovement(AMOUNT_TO_MOVE_IN_POSITIVE_X); 
+        }
+    }
+
+    // function to handle the implementation for moving the sprite
     private void PlayerMovement(int playerMovementAmountAlongX)
     {
+        // vector for the transformation of the player
         Vector3 playerMovementVector = new Vector3(playerMovementAmountAlongX, 0f, 0f);
 
-        transform.position += playerMovementVector;
-        Debug.Log(playerMovementVector);
+        // transforms the sprite on the x-axis
+        transform.position += playerMovementVector * moveSpeed * Time.deltaTime;
     }
 }
