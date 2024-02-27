@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class destroyOnCollision : MonoBehaviour
 {
-    void Start(){
+    // include existing tags for collision detection
+    [SerializeField] string[] collisionTags;
 
-    }
-
+    // if any of the existing tags are collided along with
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        foreach ( string collisiontag in collisionTags)
         {
-            Destroy(gameObject);
+            if (collision.collider.CompareTag(collisiontag))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

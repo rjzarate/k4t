@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b621d81cada308d4394bd0b88dcff868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionTags: []
 --- !u!1 &55852641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,6 +3122,8 @@ GameObject:
   - component: {fileID: 1652829235}
   - component: {fileID: 1652829234}
   - component: {fileID: 1652829237}
+  - component: {fileID: 1652829238}
+  - component: {fileID: 1652829239}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Player
@@ -3257,6 +3260,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &1652829238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652829233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyFX: {fileID: 0}
+  TotalLifeSeconds: 15
+--- !u!114 &1652829239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652829233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b621d81cada308d4394bd0b88dcff868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionTags:
+  - Bullet
 --- !u!1 &1684085743
 GameObject:
   m_ObjectHideFlags: 0
