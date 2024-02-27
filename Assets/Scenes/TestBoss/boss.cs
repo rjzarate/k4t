@@ -5,19 +5,27 @@ using UnityEngine.Animations;
 
 public class boss : MonoBehaviour
 {
+
+    // Controlling the states
+    // the times for the states: idle, atk, damaged, and death
+
     [Header("States:")]
     [SerializeField] int state = 0;
 
-
+    // static time. The total time of each state
     [SerializeField] float idleTime;
     [SerializeField] float atkTime;
     [SerializeField] float damagedTime;
     [SerializeField] float deathTime;
 
+    // the duration time that will be changed over time
     float idleDur;
     float atkDur;
     float damagedDur;
 
+
+    // bullet handler
+    // firing position, bullet gameobject, speed of the bullet, and fps time
     [Header("Bullets:")]
     [SerializeField] Transform firePos;
     [SerializeField] GameObject bullets;
@@ -26,6 +34,7 @@ public class boss : MonoBehaviour
     float fpsDur;
 
 
+    // special effects and boss animation that can be added
     [Header("Effects:")]
     [SerializeField] GameObject deathFX;
     [SerializeField] GameObject attackFX;
@@ -34,6 +43,8 @@ public class boss : MonoBehaviour
 
 
 
+    // if there is animation setup, then set bossAnim variable to that existing component
+    // initial setters for the durations
     void Start()
     {
         if (GetComponent<Animator>())
@@ -49,8 +60,11 @@ public class boss : MonoBehaviour
 
     void Update()
     {
-        //bossAnim.SetInteger("state", state);
+        // this line will be useful later on through later implementations:
+        // bossAnim.SetInteger("state", state);
 
+
+        // the many states, which actions are in functions
         if (state == 0)
         {
             idle();
@@ -71,21 +85,28 @@ public class boss : MonoBehaviour
         }
     }
 
+
+    // idle time
     void idle()
     {
         //bossAnim.SetInteger("state", state);
         idleDur = stateDuration(idleTime, idleDur, 1);
     }
 
+    // attack time
     void attack()
     {
         //bossAnim.SetInteger("state", state);
-        atkDur = stateDuration(atkTime, atkDur, 0);
 
+
+        atkDur = stateDuration(atkTime, atkDur, 0);
+        // fps time
         if (fpsDur <= 0)
         {
+            // instantiate and reference the bullet
             GameObject bulletPrefab = Instantiate(bullets, firePos.position, firePos.rotation);
 
+            // if the bullet as the bullet script, then set the speed to the boss's bullet speed
             if (GetComponent<bullet>())
             {
                 bulletPrefab.GetComponent<bullet>().speed = bulletSpeed;
@@ -99,20 +120,33 @@ public class boss : MonoBehaviour
         }
     }
 
+    // damaged time, when the boss flinches or backs down
     void damaged()
     {
         //bossAnim.SetTrigger("damaged");
         damagedDur = stateDuration(damagedTime, damagedDur, 0);
     }
 
+    // this is the time when the boss dies
+    // instantiates death effect once dead
     void death()
     {
         //bossAnim.SetInteger("state", state);
-        Instantiate(deathFX, transform.position, Quaternion.identity);
-        Destroy(gameObject, deathTime);
+        if (deathTime <= 0)
+        {
+            Instantiate(deathFX, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        else {
+            deathTime -= Time.deltaTime;
+        }
     }
 
 
+
+
+    // this function is called to countdown, then switch to the next selected transition state
     float stateDuration( float totalTime, float duration, int transitionState)
     {
         duration -= Time.deltaTime;

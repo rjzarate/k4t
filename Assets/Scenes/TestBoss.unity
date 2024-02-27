@@ -1442,7 +1442,6 @@ GameObject:
   m_Component:
   - component: {fileID: 424925336}
   - component: {fileID: 424925335}
-  - component: {fileID: 424925337}
   m_Layer: 0
   m_Name: BOSS (2)
   m_TagString: Untagged
@@ -1496,19 +1495,6 @@ Transform:
   - {fileID: 1620997865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &424925337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424925334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TotalLifeSeconds: 0
 --- !u!1 &434784695
 GameObject:
   m_ObjectHideFlags: 0
