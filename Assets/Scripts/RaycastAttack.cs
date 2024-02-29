@@ -30,5 +30,18 @@ public class RaycastAttack : MonoBehaviour
         {
             comp.TriggerEffects(hitEffects);
         }
+
+        // let the object know it was hit, will call the wasHit() method in the CollisionDetection script of the object
+        hit.collider.gameObject.SendMessage("WasHit");
+
+        // trying to call WasHit() directly but ig collisionDetection is null...
+        CollisionDetection collisionDetection = hit.collider.gameObject.GetComponent<CollisionDetection>();
+        if (collisionDetection != null)
+        {
+            Debug.Log("Contacted Object");
+            collisionDetection.WasHit();
+        }
+
+
     }
 }
