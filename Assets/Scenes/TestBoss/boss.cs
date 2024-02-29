@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class boss : MonoBehaviour
+public class boss : MonoBehaviour, IBoss, IBullet
 {
 
     // Controlling the states
@@ -87,31 +87,23 @@ public class boss : MonoBehaviour
 
 
     // idle time
-    void idle()
+    public void idle()
     {
-        //bossAnim.SetInteger("state", state);
+        bossAnim.SetInteger("state", state);
         idleDur = stateDuration(idleTime, idleDur, 1);
     }
 
     // attack time
-    void attack()
+    public void attack()
     {
-        //bossAnim.SetInteger("state", state);
+        bossAnim.SetInteger("state", state);
 
 
         atkDur = stateDuration(atkTime, atkDur, 0);
         // fps time
         if (fpsDur <= 0)
         {
-            // instantiate and reference the bullet
-            GameObject bulletPrefab = Instantiate(bullets, firePos.position, firePos.rotation);
-
-            // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-            if (GetComponent<bullet>())
-            {
-                bulletPrefab.GetComponent<bullet>().speed = bulletSpeed;
-            }
-
+            fireBullet();
             fpsDur = fpsTime;
         }
 
@@ -120,18 +112,34 @@ public class boss : MonoBehaviour
         }
     }
 
-    // damaged time, when the boss flinches or backs down
-    void damaged()
+
+    // firing bullet
+    public void fireBullet()
     {
-        //bossAnim.SetTrigger("damaged");
+        // instantiate and reference the bullet
+        GameObject bulletPrefab = Instantiate(bullets, firePos.position, firePos.rotation);
+
+        // if the bullet as the bullet script, then set the speed to the boss's bullet speed
+        if (GetComponent<bullet>())
+        {
+            bulletPrefab.GetComponent<bullet>().speed = bulletSpeed;
+        }
+    }
+
+
+
+    // damaged time, when the boss flinches or backs down
+    public void damaged()
+    {
+        bossAnim.SetTrigger("damaged");
         damagedDur = stateDuration(damagedTime, damagedDur, 0);
     }
 
     // this is the time when the boss dies
     // instantiates death effect once dead
-    void death()
+    public void death()
     {
-        //bossAnim.SetInteger("state", state);
+        bossAnim.SetInteger("state", state);
         if (deathTime <= 0)
         {
             Instantiate(deathFX, transform.position, Quaternion.identity);
