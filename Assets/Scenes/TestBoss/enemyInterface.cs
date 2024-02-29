@@ -17,10 +17,3 @@ public interface IBullet
 {
     void fireBullet();
 }
-
-// interace for health essentials
-public interface IHealth
-{
-    void takeDamage();
-    void heal();
-}
