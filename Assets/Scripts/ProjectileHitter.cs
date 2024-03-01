@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ProjectileHitter : MonoBehaviour
 {
     [SerializeField] private List<string> targets;
     // Change later
@@ -20,6 +20,8 @@ public class Projectile : MonoBehaviour
             
     }
 
+    // when the hitter collides with a valid receiver
+    // self destructs
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (targets.Contains(LayerMask.LayerToName(collision.gameObject.layer)))
@@ -28,13 +30,8 @@ public class Projectile : MonoBehaviour
             if (hittable != null)
             {
                 hittable.TriggerEffects(effects);
-                Destroy(gameObject);
+                Destroy(gameObject.transform.parent.gameObject);
             }
         }
-    }
-
-    private void OnDestroy()
-    {
-        // implement
     }
 }

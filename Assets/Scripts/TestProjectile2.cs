@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastTargetTest : MonoBehaviour, IHittable
+public class TestProjectile2 : MonoBehaviour
 {
-    // test method for player to receive effects
-    public void TriggerEffects<T>(List<T> effects)
-    {
-        Debug.Log(effects);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +13,6 @@ public class RaycastTargetTest : MonoBehaviour, IHittable
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += new Vector3(Time.deltaTime, 0, 0);
     }
 }

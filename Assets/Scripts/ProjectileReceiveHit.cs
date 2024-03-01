@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastTargetTest : MonoBehaviour, IHittable
+public class ProjectileReceiveHit : MonoBehaviour, IHittable
 {
-    // test method for player to receive effects
+    // when this projectile is hit, self destruct
     public void TriggerEffects<T>(List<T> effects)
     {
-        Debug.Log(effects);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     // Start is called before the first frame update
