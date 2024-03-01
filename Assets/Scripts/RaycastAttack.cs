@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RaycastAttack : MonoBehaviour
 {
+    [SerializeField] private List<string> targets;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +17,11 @@ public class RaycastAttack : MonoBehaviour
 
     }
 
-    public void ShootRay<T>(Vector2 sourcePosition, Vector2 targetPosition, int layerMask, List<T> hitEffects)
+    // method to shoot a raycast and apply effects
+    public void ShootRay<T>(Vector2 sourcePosition, Vector2 targetPosition, List<T> hitEffects)
     {
         Debug.Log("Ray Shot");
+        int layerMask = LayerMaskByNameList(targets);
         RaycastHit2D hit = Physics2D.Raycast(sourcePosition, targetPosition - sourcePosition, float.PositiveInfinity, layerMask);
         if (!hit)
         {
@@ -30,18 +33,21 @@ public class RaycastAttack : MonoBehaviour
         {
             comp.TriggerEffects(hitEffects);
         }
+    }
 
-        // let the object know it was hit, will call the wasHit() method in the CollisionDetection script of the object
-        hit.collider.gameObject.SendMessage("WasHit");
-
-        // trying to call WasHit() directly but ig collisionDetection is null...
-        CollisionDetection collisionDetection = hit.collider.gameObject.GetComponent<CollisionDetection>();
-        if (collisionDetection != null)
+    // get layer number
+    private int LayerMaskByNameList(List<string> layers)
+    {
+        int layerMask = 0;
+        foreach (string layer in layers)
         {
-            Debug.Log("Contacted Object");
-            collisionDetection.WasHit();
+            int layerNumber = LayerMask.NameToLayer(layer);
+            if (layerNumber >= 0)
+            {
+                layerMask |= 1 << layerNumber;
+            }
         }
 
-
+        return layerMask;
     }
 }

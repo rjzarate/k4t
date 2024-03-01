@@ -25,8 +25,8 @@ public class RaycastTest : MonoBehaviour
         {
             List<string> effects = new List<string>();
             effects.Add("test effect");
-            int layerMask = 1 << 6;
-            raycastAttack.ShootRay(gameObject.transform.position, target, layerMask, effects);
+
+            raycastAttack.ShootRay(gameObject.transform.position, target, effects);
         }
         shoot = false;
     }
