@@ -2,140 +2,113 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using System;
+using UnityEngine.Rendering;
 
-public class Boss : MonoBehaviour, IBoss, IBullet
+public class Boss : MonoBehaviour
 {
 
-    private enum BossState {
-        IDLE = 0, ATTACK1 = 1, DAMAGE = 2, DEATH
-    }
     // Controlling the states
     // the times for the states: idle, atk, damaged, and death
 
-    [Header("States:")]
-    [SerializeField] BossState state = BossState.IDLE;
-
-    // static time. The total time of each state
-    [SerializeField] float idleTime;
-    [SerializeField] float atkTime;
-    [SerializeField] float damagedTime;
-    [SerializeField] float deathTime;
-
-    // the duration time that will be changed over time
-    float idleDur;
-    float atkDur;
-    float damagedDur;
+    [SerializeField] private List<BossAction> actions = new List<BossAction>();
+    [SerializeField] private BossAction currentAction;
 
 
-    // bullet handler
-    // firing position, bullet gameobject, speed of the bullet, and fps time
-    [Header("Bullets:")]
-    [SerializeField] Transform firePos;
-    [SerializeField] GameObject bullets;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float fpsTime;
-    float fpsDur;
 
-
+    /* DEPRECATED
     // special effects and boss animation that can be added
     [Header("Effects:")]
     [SerializeField] GameObject deathFX;
     [SerializeField] GameObject attackFX;
 
     [SerializeField] Animator bossAnimation;
+    */
 
 
 
-    // if there is animation setup, then set bossAnim variable to that existing component
-    // initial setters for the durations
     void Start()
     {
-        if (GetComponent<Animator>())
-        {
-            bossAnimation = GetComponent<Animator>();
+        // If action is not set in inspector
+        if (currentAction == null) {
+            Debug.LogWarning("No current action set. Setting to first Action in the list: " + actions[0]);
+            currentAction = actions[0];
         }
-
-        idleDur = idleTime;
-        atkDur = atkTime;
-        damagedDur = damagedTime;
-        fpsDur = 0;
+        currentAction.BeginAction();
     }
 
     void Update()
     {
-        // this line will be useful later on through later implementations:
-        // bossAnim.SetInteger("state", state);
-
-
-        // the many states, which actions are in functions
-        switch (state) {
-            case BossState.IDLE:
-            Idle();
-            break;
-
-            case BossState.ATTACK1:
-            Attack();
-            break;
-
-            case BossState.DAMAGE:
-            Damaged();
-            break;
-
-            default:
-            Death();
-            break;
-
+        // Continuously play the current action
+        if (!currentAction.ActionFinished()) {
+            currentAction.Action();
+            return;
         }
+
+        // Action is finished, generate a new action //
+        BossAction newAction = GetNewAction();
+        Debug.Log(newAction);
+        currentAction = newAction;
+        currentAction.BeginAction();
+        return;
     }
 
+    // Depends on current action's conditions:
+    // 1. whether it forces an action
+    // 2. blacklists
+    private BossAction GetNewAction()
+    {
+        // If the current action forces the next action
+        if (currentAction.WillForceNextAction()) {
+            return currentAction.GetNextForcedAction();
+        }
 
+        // Else, just do a random action 
+        // Grabs total weight of all nonblacklisted actions 
+        int totalWeight = 0;
+
+        foreach (BossAction action in actions.FindAll(a => (a != currentAction && !currentAction.getBlacklistedActions().Contains(a))
+                                                        || (a == currentAction && !a.BlacklistsSelf()))) {
+            totalWeight += action.GetWeight();
+        }
+
+        // Roll for the action
+        /* IF WE DOING SEEDED STUFF, THIS SHOULD BE SET BY THE CONSTANT SEED */
+        System.Random random = new System.Random();
+        int roll = random.Next(totalWeight); // exclusive
+        Debug.Log("Roll: " + roll);
+
+        // Grab the random action
+        List<BossAction> nonBlacklistedActions = actions.FindAll(a => (a != currentAction && !currentAction.getBlacklistedActions().Contains(a))
+                                                                   || (a == currentAction && !a.BlacklistsSelf()));
+        BossAction previousAction = nonBlacklistedActions[0];
+        foreach (BossAction action in nonBlacklistedActions) {
+            // Sifts through the actions' weights
+            roll -= previousAction.GetWeight();
+            previousAction = action;
+            if (roll > 0) {
+                continue;
+            }
+            break;
+        }
+
+        return previousAction;
+    }
+
+    /* DEPRECATED
     // idle time
     public void Idle()
     {
         bossAnimation.SetInteger("state", (int) state);
-        idleDur = StateDuration(idleTime, idleDur, BossState.ATTACK1);
+        // idleDur = StateDuration(idleTime, idleDur, BossState.ATTACK1);
     }
-
-    // attack time
-    public void Attack()
-    {
-        bossAnimation.SetInteger("state", (int) state);
-
-
-        atkDur = StateDuration(atkTime, atkDur, BossState.IDLE);
-        // fps time
-        if (fpsDur <= 0)
-        {
-            FireBullet();
-            fpsDur = fpsTime;
-        }
-
-        else {
-            fpsDur -= Time.deltaTime;
-        }
-    }
-
-
-    // firing bullet
-    public void FireBullet()
-    {
-        // instantiate and reference the bullet
-        GameObject bulletPrefab = Instantiate(bullets, firePos.position, firePos.rotation);
-
-        // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-        if (GetComponent<Bullet>())
-        {
-            bulletPrefab.GetComponent<Bullet>().speed = bulletSpeed;
-        }
-    }
-
 
 
     // damaged time, when the boss flinches or backs down
     public void Damaged()
     {
         bossAnimation.SetTrigger("damaged");
-        damagedDur = StateDuration(damagedTime, damagedDur, BossState.IDLE);
+        // damagedDur = StateDuration(damagedTime, damagedDur, BossState.IDLE);
     }
 
     // this is the time when the boss dies
@@ -153,21 +126,5 @@ public class Boss : MonoBehaviour, IBoss, IBullet
             deathTime -= Time.deltaTime;
         }
     }
-
-
-
-
-    // this function is called to countdown, then switch to the next selected transition state
-    float StateDuration(float totalTime, float duration, BossState transitionState)
-    {
-        duration -= Time.deltaTime;
-
-        if (duration <= 0)
-        {
-            state = transitionState;
-            duration = totalTime;
-        }
-
-        return duration;
-    }
+    */
 }
