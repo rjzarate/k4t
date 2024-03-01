@@ -4,21 +4,9 @@ using UnityEngine;
 
 public class ProjectileHitter : MonoBehaviour
 {
-    [SerializeField] private List<string> targets;
+    [SerializeField] private List<string> targetLayers;
     // Change later
-    [SerializeField] private List<string> effects;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-            
-    }
+    [SerializeField] private List<object> effects;
 
     // when the hitter collides with a valid receiver
     // self destructs

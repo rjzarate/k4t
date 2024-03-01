@@ -1,21 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class RaycastAttack : MonoBehaviour
 {
-    [SerializeField] private List<string> targets;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [SerializeField] private List<string> targetLayers;
+    
 
     // method to shoot a raycast and apply effects
     public void ShootRay<T>(Vector2 sourcePosition, Vector2 targetPosition, List<T> hitEffects)
@@ -28,10 +19,10 @@ public class RaycastAttack : MonoBehaviour
             return;
         }
         Debug.Log("Object Hit");
-        IHittable comp = hit.collider.gameObject.GetComponent<IHittable>();
-        if (comp != null)
+        IHittable hittable = hit.collider.gameObject.GetComponent<IHittable>();
+        if (hittable != null)
         {
-            comp.TriggerEffects(hitEffects);
+            hittable.TriggerEffects(hitEffects);
         }
     }
 
