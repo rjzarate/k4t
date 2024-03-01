@@ -6,14 +6,14 @@ using UnityEngine;
 // interface for boss essentials
 public interface IBoss
 {
-    void idle();
-    void attack();
-    void damaged();
-    void death();
+    void Idle();
+    void Attack();
+    void Damaged();
+    void Death();
 }
 
 // interface for bullet essentials
 public interface IBullet
 {
-    void fireBullet();
+    void FireBullet();
 }

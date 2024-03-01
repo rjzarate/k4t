@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class destroyOnCollision : MonoBehaviour
+public class DestroyOnCollision : MonoBehaviour
 {
     // include existing tags for collision detection
     [SerializeField] string[] collisionTags;

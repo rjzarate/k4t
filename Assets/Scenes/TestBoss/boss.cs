@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class boss : MonoBehaviour, IBoss, IBullet
+public class Boss : MonoBehaviour, IBoss, IBullet
 {
 
+    private enum BossState {
+        IDLE = 0, ATTACK1 = 1, DAMAGE = 2, DEATH
+    }
     // Controlling the states
     // the times for the states: idle, atk, damaged, and death
 
     [Header("States:")]
-    [SerializeField] int state = 0;
+    [SerializeField] BossState state = BossState.IDLE;
 
     // static time. The total time of each state
     [SerializeField] float idleTime;
@@ -29,7 +32,7 @@ public class boss : MonoBehaviour, IBoss, IBullet
     [Header("Bullets:")]
     [SerializeField] Transform firePos;
     [SerializeField] GameObject bullets;
-    [SerializeField]float bulletSpeed;
+    [SerializeField] float bulletSpeed;
     [SerializeField] float fpsTime;
     float fpsDur;
 
@@ -39,7 +42,7 @@ public class boss : MonoBehaviour, IBoss, IBullet
     [SerializeField] GameObject deathFX;
     [SerializeField] GameObject attackFX;
 
-    [SerializeField] Animator bossAnim;
+    [SerializeField] Animator bossAnimation;
 
 
 
@@ -49,7 +52,7 @@ public class boss : MonoBehaviour, IBoss, IBullet
     {
         if (GetComponent<Animator>())
         {
-            bossAnim = GetComponent<Animator>();
+            bossAnimation = GetComponent<Animator>();
         }
 
         idleDur = idleTime;
@@ -65,45 +68,45 @@ public class boss : MonoBehaviour, IBoss, IBullet
 
 
         // the many states, which actions are in functions
-        if (state == 0)
-        {
-            idle();
-        }
+        switch (state) {
+            case BossState.IDLE:
+            Idle();
+            break;
 
-        else if (state == 1)
-        {
-            attack();
-        }
+            case BossState.ATTACK1:
+            Attack();
+            break;
 
-        else if (state == 2)
-        {
-            damaged();
-        }
+            case BossState.DAMAGE:
+            Damaged();
+            break;
 
-        else {
-            death();
+            default:
+            Death();
+            break;
+
         }
     }
 
 
     // idle time
-    public void idle()
+    public void Idle()
     {
-        bossAnim.SetInteger("state", state);
-        idleDur = stateDuration(idleTime, idleDur, 1);
+        bossAnimation.SetInteger("state", (int) state);
+        idleDur = StateDuration(idleTime, idleDur, BossState.ATTACK1);
     }
 
     // attack time
-    public void attack()
+    public void Attack()
     {
-        bossAnim.SetInteger("state", state);
+        bossAnimation.SetInteger("state", (int) state);
 
 
-        atkDur = stateDuration(atkTime, atkDur, 0);
+        atkDur = StateDuration(atkTime, atkDur, BossState.IDLE);
         // fps time
         if (fpsDur <= 0)
         {
-            fireBullet();
+            FireBullet();
             fpsDur = fpsTime;
         }
 
@@ -114,32 +117,32 @@ public class boss : MonoBehaviour, IBoss, IBullet
 
 
     // firing bullet
-    public void fireBullet()
+    public void FireBullet()
     {
         // instantiate and reference the bullet
         GameObject bulletPrefab = Instantiate(bullets, firePos.position, firePos.rotation);
 
         // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-        if (GetComponent<bullet>())
+        if (GetComponent<Bullet>())
         {
-            bulletPrefab.GetComponent<bullet>().speed = bulletSpeed;
+            bulletPrefab.GetComponent<Bullet>().speed = bulletSpeed;
         }
     }
 
 
 
     // damaged time, when the boss flinches or backs down
-    public void damaged()
+    public void Damaged()
     {
-        bossAnim.SetTrigger("damaged");
-        damagedDur = stateDuration(damagedTime, damagedDur, 0);
+        bossAnimation.SetTrigger("damaged");
+        damagedDur = StateDuration(damagedTime, damagedDur, BossState.IDLE);
     }
 
     // this is the time when the boss dies
     // instantiates death effect once dead
-    public void death()
+    public void Death()
     {
-        bossAnim.SetInteger("state", state);
+        bossAnimation.SetInteger("state", (int) state);
         if (deathTime <= 0)
         {
             Instantiate(deathFX, transform.position, Quaternion.identity);
@@ -155,7 +158,7 @@ public class boss : MonoBehaviour, IBoss, IBullet
 
 
     // this function is called to countdown, then switch to the next selected transition state
-    float stateDuration( float totalTime, float duration, int transitionState)
+    float StateDuration(float totalTime, float duration, BossState transitionState)
     {
         duration -= Time.deltaTime;
 

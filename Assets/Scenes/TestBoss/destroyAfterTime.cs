@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class destroyOnTime : MonoBehaviour
+public class DestroyOnTime : MonoBehaviour
 {
     // effects before destrying self and after time is up
     [SerializeField] GameObject DestroyFX;
