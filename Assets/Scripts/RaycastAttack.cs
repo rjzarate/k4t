@@ -12,7 +12,7 @@ public class RaycastAttack : MonoBehaviour
     public void ShootRay<T>(Vector2 sourcePosition, Vector2 targetPosition, List<T> hitEffects)
     {
         Debug.Log("Ray Shot");
-        int layerMask = LayerMaskByNameList(targets);
+        int layerMask = LayerMaskByNameList(targetLayers);
         RaycastHit2D hit = Physics2D.Raycast(sourcePosition, targetPosition - sourcePosition, float.PositiveInfinity, layerMask);
         if (!hit)
         {

@@ -12,7 +12,7 @@ public class ProjectileHitter : MonoBehaviour
     // self destructs
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (targets.Contains(LayerMask.LayerToName(collision.gameObject.layer)))
+        if (targetLayers.Contains(LayerMask.LayerToName(collision.gameObject.layer)))
         {
             IHittable hittable = collision.gameObject.GetComponent<IHittable>();
             if (hittable != null)
