@@ -1707,7 +1707,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005861128}
-  - component: {fileID: 2005861129}
   m_Layer: 0
   m_Name: wheel
   m_TagString: Untagged
@@ -1732,19 +1731,6 @@ Transform:
   - {fileID: 1958569771}
   m_Father: {fileID: 1874121986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2005861129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005861127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da35ad0286c604b78820f51b62ff65e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 500
 --- !u!1 &2085531211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1740,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2085531212}
-  - component: {fileID: 2085531213}
   m_Layer: 0
   m_Name: wheel (1)
   m_TagString: Untagged
@@ -1779,19 +1764,6 @@ Transform:
   - {fileID: 966638296}
   m_Father: {fileID: 1874121986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
---- !u!114 &2085531213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085531211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da35ad0286c604b78820f51b62ff65e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: -60
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
