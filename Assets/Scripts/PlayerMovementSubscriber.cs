@@ -131,6 +131,19 @@ public class PlayerMovementSubscriber : MonoBehaviour
         // vector for the transformation of the player
         Vector3 playerMovementVector = new Vector3(playerMovementAmountAlongX, 0f, 0f);
 
+        // boolean to check if the player has collied with a wall entity (needs to have a box collider)
+        bool playerCanKeepMoving = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * 0.9f,
+                                                        0.45f, playerMovementVector, moveSpeed * Time.deltaTime);
+
+        // checks to see if the player should'nt move because of a collition
+        if (!playerCanKeepMoving) // returns true if there is a collision
+        {
+            Debug.Log("Player should stop moving!!"); // makes sure the collision is active
+
+            // new position Vecotr3 of <0f, 0f, 0f>
+            playerMovementVector = new Vector3(0f, 0f, 0f);
+        }
+
         // transforms the sprite on the x-axis
         transform.position += playerMovementVector * moveSpeed * Time.deltaTime;
     }
