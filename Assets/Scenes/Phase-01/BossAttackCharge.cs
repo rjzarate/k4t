@@ -13,6 +13,7 @@ public class BossAttackCharge : BossAction
     }
 
     [SerializeField] private float chargeSeconds; // charging up time
+    private float chargeSecondsDuration;
     [SerializeField] private float attackSeconds; // drop to ground time
     [SerializeField] private float riseSeconds; // go back up time
 
@@ -30,24 +31,40 @@ public class BossAttackCharge : BossAction
     {
         duration -= Time.deltaTime;
 
-        if (chargeSeconds > 0)
+        // Currently charging
+        if (chargeSecondsDuration > 0)
         {
-            chargeSeconds -= Time.deltaTime;
+            chargeSecondsDuration -= Time.deltaTime;
+            return;
         }
         
-        // charging up done
-        if (chargeSeconds <= 0 && state == AttackState.CHARGING)
+        switch (state)
         {
-            state = AttackState.ATTACK;
-            GetCurrentPositions();
-            // move Boss to ground
-            StartCoroutine(MoveOverTime(initialPosition, targetPosition, attackSeconds));
-        }
-        if (chargeSeconds <= 0 && state == AttackState.RISE)
-        {
-            state = AttackState.DONE;
-            //move Boss to air
-            StartCoroutine(MoveOverTime(targetPosition, initialPosition, riseSeconds));
+            case AttackState.CHARGING:
+                chargeSecondsDuration = chargeSeconds;
+                
+                state = AttackState.ATTACK;
+                GetCurrentPositions();
+                // move Boss to ground
+                StartCoroutine(MoveOverTime(initialPosition, targetPosition, attackSeconds));
+                break;
+            case AttackState.ATTACK:
+                // Should be currently moving to the ground
+                break;
+            
+            case AttackState.RISE:
+                state = AttackState.DONE;
+                //move Boss to air
+                StartCoroutine(MoveOverTime(targetPosition, initialPosition, riseSeconds));
+                break;
+
+            case AttackState.DONE:
+                // Should be currently moving up
+                break;
+
+            default:
+                Debug.LogError("Attack State is not CHARGING, ATTACK, RISE, or DONE: " + state);
+                break;
         }
     }
 
@@ -68,6 +85,7 @@ public class BossAttackCharge : BossAction
     public override void BeginAction()
     {
         duration = chargeSeconds + attackSeconds + riseSeconds;
+        chargeSecondsDuration = chargeSeconds;
         state = AttackState.CHARGING;
     }
 
@@ -80,7 +98,7 @@ public class BossAttackCharge : BossAction
         {
             transform.position = Vector2.Lerp(initialPosition, targetPosition, elapsedTime / moveDuration);
             elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return null; // Wait until the next frame
         }
         //transform.position = targetPosition;
         if (state == AttackState.ATTACK)
