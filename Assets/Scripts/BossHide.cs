@@ -28,7 +28,7 @@ public class BossHide : BossAction
     [SerializeField] gizmosColors checkColor;
 
     // stop hide, this will be called when player interrupts the Boss.
-    public void stopHide()
+    public void StopHide()
     {
         isHiding = false;
         hideDuration = 0;
@@ -37,8 +37,8 @@ public class BossHide : BossAction
     // unique action for hide script
     public override void Action()
     {
-        hideMode();
-        dodgePlayer();
+        HideMode();
+        DodgePlayer();
         if (hideDuration >= 0)
         {
             hideDuration -= Time.deltaTime;
@@ -46,7 +46,7 @@ public class BossHide : BossAction
     }
 
     // constantly aware of dodging player while invisible
-    void dodgePlayer()
+    void DodgePlayer()
     {
         isBounded = Physics2D.OverlapCircle(transform.position, checkBoundRadius, boundLayer);
         if (isHiding && GameObject.FindGameObjectWithTag("Player"))
@@ -70,7 +70,7 @@ public class BossHide : BossAction
     }
 
     // invisible
-    void hideMode()
+    void HideMode()
     {
         // boss will no longer be hiding once hide duration is up
         if (hideDuration <= 0)
