@@ -1538,7 +1538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionTags:
   - Bullet
-  - Bound
 --- !u!1 &1684085743
 GameObject:
   m_ObjectHideFlags: 0
