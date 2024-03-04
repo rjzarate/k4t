@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 40907807}
   - component: {fileID: 40907806}
   - component: {fileID: 40907808}
+  - component: {fileID: 40907809}
   m_Layer: 0
   m_Name: BOSS
   m_TagString: Untagged
@@ -175,8 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - {fileID: 40907807}
-  - {fileID: 40907806}
-  - {fileID: 40907808}
+  - {fileID: 40907809}
   currentAction: {fileID: 40907807}
 --- !u!114 &40907804
 MonoBehaviour:
@@ -283,6 +283,29 @@ MonoBehaviour:
   bulletPosition3: {x: -1, y: 0}
   bulletPositionRelativeDirection3: {x: 0, y: -1}
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+--- !u!114 &40907809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40907800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce9066aca20a3e44acbc8473646d80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 3.1
+  weight: 10
+  willForceNextAction: 0
+  nextForcedAction: {fileID: 0}
+  blacklistedActions: []
+  blacklistsSelf: 1
+  showGizmos: 1
+  rateOfFireTime: 0.5
+  bulletSpeed: 5
+  nValue: 6
+  bulletPrefab: {fileID: 8622931999737368900, guid: 1fdb26ab935182548b7971bf73c8a001, type: 3}
 --- !u!1 &163211366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da35ad0286c604b78820f51b62ff65e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 500
 --- !u!1 &2085531211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da35ad0286c604b78820f51b62ff65e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: -60
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
