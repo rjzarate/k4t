@@ -20,14 +20,19 @@ public class InputHandler : MonoBehaviour
     {
         // slashed out for now since the player inputs won't work when the game starts
         // feel free to edit it later
+
+        
         if (Instance != null && Instance != this)
         {
             Destroy(this);
+            Debug.Log("Destroy");
         }
         else
         {
             Instance = this;
+            Debug.Log("Instantiate");
         }
+        
     }
 
     // Start is called before the first frame update
