@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 {
+    public static PlayerMovementAndAttackSubscriber Instance
+    {
+        get; private set;
+    }
+
     // enums
     public enum PlayerMoveDirection // Labels for movement direction
     {
@@ -31,6 +36,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         // Subscribe to InputHandler tap, press, release, and consecutive tap events
         InputHandler.Instance.OnTapEvent += HandleTap;
         InputHandler.Instance.OnPressEvent += HandlePress;
