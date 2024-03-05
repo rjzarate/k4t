@@ -14,7 +14,6 @@ public class CheeseWheel : BossAction
     [SerializeField] private int nValue = 4;
     [SerializeField] private GameObject bulletPrefab;
     private bool wave2 = false;
-    private int attackCount = 0;
 
     public override void Action()
     {
@@ -37,7 +36,6 @@ public class CheeseWheel : BossAction
                 wave2 = false;
             }
             rateOfFireCooldown = rateOfFireTime;
-            attackCount++;
             return;
         }
         rateOfFireCooldown -= Time.deltaTime;
@@ -53,12 +51,12 @@ public class CheeseWheel : BossAction
             // note that -90 is added to the game design specifications because the game design specifications are relative to the rightward direction, while the bullet here is relative to the upward direction
             Quaternion bulletRotation = Quaternion.Euler(0, 0, -90 - ((90f / nValue) * i));
             Vector2 transformPosition = new Vector2(transform.position.x, transform.position.y);
-            Instantiate(bulletPrefab, transformPosition, bulletRotation);
+            GameObject bullet = Instantiate(bulletPrefab, transformPosition, bulletRotation);
 
             // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-            if (GetComponent<Bullet>())
+            if (bullet.GetComponent<Bullet>())
             {
-                bulletPrefab.GetComponent<Bullet>().speed = bulletSpeed;
+                bullet.GetComponent<Bullet>().speed = bulletSpeed;
             }
         }
     }
@@ -71,12 +69,12 @@ public class CheeseWheel : BossAction
             // note that -90 is added to the game design specifications because the game design specifications are relative to the rightward direction, while the bullet here is relative to the upward direction
             Quaternion bulletRotation = Quaternion.Euler(0, 0, -90 - (45f / nValue) - ((90f / nValue) * i));
             Vector2 transformPosition = new Vector2(transform.position.x, transform.position.y);
-            Instantiate(bulletPrefab, transformPosition, bulletRotation);
+            GameObject bullet = Instantiate(bulletPrefab, transformPosition, bulletRotation);
 
             // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-            if (GetComponent<Bullet>())
+            if (bullet.GetComponent<Bullet>())
             {
-                bulletPrefab.GetComponent<Bullet>().speed = bulletSpeed;
+                bullet.GetComponent<Bullet>().speed = bulletSpeed;
             }
         }
     }

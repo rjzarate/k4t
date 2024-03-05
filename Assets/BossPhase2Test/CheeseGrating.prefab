@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7316426644239259787}
   - component: {fileID: 8244166120915004816}
-  - component: {fileID: 9082985917653922075}
-  - component: {fileID: 4076730927525278500}
   - component: {fileID: -6897814453904256098}
-  - component: {fileID: -8469077190381796333}
+  - component: {fileID: 1521452940968076719}
+  - component: {fileID: 8895141026604028117}
+  - component: {fileID: -4029694590296547088}
   m_Layer: 0
-  m_Name: CheeseWedge
+  m_Name: CheeseGrating
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.3504, y: -0.9002, z: 0}
-  m_LocalScale: {x: 0.2391, y: 0.4661, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,8 +88,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &9082985917653922075
-PolygonCollider2D:
+--- !u!114 &-6897814453904256098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622931999737368900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyFX: {fileID: 0}
+  TotalLifeSeconds: 2
+--- !u!61 &1521452940968076719
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,20 +137,17 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
-  m_UseDelaunayMesh: 0
---- !u!114 &4076730927525278500
+  serializedVersion: 2
+  m_Size: {x: 0.88622695, y: 0.88622695}
+  m_EdgeRadius: 0
+--- !u!114 &8895141026604028117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,25 +156,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8622931999737368900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93c52a8a07b314211962427b3a9ba7a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 06adc84c90b177f4fa93dd54e6a97d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
---- !u!114 &-6897814453904256098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8622931999737368900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyFX: {fileID: 0}
-  TotalLifeSeconds: 3
---- !u!114 &-8469077190381796333
+  speed: 0
+  velocity: {x: 0, y: 0}
+  acceleration: {x: 0, y: 0}
+--- !u!114 &-4029694590296547088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
