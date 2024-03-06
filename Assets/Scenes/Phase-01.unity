@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 40907811}
   - component: {fileID: 40907812}
   - component: {fileID: 40907813}
+  - component: {fileID: 40907814}
   m_Layer: 0
   m_Name: BOSS
   m_TagString: Untagged
@@ -183,6 +184,7 @@ MonoBehaviour:
   - {fileID: 40907811}
   - {fileID: 40907812}
   - {fileID: 40907813}
+  - {fileID: 40907814}
   currentAction: {fileID: 40907807}
 --- !u!114 &40907804
 MonoBehaviour:
@@ -433,6 +435,30 @@ MonoBehaviour:
   riseSeconds: 2
   groundTransform: {fileID: 1779542992}
   bossSprite: {fileID: 1874121984}
+--- !u!114 &40907814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40907800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92e03fc5d758c74bb5754f116242ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 1
+  weight: 1000
+  willForceNextAction: 0
+  nextForcedAction: {fileID: 0}
+  blacklistedActions: []
+  blacklistsSelf: 1
+  showGizmos: 1
+  chargeSeconds: 2
+  attackSeconds: 4
+  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  stageHazard: {fileID: 6236887681492775216, guid: fecfaa92db31ee240839bdc71935fc49, type: 3}
+  groundTransform: {fileID: 1779542992}
 --- !u!1 &163211366
 GameObject:
   m_ObjectHideFlags: 0
