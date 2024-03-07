@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 40907813}
   - component: {fileID: 40907814}
   - component: {fileID: 40907815}
+  - component: {fileID: 40907816}
   m_Layer: 0
   m_Name: BOSS
   m_TagString: Untagged
@@ -187,6 +188,7 @@ MonoBehaviour:
   - {fileID: 40907813}
   - {fileID: 40907814}
   - {fileID: 40907815}
+  - {fileID: 40907816}
   currentAction: {fileID: 40907807}
 --- !u!114 &40907804
 MonoBehaviour:
@@ -474,7 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
-  weight: 10000
+  weight: 10
   willForceNextAction: 0
   nextForcedAction: {fileID: 0}
   blacklistedActions: []
@@ -483,6 +485,32 @@ MonoBehaviour:
   rateOfFireTime: 0.1
   bulletSpeed: 3
   bulletPosition: {x: 0, y: 0}
+  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  playerObj: {fileID: 0}
+--- !u!114 &40907816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40907800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcb71ea29dfa4a7faaa5a5b09796765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 8
+  weight: 10
+  willForceNextAction: 0
+  nextForcedAction: {fileID: 0}
+  blacklistedActions: []
+  blacklistsSelf: 1
+  showGizmos: 1
+  rateOfFireTime: 0.05
+  bulletSpeed: 30
+  bulletPosition: {x: 0, y: 3}
+  summonRange: {x: 8, y: 0}
+  globalRotation: -170
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
   playerObj: {fileID: 0}
 --- !u!1 &163211366
