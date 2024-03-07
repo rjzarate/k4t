@@ -57,7 +57,7 @@ public class GratedCheeseRain : BossAction
         Vector2 transformPosition = new Vector2(transform.position.x, transform.position.y);
         GameObject bullet = Instantiate(bulletPrefab, transformPosition + new Vector2(UnityEngine.Random.Range(-width / 2, width / 2), 0), Quaternion.identity);
 
-        // if the bullet as the bullet script, then set the speed to the boss's bullet speed
+        // if the bullet has the bullet script, then set the speed to the boss's bullet speed
         if (bullet.GetComponent<AcceleratingBullet>())
         {
             bullet.GetComponent<AcceleratingBullet>().Initialize(new Vector2(UnityEngine.Random.Range(-maxHorizontalVelocity, maxHorizontalVelocity), 0), new Vector2(0, -bulletAccel));

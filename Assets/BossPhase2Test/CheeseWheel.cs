@@ -53,7 +53,7 @@ public class CheeseWheel : BossAction
             Vector2 transformPosition = new Vector2(transform.position.x, transform.position.y);
             GameObject bullet = Instantiate(bulletPrefab, transformPosition, bulletRotation);
 
-            // if the bullet as the bullet script, then set the speed to the boss's bullet speed
+            // if the bullet has the bullet script, then set the speed to the boss's bullet speed
             if (bullet.GetComponent<Bullet>())
             {
                 bullet.GetComponent<Bullet>().speed = bulletSpeed;
