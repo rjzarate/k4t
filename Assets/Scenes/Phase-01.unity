@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 40907812}
   - component: {fileID: 40907813}
   - component: {fileID: 40907814}
+  - component: {fileID: 40907815}
   m_Layer: 0
   m_Name: BOSS
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   - {fileID: 40907812}
   - {fileID: 40907813}
   - {fileID: 40907814}
+  - {fileID: 40907815}
   currentAction: {fileID: 40907807}
 --- !u!114 &40907804
 MonoBehaviour:
@@ -459,6 +461,30 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
   stageHazard: {fileID: 6236887681492775216, guid: fecfaa92db31ee240839bdc71935fc49, type: 3}
   groundTransform: {fileID: 1779542992}
+--- !u!114 &40907815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40907800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928b4bc4d42e04dc7b196b8d2869754f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 5
+  weight: 10000
+  willForceNextAction: 0
+  nextForcedAction: {fileID: 0}
+  blacklistedActions: []
+  blacklistsSelf: 1
+  showGizmos: 0
+  rateOfFireTime: 0.1
+  bulletSpeed: 3
+  bulletPosition: {x: 0, y: 0}
+  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  playerObj: {fileID: 0}
 --- !u!1 &163211366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1543,7 @@ Transform:
   m_GameObject: {fileID: 1652829233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.14, z: 0}
+  m_LocalPosition: {x: 2.32, y: -3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
