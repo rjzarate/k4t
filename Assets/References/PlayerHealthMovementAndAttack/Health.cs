@@ -20,6 +20,11 @@ public class Health : MonoBehaviour
         hp = newHealth;
     }
 
+    public void lowerHealth()
+    {
+        hp--;
+    }
+
     public bool death(){
         if(hp <= 0){
             return false;
