@@ -85,7 +85,11 @@ public class MouseMafia : BossAction
 
     private void Fire()
     {
-        float rotationDirection = Mathf.Abs(transform.position.x - playerX)/ (transform.position.x - playerX);
+        float rotationDirection;
+        if (transform.position.x - playerX == 0)
+            rotationDirection = -180f;
+        else
+            rotationDirection = Mathf.Abs(transform.position.x - playerX) / (transform.position.x - playerX);
         // Instantiate and reference the bullet
         Quaternion bulletRotation = Quaternion.Euler(0, 0, rotationDirection * 90 + Mathf.Atan((playerY - transform.position.y)/(playerX - transform.position.x)) * 180f/Mathf.PI);
         Vector3 transformPosition = new Vector3(transform.position.x, transform.position.y, 0);

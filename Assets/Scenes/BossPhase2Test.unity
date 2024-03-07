@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 40907808}
   - component: {fileID: 40907809}
   - component: {fileID: 40907810}
+  - component: {fileID: 40907811}
   m_Layer: 0
   m_Name: BOSS
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   - {fileID: 40907807}
   - {fileID: 40907809}
   - {fileID: 40907810}
+  - {fileID: 40907811}
   currentAction: {fileID: 40907807}
 --- !u!114 &40907804
 MonoBehaviour:
@@ -338,6 +340,36 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8622931999737368900, guid: 6edba39148f325949a20d8ecdbbc5852, type: 3}
   movementSpeed: 4
   targetX: 0
+--- !u!114 &40907811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40907800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f2ea7d3025ea14190f6d6793b7b088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 5
+  weight: 10
+  willForceNextAction: 0
+  nextForcedAction: {fileID: 40907807}
+  blacklistedActions: []
+  blacklistsSelf: 1
+  showGizmos: 1
+  rateOfFireTime: 0.2
+  bulletSpeed: 12
+  bulletCount: 3
+  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  movementSpeed: 12
+  playerX: 0
+  playerY: -3.14
+  minX: -7
+  minY: 1
+  maxX: 7
+  maxY: 3.5
 --- !u!1 &163211366
 GameObject:
   m_ObjectHideFlags: 0
