@@ -511,7 +511,7 @@ MonoBehaviour:
   bulletPosition: {x: 0, y: 3}
   summonRange: {x: 8, y: 0}
   globalRotation: -170
-  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  bulletPrefab: {fileID: 8291372549811847577, guid: 8a275254bbc854f32b013d2988db9287, type: 3}
   playerObj: {fileID: 0}
 --- !u!1 &163211366
 GameObject:
