@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 {
-    public static PlayerMovementAndAttackSubscriber Instance
-    {
-        get; private set;
-    }
-
     // enums
     public enum PlayerMoveDirection // Labels for movement direction
     {
@@ -31,12 +26,20 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
     private InputHandler inputHandler; // instance of the inputHandler for the InputSubscriber class
 
+    [SerializeField] private LayerMask wallLayerMask;
+
+    private Rigidbody2D rigidBody2D;
+
+    private BoxCollider2D boxCollider2D;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Instance = this;
+        rigidBody2D = transform.GetComponent<Rigidbody2D>();
+        boxCollider2D = transform.GetComponent<BoxCollider2D>();
+
         // Subscribe to InputHandler tap, press, release, and consecutive tap events
         InputHandler.Instance.OnTapEvent += HandleTap;
         InputHandler.Instance.OnPressEvent += HandlePress;
@@ -138,8 +141,10 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         Vector3 playerMovementVector = new Vector3(playerMovementAmountAlongX, 0f, 0f);
 
         // boolean to check if the player has collied with a wall entity (needs to have a box collider)
-        bool playerCanKeepMoving = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * 0.9f,
-                                                        0.45f, playerMovementVector, moveSpeed * Time.deltaTime);
+        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, new Vector2(5 * playerMovementAmountAlongX, 0f),
+                                                    boxCollider2D.bounds.extents.x + 0.09f, wallLayerMask);
+        
+        bool playerCanKeepMoving = (raycastHit.collider == null);
 
         // checks to see if the player should'nt move because of a collition
         if (!playerCanKeepMoving) // returns true if there is a collision
