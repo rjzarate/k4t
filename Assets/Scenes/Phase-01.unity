@@ -463,6 +463,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
   stageHazard: {fileID: 6236887681492775216, guid: fecfaa92db31ee240839bdc71935fc49, type: 3}
   groundTransform: {fileID: 1779542992}
+  hazardSeconds: 2
 --- !u!114 &40907815
 MonoBehaviour:
   m_ObjectHideFlags: 0

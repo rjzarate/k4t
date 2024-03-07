@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BossAttackStageHazard : BossAction
@@ -8,11 +7,13 @@ public class BossAttackStageHazard : BossAction
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject stageHazard;
     [SerializeField] private Transform groundTransform; // the position of the ground
+    [SerializeField] private float hazardSeconds;
 
     private Vector2 targetPosition;
     private float bulletHeight;
     private float chargeDuration;
     private float attackDuration;
+    private Vector2 hazardPosition;
 
     private enum AttackState
     {
@@ -24,11 +25,11 @@ public class BossAttackStageHazard : BossAction
     // BeginAction is called at the start of this script
     public override void BeginAction()
     {
-        Debug.Log("begin");
-        duration = chargeSeconds + attackSeconds;
+        duration = chargeSeconds + attackSeconds + hazardSeconds;
         state = AttackState.CHARGING;
         chargeDuration = chargeSeconds;
         attackDuration = attackSeconds;
+        hazardPosition = new Vector2(0, 0);
     }
 
     // Action is called once per frames
@@ -36,40 +37,41 @@ public class BossAttackStageHazard : BossAction
     {
         duration -= Time.deltaTime;
 
-        
         if (chargeDuration > 0)
         {
-            Debug.Log("charging");
             chargeDuration -= Time.deltaTime;
             return;
         }
 
-        Vector2 hazardPosition = new Vector2(0, 0);
-
         switch (state)
         {
             case AttackState.CHARGING:
-                Debug.Log("chargeDone");
                 state = AttackState.ATTACK;
                 // create meateor
-                hazardPosition = Attack();
+                Attack();
                 break;
             case AttackState.ATTACK:
-                // Should be currently moving to the ground
-                break;
-            case AttackState.STAGE_HAZARD:
-                state = AttackState.DONE;
-                
+                // meateor should be currently moving to the ground
                 if (attackDuration > 0)
                 {
                     attackDuration -= Time.deltaTime;
                     break;
                 }
+                state = AttackState.STAGE_HAZARD;
+                break;
+            case AttackState.STAGE_HAZARD:
                 if (hazardPosition.x != 0f)
-                    Instantiate(stageHazard, hazardPosition, Quaternion.identity);
+                {
+                    GameObject hazard = Instantiate(stageHazard, hazardPosition, Quaternion.identity);
+                    DestroyOnTime hazardDestroyScript = hazard.GetComponent<DestroyOnTime>();
+                    if (hazardDestroyScript == null)
+                        Debug.LogError("bulletDestroyScript not found");
+                    else
+                        hazardDestroyScript.TotalLifeSeconds = hazardSeconds;
+                }
+                state = AttackState.DONE;
                 break;
             case AttackState.DONE:
-                // Should be currently moving up
                 break;
 
             default:
@@ -78,33 +80,30 @@ public class BossAttackStageHazard : BossAction
         }
     }
 
-    private Vector2 Attack()
+    private void Attack()
     {
-        Debug.Log("attacking");
-
         // calculate the positions for the stage hazard (left and right side of screen)
         Vector2[] targetPositions = new Vector2[2];
         Camera mainCamera = Camera.main;
         float topOfGroundHeight = groundTransform.position.y + groundTransform.localScale.y / 2f;
         float bulletHeight = groundTransform.position.y + groundTransform.localScale.x / 2f;
         float stageHazardWidth = stageHazard.GetComponent<SpriteRenderer>().bounds.size.x;
-        Debug.Log("hazard width: " + stageHazardWidth);
         float screenWidth = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - mainCamera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x;
+        float screenHeight = mainCamera.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y - mainCamera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y;
 
         // Calculate the left and right bounds of the screen
         float leftBound = mainCamera.transform.position.x - (screenWidth / 2f) + (stageHazardWidth / 2f);
         float rightBound = mainCamera.transform.position.x + (screenWidth / 2f) - (stageHazardWidth / 2f);
-        targetPositions[0] = new Vector2(leftBound, topOfGroundHeight + bulletHeight);
-        targetPositions[1] = new Vector2(rightBound, topOfGroundHeight + bulletHeight);
 
-        Debug.Log("Left Bound: " + leftBound);
-        Debug.Log("Right Bound: " + rightBound);
+        //Calculate positions for the meateor to land (on top of ground and either on the left or right side)
+        targetPositions[0] = new Vector2(leftBound, groundTransform.position.y + topOfGroundHeight / 2f + bulletHeight /2f);
+        targetPositions[1] = new Vector2(rightBound, groundTransform.position.y + topOfGroundHeight /2f + bulletHeight /2f);
 
-        // create the meateor at the boss' y position but with a random x position
+        // create the meateor at the top of the screen and with a random x position and calculate its speed and direction
         float bulletWidth = bulletPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
-        float randomX = UnityEngine.Random.Range(((float)Screen.width / -2) + bulletWidth, ((float)Screen.width / -2) - bulletWidth);
-        Vector2 initialPosition = new Vector2(randomX, transform.position.y);
-        Vector2 targetPosition = targetPositions[UnityEngine.Random.Range(0, 1)];
+        float randomX = UnityEngine.Random.Range(leftBound + bulletWidth, rightBound - bulletWidth);
+        Vector2 initialPosition = new Vector2(randomX, screenHeight / 2f);
+        Vector2 targetPosition = targetPositions[UnityEngine.Random.Range(0, 2)];
         Vector2 direction = new Vector2(targetPosition.x - initialPosition.x, targetPosition.y - initialPosition.y).normalized; // get rotation while keeping scale to 1
         Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
         GameObject bullet = Instantiate(bulletPrefab, initialPosition, rotation);
@@ -112,14 +111,14 @@ public class BossAttackStageHazard : BossAction
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bulletScript == null)
             Debug.LogError("bulletScript not found");
-        bulletScript.speed = distanceToTargetPosition / attackSeconds; // set the speed of meateor
-        Debug.Log(bulletScript.speed);
+        else
+            bulletScript.speed = distanceToTargetPosition / attackSeconds;
         DestroyOnTime bulletDestroyScript = bullet.GetComponent<DestroyOnTime>();
         if (bulletDestroyScript == null)
             Debug.LogError("bulletDestroyScript not found");
-        bulletDestroyScript.TotalLifeSeconds = attackSeconds;
+        else
+            bulletDestroyScript.TotalLifeSeconds = attackSeconds;
 
-        state = AttackState.STAGE_HAZARD;
-        return new Vector2(targetPosition.x, targetPosition.y - bulletHeight);
+        hazardPosition = new Vector2(targetPosition.x, targetPosition.y);
     }
 }
