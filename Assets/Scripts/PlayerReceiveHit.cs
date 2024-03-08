@@ -14,7 +14,6 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
 
     void Update()
     {
-        bool isAlive = health.death(); // determines whether the player is still alive
 
         if (!isAlive) // true if the player dies
         {
@@ -25,11 +24,11 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
         {
             Debug.Log("living");
         }
-    }
+
 
     // when this projectile is hit, self destruct
     public void TriggerEffects<T>(List<T> effects)
     {
-        health.lowerHealth(); // decrements health if attacked
+        health.Damage(1); // decrements health if attacked
     }
 }

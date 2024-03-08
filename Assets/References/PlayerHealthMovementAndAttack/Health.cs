@@ -4,29 +4,41 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int hp;
-    [SerializeField] private int maxHp;
-    [SerializeField] private int damage;
+    [SerializeField] private float health;
+    [SerializeField] private float maxhealth;
     
     private void Start(){
-        hp = maxHp;
+        health = maxhealth;
     }
 
-    public int GetHealth(){
-        return hp;
+    public float GetHealth(){
+        return health;
     }
 
     public void SetHealth(int newHealth){
-        hp = newHealth;
+        health = newHealth;
     }
 
-    public void lowerHealth()
+    public void Damage(float damage)
     {
-        hp--;
+        health -= damage;
+        if (health <= 0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Heal(float heal)
+    {
+        health += heal;
+        if (health > maxhealth)
+        {
+            health = maxhealth;
+        }
     }
 
     public bool death(){
-        if(hp <= 0){
+        if(health <= 0){
             return false;
         }
         return true;
