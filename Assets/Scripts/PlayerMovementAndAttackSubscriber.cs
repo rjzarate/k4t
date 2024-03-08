@@ -32,6 +32,10 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
     private BoxCollider2D boxCollider2D;
 
+    // shooting objects
+    [SerializeField] private GameObject bulletObject;
+    [SerializeField] private Transform firingPoint;
+
 
 
     // Start is called before the first frame update
@@ -75,6 +79,8 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // What to do on Consecutive Tap
     public void HandleConsecutiveTap()
     {
+        Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
+        
         Debug.Log("Consecutive Tap detected!");
 
         // TODO
