@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Test : MonoBehaviour, IHittable
 {
-    public void TriggerEffects<T>(List<T> effects)
+    public void TriggerEffects(List<Effect> effects)
     {
-        Debug.Log("Testing");
-        throw new System.NotImplementedException();
-        
+         Debug.Log("Testing");
     }
 
     // Start is called before the first frame update

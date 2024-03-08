@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RaycastTargetTest : MonoBehaviour, IHittable
 {
-    // test method for player to receive effects
-    public void TriggerEffects<T>(List<T> effects)
+    public void TriggerEffects(List<Effect> effects)
     {
         Debug.Log(effects);
     }

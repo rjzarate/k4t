@@ -48,7 +48,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1399
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -90,9 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa8d7a66f015e44aa52e89cad73e6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayers:
-  - EnemyAttack
-  - E
+  effects: []
+  destroyOnHit: 1
 --- !u!1 &8291372549811847577
 GameObject:
   m_ObjectHideFlags: 0

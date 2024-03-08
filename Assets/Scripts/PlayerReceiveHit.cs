@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Health))]
 public class PlayerReceiveHit : MonoBehaviour, IHittable
 {
     private Health health; // player's instance of health
@@ -9,18 +12,32 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     void Start()
     {
         health = GetComponent<Health>();
-        Debug.Log("alive!!");
     }
 
-    void Update()
+
+    public void TriggerEffects(List<Effect> effects)
     {
-        // i think if the player gets destroyed this script will stop
-        Debug.Log("alive");
+        foreach(Effect effect in effects) {
+            ApplyEffect(effect);
+        }
     }
 
-    // when this projectile is hit, self destruct
-    public void TriggerEffects<T>(List<T> effects)
+    private void ApplyEffect(Effect effect)
     {
-        health.Damage(1); // decrements health if attacked
+        switch(effect.GetEffectType())
+        {
+            case Effect.EffectType.Damage:
+                ApplyEffectDamage(effect);
+                break;
+            default:
+                Debug.LogError("Unimplemented effect: " + effect.GetEffectType());
+                return;
+        }
+    }
+
+    private void ApplyEffectDamage(IEffectDamage effectDamage)
+    {
+        Debug.Log("Damage: " + effectDamage.GetDamage());
     }
 }
+

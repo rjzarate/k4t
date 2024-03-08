@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IHittable
+public interface IEffectSlow
 {
-    void TriggerEffects(List<Effect> effects);
+    float GetSlow();
 }

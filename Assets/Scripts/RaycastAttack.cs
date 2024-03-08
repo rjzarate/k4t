@@ -9,7 +9,7 @@ public class RaycastAttack : MonoBehaviour
     
 
     // method to shoot a raycast and apply effects
-    public void ShootRay<T>(Vector2 sourcePosition, Vector2 targetPosition, List<T> hitEffects)
+    public void ShootRay(Vector2 sourcePosition, Vector2 targetPosition, List<Effect> effects)
     {
         Debug.Log("Ray Shot");
         int layerMask = LayerMaskByNameList(targetLayers);
@@ -22,7 +22,7 @@ public class RaycastAttack : MonoBehaviour
         IHittable hittable = hit.collider.gameObject.GetComponent<IHittable>();
         if (hittable != null)
         {
-            hittable.TriggerEffects(hitEffects);
+            hittable.TriggerEffects(effects);
         }
     }
 

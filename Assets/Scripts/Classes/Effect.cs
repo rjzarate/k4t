@@ -1,0 +1,39 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Search;
+using UnityEngine;
+
+[Serializable]
+public sealed class Effect : IEffectDamage, IEffectSlow
+{
+    public enum EffectType {
+        Null, Damage, Slow
+    }
+
+    [SerializeField] private EffectType effectType = EffectType.Null;
+    
+    [SerializeField] private float genericFloat = 0;
+    [SerializeField] [Range(0, 1)] private float genericUnitInterval = 0;
+
+    float IEffectDamage.GetDamage() {
+        if (effectType != EffectType.Damage) {
+            Debug.LogError("Effect is not a Damage Effect: " + effectType);
+        }
+
+        return genericFloat;
+    }
+
+    float IEffectSlow.GetSlow() {
+        if (effectType != EffectType.Slow) {
+            Debug.LogError("Effect is not a Damage Effect: " + effectType);
+        }
+
+        return genericUnitInterval;
+    }
+
+    public EffectType GetEffectType()
+    {
+        return effectType;
+    }
+}

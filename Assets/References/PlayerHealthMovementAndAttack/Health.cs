@@ -4,32 +4,61 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxHealth; // maximum health of the player
     private float health;
 
-    private void Start(){
+    private void Start() 
+    {
         health = maxHealth;
     }
 
-    public float GetHealth(){
+    public void ResetHealth() 
+    {
+        health = maxHealth;
+    }
+
+    public float GetMaxHealth() 
+    {
+        return maxHealth;
+    }
+
+    public float GetHealth() 
+    {
         return health;
     }
 
-    public void SetHealth(int newHealth){
+    public void SetHealth(int newHealth)
+    {
         health = newHealth;
     }
 
     public void Damage(float damage)
     {
+        // Edge case: damage is negative
+        if (damage < 0)
+        {
+            Debug.LogWarning("Damage is negative: " + damage + "\n Exiting Damage function.");
+            return;
+        }
+
+        // Modify health
         health -= damage;
         if (health <= 0f)
         {
-            Destroy(gameObject.transform.parent);
+            // TODO: change sprite to death animation and disable player interaction system
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 
     public void Heal(float heal)
     {
+        if (heal < 0) 
+        {
+            Debug.LogWarning("Healing is negative: " + heal + "\n Exiting Heal function.");
+            return;
+        }
+
+        // Modify health
         health += heal;
         if (health > maxHealth)
         {
@@ -37,10 +66,9 @@ public class Health : MonoBehaviour
         }
     }
 
-    public bool death(){
-        if(health <= 0){
-            return false;
-        }
-        return true;
+
+    public bool Death() 
+    {
+        return health <= 0;
     }
 }   

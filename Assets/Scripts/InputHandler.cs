@@ -25,12 +25,10 @@ public class InputHandler : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(this);
-            Debug.Log("Destroy");
         }
         else
         {
             Instance = this;
-            Debug.Log("Instantiate");
         }
         
     }
