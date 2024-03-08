@@ -14,17 +14,9 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
 
     void Update()
     {
-
-        if (!isAlive) // true if the player dies
-        {
-            Destroy(gameObject.transform.parent.gameObject); // deletes the player
-            Debug.Log("death");
-        }
-        else
-        {
-            Debug.Log("living");
-        }
-
+        // i think if the player gets destroyed this script will stop
+        Debug.Log("alive");
+    }
 
     // when this projectile is hit, self destruct
     public void TriggerEffects<T>(List<T> effects)
