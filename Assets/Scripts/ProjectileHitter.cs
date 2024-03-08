@@ -10,7 +10,7 @@ public class ProjectileHitter : MonoBehaviour
 
     private void Start()
     {
-        targetLayers.Add("Player");
+        //targetLayers.Add("Player");
     }
 
     // when the hitter collides with a valid receiver

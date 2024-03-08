@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
         health -= damage;
         if (health <= 0f)
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent);
         }
     }
 
