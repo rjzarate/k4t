@@ -13,17 +13,12 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
 
     void update()
     {
-        bool isAlive = health.death(); // determines whether the player is still alive
 
-        if (!isAlive) // true if the player dies
-        {
-            Destroy(gameObject.transform.parent.gameObject); // deletes the player
-        }
     }
 
     // when this projectile is hit, self destruct
     public void TriggerEffects<T>(List<T> effects)
     {
-        health.lowerHealth(); // decrements health if attacked
+        health.Damage(1); // decrements health if attacked
     }
 }
