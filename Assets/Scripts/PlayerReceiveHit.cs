@@ -6,18 +6,24 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
 {
     private Health health; // player's instance of health
 
-    void start()
+    void Start()
     {
         health = GetComponent<Health>();
+        Debug.Log("alive!!");
     }
 
-    void update()
+    void Update()
     {
         bool isAlive = health.death(); // determines whether the player is still alive
 
         if (!isAlive) // true if the player dies
         {
             Destroy(gameObject.transform.parent.gameObject); // deletes the player
+            Debug.Log("death");
+        }
+        else
+        {
+            Debug.Log("living");
         }
     }
 

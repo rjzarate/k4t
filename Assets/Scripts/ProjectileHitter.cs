@@ -8,6 +8,11 @@ public class ProjectileHitter : MonoBehaviour
     // Change later
     [SerializeField] private List<object> effects;
 
+    private void Start()
+    {
+        targetLayers.Add("Player");
+    }
+
     // when the hitter collides with a valid receiver
     // self destructs
     private void OnTriggerEnter2D(Collider2D collision)
