@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastTargetTest : MonoBehaviour, IHittable
+public class Test : MonoBehaviour, IHittable
 {
     public void TriggerEffects(List<Effect> effects)
     {
-        Debug.Log(effects);
+         Debug.Log("Testing");
     }
 
     // Start is called before the first frame update

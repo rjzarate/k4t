@@ -18,10 +18,10 @@ public class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         // slashed out for now since the player inputs won't work when the game starts
         // feel free to edit it later
-        /*
+
+        
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -30,7 +30,7 @@ public class InputHandler : MonoBehaviour
         {
             Instance = this;
         }
-        */
+        
     }
 
     // Start is called before the first frame update

@@ -23,8 +23,8 @@ public class RaycastTest : MonoBehaviour
     {
         if (shoot)
         {
-            List<string> effects = new List<string>();
-            effects.Add("test effect");
+            List<Effect> effects = new List<Effect>();
+            // effects.Add("test effect");
 
             raycastAttack.ShootRay(gameObject.transform.position, target, effects);
         }

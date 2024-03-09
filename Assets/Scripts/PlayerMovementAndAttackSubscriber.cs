@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementSubscriber : MonoBehaviour
+public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 {
     // enums
     public enum PlayerMoveDirection // Labels for movement direction
@@ -31,6 +31,10 @@ public class PlayerMovementSubscriber : MonoBehaviour
     private Rigidbody2D rigidBody2D;
 
     private BoxCollider2D boxCollider2D;
+
+    // shooting objects
+    [SerializeField] private GameObject bulletObject;
+    [SerializeField] private Transform firingPoint;
 
 
 
@@ -75,6 +79,8 @@ public class PlayerMovementSubscriber : MonoBehaviour
     // What to do on Consecutive Tap
     public void HandleConsecutiveTap()
     {
+        Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
+        
         Debug.Log("Consecutive Tap detected!");
 
         // TODO
@@ -143,7 +149,7 @@ public class PlayerMovementSubscriber : MonoBehaviour
         // boolean to check if the player has collied with a wall entity (needs to have a box collider)
         RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, new Vector2(5 * playerMovementAmountAlongX, 0f),
                                                     boxCollider2D.bounds.extents.x + 0.09f, wallLayerMask);
-
+        
         bool playerCanKeepMoving = (raycastHit.collider == null);
 
         // checks to see if the player should'nt move because of a collition
