@@ -136,11 +136,6 @@ GameObject:
   - component: {fileID: 40907804}
   - component: {fileID: 40907805}
   - component: {fileID: 40907807}
-  - component: {fileID: 40907809}
-  - component: {fileID: 40907810}
-  - component: {fileID: 40907811}
-  - component: {fileID: 40907812}
-  - component: {fileID: 40907813}
   - component: {fileID: 40907814}
   - component: {fileID: 40907815}
   - component: {fileID: 40907816}
@@ -181,14 +176,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - {fileID: 40907807}
-  - {fileID: 40907809}
-  - {fileID: 40907810}
-  - {fileID: 40907811}
-  - {fileID: 40907812}
-  - {fileID: 40907813}
+  - {fileID: 40907816}
   - {fileID: 40907814}
   - {fileID: 40907815}
-  - {fileID: 40907816}
   currentAction: {fileID: 40907807}
 --- !u!114 &40907804
 MonoBehaviour:
@@ -243,202 +233,6 @@ MonoBehaviour:
   blacklistedActions: []
   blacklistsSelf: 1
   showGizmos: 1
---- !u!114 &40907809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40907800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3275eb8922dc74e70a1d8ea6dcf812eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 5
-  weight: 50
-  willForceNextAction: 0
-  nextForcedAction: {fileID: 0}
-  blacklistedActions: []
-  blacklistsSelf: 1
-  showGizmos: 0
-  rateOfFireTime: 0.1
-  bulletSpeed: 20
-  bulletPosition:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  bulletRotation:
-  - 360
-  - 315
-  - 270
-  - 225
-  - 180
-  - 135
-  - 90
-  - 45
-  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
-  appliedRotation:
-  - 45
-  - -45
-  - 45
-  - -45
-  - 45
-  - -45
-  - 45
-  - -45
-  rayCastDistance: 3
-  rayColor: 0
---- !u!114 &40907810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40907800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3275eb8922dc74e70a1d8ea6dcf812eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 5
-  weight: 50
-  willForceNextAction: 0
-  nextForcedAction: {fileID: 0}
-  blacklistedActions: []
-  blacklistsSelf: 1
-  showGizmos: 0
-  rateOfFireTime: 0.1
-  bulletSpeed: 20
-  bulletPosition:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  bulletRotation:
-  - 360
-  - 315
-  - 270
-  - 225
-  - 180
-  - 135
-  - 90
-  - 45
-  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
-  appliedRotation:
-  - 70
-  - 70
-  - 70
-  - 70
-  - 70
-  - 70
-  - 70
-  - 70
-  rayCastDistance: 2
-  rayColor: 1
---- !u!114 &40907811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40907800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3275eb8922dc74e70a1d8ea6dcf812eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 5
-  weight: 50
-  willForceNextAction: 0
-  nextForcedAction: {fileID: 0}
-  blacklistedActions: []
-  blacklistsSelf: 1
-  showGizmos: 1
-  rateOfFireTime: 0.1
-  bulletSpeed: 20
-  bulletPosition:
-  - {x: -0.5, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0.5, y: 0}
-  - {x: -0.25, y: 0}
-  - {x: 0.25, y: 0}
-  bulletRotation:
-  - -135
-  - -90
-  - -45
-  - -112.5
-  - -67.5
-  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
-  appliedRotation: []
-  rayCastDistance: 3
-  rayColor: 3
---- !u!114 &40907812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40907800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 447b794b2051848edb2e551dd8287024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 5
-  weight: 15
-  willForceNextAction: 0
-  nextForcedAction: {fileID: 0}
-  blacklistedActions: []
-  blacklistsSelf: 1
-  showGizmos: 1
-  isHiding: 0
-  transparentColor: 0.1
-  transitionSpeed: 0.65
-  bossColors: []
-  targetColorObj: {fileID: 0}
-  playerPos: {fileID: 0}
-  dodgeSpeed: 1
-  dodgeDistance: 0.15
-  isBounded: 0
-  checkBoundRadius: 1.2
-  boundLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  checkColor: 0
---- !u!114 &40907813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40907800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d123663942da140894d4cda0f49745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 1
-  weight: 15
-  willForceNextAction: 0
-  nextForcedAction: {fileID: 0}
-  blacklistedActions: []
-  blacklistsSelf: 1
-  showGizmos: 1
-  chargeSeconds: 0.5
-  attackSeconds: 0.5
-  riseSeconds: 2
-  groundTransform: {fileID: 1779542992}
-  bossSprite: {fileID: 1874121984}
 --- !u!114 &40907814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,13 +251,14 @@ MonoBehaviour:
   nextForcedAction: {fileID: 0}
   blacklistedActions: []
   blacklistsSelf: 1
-  showGizmos: 1
+  showGizmos: 0
   chargeSeconds: 2
   attackSeconds: 4
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
   stageHazard: {fileID: 6236887681492775216, guid: fecfaa92db31ee240839bdc71935fc49, type: 3}
   groundTransform: {fileID: 1779542992}
   hazardSeconds: 2
+  hazardTimeAffectsTotalActionDuration: 0
 --- !u!114 &40907815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,7 +1367,7 @@ Transform:
   m_GameObject: {fileID: 1652829233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.32, y: -3.14, z: 0}
+  m_LocalPosition: {x: -0.15, y: -3.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
