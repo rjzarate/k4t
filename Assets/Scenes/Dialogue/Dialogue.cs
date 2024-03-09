@@ -4,14 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+// this is the editor class for formatting the dialogue
+// this is displayed in the inspector once you see the "Dialogue System" text
+
 using UnityEditor;
 using System.Reflection;
 
 #if UNITY_EDITOR
-
 [CustomEditor(typeof(Dialogue))]
 public class DialogueEditor : Editor
 {
+
+    // editting the inspector to make Dialogue flexible and display name and Dialogue in order
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -32,6 +38,8 @@ public class DialogueEditor : Editor
             EditorGUILayout.LabelField("\t\t\t\t\tDialogue System:");
             EditorGUILayout.LabelField("------------------------------------------------------------------------------------------------");
             EditorGUILayout.LabelField("\n\n");
+
+            // order name and dialogue, dialogue flexible with text area
             for (int i = 0; i < dialogueStr.Length; i++)
             {
                 EditorGUILayout.BeginVertical();
@@ -45,6 +53,7 @@ public class DialogueEditor : Editor
 }
 #endif
 
+// main class
 
 public class Dialogue : MonoBehaviour
 {
@@ -56,6 +65,10 @@ public class Dialogue : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI dialogueText;
 
+    //setup
+    // endcount initially set to the length of entire dialogue
+    // set the first count
+    // 
     void Start()
     {
         endCount = dialogueStr.Length-1;
@@ -66,11 +79,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
+    // set the text to the string based on the current set count
     public void displayText( int orderCount)
     {
         if (dialogueStr.Length > orderCount)
@@ -80,6 +89,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    // go to the next dialogue
     public void dialogueNext()
     {
         count++;
@@ -93,6 +103,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    // go to previous dialogue
     public void dialoguePrevious()
     {
         if (count > 0)
@@ -102,6 +113,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    // turn dialogue on and off
     void enableDialogue( bool isEnabled)
     {
         if (isEnabled)
@@ -120,6 +132,15 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    // ***************************************************************
+    // ***************************************************************
+    // USE THIS FOR CALLING IT
+    // call the dialogue, this is the key function
+    // that can be called by external sources
+
+    // end point is where ever you want to end the count at
+    // this way you can call multiple times, maybe during battle
+    // ***************************************************************
     public void callDialogue( int endPoint)
     {
         enableDialogue(true);
