@@ -47,15 +47,15 @@ public class BossAttackWhip : BossAction
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
 
-            Instantiate(bulletPrefab, transformPosition + bulletPosition, rotation);
+            GameObject bullet = Instantiate(bulletPrefab, transformPosition + bulletPosition, rotation);
+
+            // if the bullet as the bullet script, then set the speed to the boss's bullet speed
+            if (bullet.GetComponent<Bullet>())
+            {
+                bullet.GetComponent<Bullet>().speed = bulletSpeed;
+            }
         }
 
-
-        // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-        if (GetComponent<Bullet>())
-        {
-            bulletPrefab.GetComponent<Bullet>().speed = bulletSpeed;
-        }
     }
 
     public override void BeginAction()

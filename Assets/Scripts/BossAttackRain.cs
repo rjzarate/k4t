@@ -48,14 +48,15 @@ public class BossAttackRain : BossAction
             Quaternion rotation = Quaternion.AngleAxis(globalRotation, Vector3.forward);
 
             Vector2 rangePosition = new Vector2(Random.Range(-summonRange.x, summonRange.x), Random.Range(-summonRange.y, summonRange.y));
-            Instantiate(bulletPrefab, transformPosition + bulletPosition + rangePosition, rotation);
+            GameObject bullet = Instantiate(bulletPrefab, transformPosition + bulletPosition + rangePosition, rotation);
+
+            // if the bullet as the bullet script, then set the speed to the boss's bullet speed
+            if (bullet.GetComponent<Bullet>())
+            {
+                bullet.GetComponent<Bullet>().speed = bulletSpeed;
+            }
         }
 
-        // if the bullet as the bullet script, then set the speed to the boss's bullet speed
-        if (GetComponent<Bullet>())
-        {
-            bulletPrefab.GetComponent<Bullet>().speed = bulletSpeed;
-        }
     }
 
     public override void BeginAction()

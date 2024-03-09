@@ -81,18 +81,18 @@ public class Boss : MonoBehaviour
         // Grab the random action
         List<BossAction> nonBlacklistedActions = actions.FindAll(a => (a != currentAction && !currentAction.getBlacklistedActions().Contains(a))
                                                                    || (a == currentAction && !a.BlacklistsSelf()));
-        BossAction previousAction = nonBlacklistedActions[0];
+        BossAction selectedAction = null;
         foreach (BossAction action in nonBlacklistedActions) {
+            selectedAction = action;
             // Sifts through the actions' weights
-            roll -= previousAction.GetWeight();
-            previousAction = action;
+            roll -= selectedAction.GetWeight();
             if (roll > 0) {
                 continue;
             }
             break;
         }
 
-        return previousAction;
+        return selectedAction;
     }
 
     /* DEPRECATED

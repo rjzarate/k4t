@@ -16,8 +16,10 @@ public class GratedCheeseRain : BossAction
 
     [SerializeField] private float movementSpeed;
 
-    // REMOVE THIS LATER
-    [SerializeField] private float targetX;
+    // DEPRECATED
+    // [SerializeField] private float targetX;
+
+    [SerializeField] GameObject playerObj;
 
     public override void Action()
     {
@@ -34,14 +36,15 @@ public class GratedCheeseRain : BossAction
             return;
         }
         rateOfFireCooldown -= Time.deltaTime;
-        // CHANGE targetX TO PLAYER'S X POSITION
+        // player position
+        float targetX = playerObj.transform.position.x;
+
         float positionalDifference = targetX - transform.position.x;
         if (Math.Abs(positionalDifference) > 0)
         {
             float movement = movementSpeed * Time.deltaTime;
             if (Math.Abs(positionalDifference) < movement)
             {
-                // CHANGE targetX TO PLAYER'S X POSITION
                 transform.position = new Vector2(targetX, transform.position.y);
             }
             else
@@ -68,6 +71,8 @@ public class GratedCheeseRain : BossAction
     {
         duration = time;
         rateOfFireCooldown = rateOfFireTime;
+
+        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnDrawGizmosSelected() {

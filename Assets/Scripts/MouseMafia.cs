@@ -20,8 +20,10 @@ public class MouseMafia : BossAction
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float movementSpeed;
 
+    // DEPRECATED
     // Where the boss will aim at (Will be the player's x value later)
-    [SerializeField] private float playerX = 0, playerY = -3.14f;
+    // [SerializeField] private float playerX = 0, playerY = -3.14f;
+    [SerializeField] GameObject playerObj;
 
     [Header("Boss Movement Range")]
     [SerializeField] private float minX;
@@ -85,6 +87,10 @@ public class MouseMafia : BossAction
 
     private void Fire()
     {
+        // Get player position
+        float playerX = playerObj.transform.position.x;
+        float playerY = playerObj.transform.position.y;
+
         float rotationDirection;
         if (transform.position.x - playerX == 0)
             rotationDirection = -180f;
@@ -132,6 +138,8 @@ public class MouseMafia : BossAction
         rateOfFireCooldown = rateOfFireTime;
         targetX = UnityEngine.Random.Range(minX, maxX);
         targetY = UnityEngine.Random.Range(minY, maxY);
+
+        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnDrawGizmosSelected()
