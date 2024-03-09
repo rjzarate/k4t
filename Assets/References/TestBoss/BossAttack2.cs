@@ -34,7 +34,7 @@ public class BossAttack2 : BossAction
         }
 
         rateOfFireCooldown -= Time.deltaTime;
-        
+
     }
 
 
