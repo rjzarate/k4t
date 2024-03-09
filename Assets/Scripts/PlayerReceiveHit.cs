@@ -29,10 +29,18 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
             case Effect.EffectType.Damage:
                 ApplyEffectDamage(effect);
                 break;
+            case Effect.EffectType.Slow:
+                ApplyEffectSlow(effect);
+                break;
             default:
                 Debug.LogError("Unimplemented effect: " + effect.GetEffectType());
                 return;
         }
+    }
+
+    private void ApplyEffectSlow(IEffectSlow effectSlow)
+    {
+        throw new NotImplementedException();
     }
 
     private void ApplyEffectDamage(IEffectDamage effectDamage)

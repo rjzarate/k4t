@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,6 +14,8 @@ public class EffectPropertyDrawer : PropertyDrawer
         // Grab attributes of class
         SerializedProperty effectType = property.FindPropertyRelative(nameof(effectType));
         SerializedProperty genericFloat = property.FindPropertyRelative(nameof(genericFloat));
+        SerializedProperty genericFloat1 = property.FindPropertyRelative(nameof(genericFloat1));
+        SerializedProperty genericFloat2 = property.FindPropertyRelative(nameof(genericFloat2));
         SerializedProperty genericUnitInterval = property.FindPropertyRelative(nameof(genericUnitInterval));
 
         EditorGUI.BeginProperty(position, label, property);
@@ -36,6 +39,10 @@ public class EffectPropertyDrawer : PropertyDrawer
                 OnGUISlow(genericUnitInterval);
                 break;
 
+            case Effect.EffectType.Poison:
+                OnGUIPoison(genericFloat, genericFloat1, genericFloat2);
+                break;
+
             default:
                 Debug.LogError("Unimplemented Editor Display: " + _effectType);
                 break;
@@ -45,6 +52,12 @@ public class EffectPropertyDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 
+    private void OnGUIPoison(SerializedProperty genericFloat, SerializedProperty genericFloat1, SerializedProperty genericFloat2)
+    {
+        EditorGUILayout.PropertyField(genericFloat, new GUIContent("Posion Damage Amount"));
+        EditorGUILayout.PropertyField(genericFloat1, new GUIContent("Poison Proc Time"));
+        EditorGUILayout.PropertyField(genericFloat2, new GUIContent("Poison Duration"));
+    }
 
     private void OnGUISlow(SerializedProperty genericUnitInterval)
     {

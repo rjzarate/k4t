@@ -5,15 +5,18 @@ using UnityEditor.Search;
 using UnityEngine;
 
 [Serializable]
-public sealed class Effect : IEffectDamage, IEffectSlow
+public sealed class Effect : IEffectDamage, IEffectSlow, IEffectPoison
 {
     public enum EffectType {
-        Null, Damage, Slow
+        Null, Damage, Slow, Poison
     }
 
     [SerializeField] private EffectType effectType = EffectType.Null;
     
     [SerializeField] private float genericFloat = 0;
+    [SerializeField] private float genericFloat1 = 0;
+    [SerializeField] private float genericFloat2 = 0;
+
     [SerializeField] [Range(0, 1)] private float genericUnitInterval = 0;
 
     float IEffectDamage.GetDamage() {
@@ -35,5 +38,10 @@ public sealed class Effect : IEffectDamage, IEffectSlow
     public EffectType GetEffectType()
     {
         return effectType;
+    }
+
+    float[] IEffectPoison.GetPoison()
+    {
+        return new float[1];
     }
 }
