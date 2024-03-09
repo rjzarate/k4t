@@ -21,6 +21,15 @@ public class BossHealthBarUI : MonoBehaviour
 
     // TODO: add the health mechanics to the boss and have the bar changes accordingly
 
+    public void Damage(float damage, float maxHealth)
+    {
+        // float for a ratio of health that should be taken away
+        float barReduceAmount = damage / maxHealth;
+
+        // reduces the br by said ratio
+        barImage.fillAmount -= barReduceAmount;
+    }
+
 
     // call to show the bar
     private void Show()
