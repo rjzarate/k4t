@@ -8,6 +8,7 @@ public class BossAttackStageHazard : BossAction
     [SerializeField] private GameObject stageHazard;
     [SerializeField] private Transform groundTransform; // the position of the ground
     [SerializeField] private float hazardSeconds;
+    [SerializeField] private bool hazardTimeAffectsTotalActionDuration;
 
     private Vector2 targetPosition;
     private float bulletHeight;
@@ -25,7 +26,8 @@ public class BossAttackStageHazard : BossAction
     // BeginAction is called at the start of this script
     public override void BeginAction()
     {
-        duration = chargeSeconds + attackSeconds + hazardSeconds;
+        duration = chargeSeconds + attackSeconds;
+        duration += (hazardTimeAffectsTotalActionDuration) ? hazardSeconds : 0.1f;
         state = AttackState.CHARGING;
         chargeDuration = chargeSeconds;
         attackDuration = attackSeconds;
