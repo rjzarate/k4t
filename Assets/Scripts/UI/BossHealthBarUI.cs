@@ -9,11 +9,17 @@ public class BossHealthBarUI : MonoBehaviour
 
     private void Start()
     {
-        barImage.fillAmount = 0f; // starts off the bar at its lowest
+        barImage.fillAmount = 1f; // starts off the bar at its lowest
+
+
 
         Show(); // makes sure the bar is being shown
     }
 
+
+    // TODO: make a script to fill up the bar from of to 1f as the boss spawns
+
+    // TODO: add the health mechanics to the boss and have the bar changes accordingly
 
 
     // call to show the bar
