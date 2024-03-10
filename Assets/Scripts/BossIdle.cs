@@ -26,10 +26,12 @@ public class BossIdle : BossAction
         if (transform.position.x <= leftEdge)
         {
             direction *= -1;
+            transform.position = new Vector2(leftEdge, transform.position.y);
         }
         if (transform.position.x >= rightEdge)
         {
             direction *= -1;
+            transform.position = new Vector2(rightEdge, transform.position.y);
         }
 
         //sets position based on speed and direction, only moves left and right
