@@ -22,8 +22,12 @@ public class BossIdle : BossAction
 
     public void MovementIdle()
     {
-        //this if is to change direction when boss is near screen boundary
-        if (transform.position.x <= leftEdge || transform.position.x >= rightEdge)
+        //these ifs are to change direction when boss is near screen boundary
+        if (transform.position.x <= leftEdge)
+        {
+            direction *= -1;
+        }
+        if (transform.position.x >= rightEdge)
         {
             direction *= -1;
         }

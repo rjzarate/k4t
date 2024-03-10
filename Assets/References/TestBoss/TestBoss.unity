@@ -254,7 +254,11 @@ MonoBehaviour:
   nextForcedAction: {fileID: 0}
   blacklistedActions: []
   blacklistsSelf: 1
-  showGizmos: 1
+  showGizmos: 0
+  speed: 2
+  direction: 1
+  leftEdge: -7.5
+  rightEdge: 7.5
 --- !u!114 &40907808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,7 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da35ad0286c604b78820f51b62ff65e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 500
 --- !u!1 &2085531211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da35ad0286c604b78820f51b62ff65e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: -60
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
