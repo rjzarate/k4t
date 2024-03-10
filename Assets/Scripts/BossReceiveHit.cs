@@ -9,12 +9,12 @@ public class BossReceiveHit : MonoBehaviour, IHittable
 {
     private Health health; // boss's instance of health
 
-    private BossHealthBarUI bossHealthBarUI; // boss's instance of health bar
+    private BossHealthBarUI bossHealthBar; // boss's instance of health bar
 
     void Start()
     {
         health = GetComponent<Health>();
-        bossHealthBarUI = GetComponent<BossHealthBarUI>();
+        bossHealthBar = GetComponent<BossHealthBarUI>();
     }
 
 
@@ -49,8 +49,8 @@ public class BossReceiveHit : MonoBehaviour, IHittable
 
     private void ApplyEffectDamage(IEffectDamage effectDamage)
     {
+        bossHealthBar.Damage(effectDamage.GetDamage(), health.GetMaxHealth());
         health.Damage(effectDamage.GetDamage());
-        bossHealthBarUI.Damage(effectDamage.GetDamage(), health.GetMaxHealth());
 
         Debug.Log("Damage: " + effectDamage.GetDamage());
     }
