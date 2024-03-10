@@ -7,7 +7,7 @@ public class BossHealthBarUI : MonoBehaviour
 {
     private bool fillUpBossHealthBar = true; // used to fill up the boss health to full initially
 
-    [SerializeField] private float fillAmountForInitialLoad = 0.005f; // used to help fill up the boss health initially
+    [SerializeField] private float fillAmountForInitialLoad = 0.00005f; // used to help fill up the boss health initially
 
     [SerializeField] private Image barImage;
 
@@ -41,7 +41,7 @@ public class BossHealthBarUI : MonoBehaviour
 
         if (barImage.fillAmount >= 1f) // true once the boss's health is full
         {
-            fillUpMeter = false;
+            fillUpBossHealthBar = false;
         }
     }
 
