@@ -35,8 +35,8 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // shooting objects
     [SerializeField] private GameObject bulletObject;
     [SerializeField] private Transform firingPoint;
-
-
+    [SerializeField] private float reloadSeconds;
+    private float reloadTimeLeftSeconds;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +55,10 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (reloadTimeLeftSeconds > 0)
+        {
+            reloadTimeLeftSeconds -= Time.deltaTime;
+        }
         // checks whether the player is allowed to move, which is dependent on the press event
         if (playerCanMove) // true if the player is allowed to move
         {
@@ -79,7 +83,11 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // What to do on Consecutive Tap
     public void HandleConsecutiveTap()
     {
-        Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
+        if (reloadTimeLeftSeconds <= 0)
+        {
+            Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
+            reloadTimeLeftSeconds = reloadSeconds;
+        }
         
         Debug.Log("Consecutive Tap detected!");
 

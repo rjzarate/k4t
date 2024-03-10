@@ -46,6 +46,7 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     private void ApplyEffectDamage(IEffectDamage effectDamage)
     {
         Debug.Log("Damage: " + effectDamage.GetDamage());
+        GetComponent<Health>().Damage(effectDamage.GetDamage());
     }
 }
 

@@ -34,6 +34,9 @@ public class MouseMafia : BossAction
     // Where the boss will move to after firing its bullets - Must be within the given range
     private float targetX, targetY;
 
+    // Boss return position
+    [SerializeField] private Vector2 returnPosition;
+
     public override void Action()
     {
         if (pause)
@@ -51,8 +54,8 @@ public class MouseMafia : BossAction
             durationEnded = true;
             pause = false;
             // Default position
-            targetX = 0;
-            targetY = 3;
+            targetX = returnPosition.x;
+            targetY = returnPosition.y;
 
             Move();
 

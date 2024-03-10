@@ -95,6 +95,11 @@ public class Boss : MonoBehaviour
         return selectedAction;
     }
 
+    public void OnDestroy()
+    {
+
+    }
+
     /* DEPRECATED
     // idle time
     public void Idle()
