@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ricochet : MonoBehaviour
 {
+    // handles the summoning and rotation of the ricochets
+
     [SerializeField] GameObject ricochetBullets;
     [SerializeField] float[] bulletRotationSpread;
     [SerializeField] float[] initForces;

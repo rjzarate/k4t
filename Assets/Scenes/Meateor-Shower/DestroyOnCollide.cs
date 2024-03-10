@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DestroyOnCollide : MonoBehaviour
 {
+    // Destroys itself on collision, also instantiates something during point of death
+
     [SerializeField] string[] collidedObjects;
     [SerializeField] GameObject destroyFX;
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class applyForce : MonoBehaviour
 {
+    // this is just applying initial force forward
+
     public float initForce;
     Rigidbody2D rb;
 
