@@ -325,9 +325,9 @@ MonoBehaviour:
   blacklistedActions: []
   blacklistsSelf: 1
   showGizmos: 1
-  rateOfFireTime: 0.5
+  rateOfFireTime: 0.45
   bulletSpeed: 4
-  nValue: 3
+  nValue: 4
   bulletPrefab: {fileID: 8622931999737368900, guid: 1fdb26ab935182548b7971bf73c8a001, type: 3}
 --- !u!114 &40907818
 MonoBehaviour:
