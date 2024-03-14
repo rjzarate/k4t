@@ -9,6 +9,7 @@ public class ProjectileHitter : MonoBehaviour
 
     [SerializeField] private List<Effect> effects;
     [SerializeField] private bool destroyOnHit = true;
+    [SerializeField] private GameObject destroyFX;
 
     private void Awake()
     {
@@ -25,9 +26,19 @@ public class ProjectileHitter : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         IHittable hittable = collision.gameObject.GetComponent<IHittable>();
-        if (hittable == null) return;
+        if (hittable != null)
+        {
+            hittable.TriggerEffects(effects);
+        }
         
-        hittable.TriggerEffects(effects);
-        if (destroyOnHit) Destroy(gameObject.transform.parent.gameObject);
+        if (destroyOnHit)
+        {
+            if (destroyFX)
+            {
+                Instantiate(destroyFX, transform.position, transform.rotation);
+            }
+            
+            Destroy(gameObject.transform.parent.gameObject);
+        }
     }
 }

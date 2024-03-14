@@ -48,7 +48,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1399
+    m_Bits: 3447
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -97,6 +97,7 @@ MonoBehaviour:
     genericFloat2: 0
     genericUnitInterval: 0
   destroyOnHit: 1
+  destroyFX: {fileID: 0}
 --- !u!1 &8291372549811847577
 GameObject:
   m_ObjectHideFlags: 0

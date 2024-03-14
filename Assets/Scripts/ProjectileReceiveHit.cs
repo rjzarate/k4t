@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D),typeof(Rigidbody2D))]
 public class ProjectileReceiveHit : MonoBehaviour, IHittable
 {
-    
+    [SerializeField] private GameObject destroyFX;
+
     private void Awake()
     {
         // IsTrigger check
@@ -28,6 +29,10 @@ public class ProjectileReceiveHit : MonoBehaviour, IHittable
     // when this projectile is hit, self destruct
     public void TriggerEffects(List<Effect> effects)
     {
+        if (destroyFX)
+        {
+            Instantiate(destroyFX, transform.position, transform.rotation);
+        }
         Destroy(gameObject.transform.parent.gameObject);
     }
 }
