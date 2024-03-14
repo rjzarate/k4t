@@ -10,15 +10,21 @@ public class MouseMafia : BossAction
     [Header("Attack Attributes")]
     [SerializeField] private float rateOfFireTime = 0.2f;
     private float rateOfFireCooldown;
-    [SerializeField] private float bulletSpeed = 7;
     // bulletCount represents how many bullets will be fired whenever the boss pauses
     [SerializeField] private int bulletCount = 3;
+    [SerializeField] private float bulletSpeed = 7f;
     private int bulletsLeft;
-    private bool pause = false;
+    // Boss is either moving, attacking, or in the middle of a delay between moving and attacking
+    private enum State {MOVE, ATTACK, DELAY};
+    private State currState = State.MOVE;
+    // Delay between moving and attacking
+    [SerializeField] private float attackDelay;
+    private float currDelay = 0f;
     // When this attack ends, the boss needs to return to its default position
     private bool durationEnded = false;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float moveTime;
+    private float movementSpeed;
 
     // DEPRECATED
     // Where the boss will aim at (Will be the player's x value later)
@@ -39,9 +45,15 @@ public class MouseMafia : BossAction
 
     public override void Action()
     {
-        if (pause)
+        if (currState == State.ATTACK)
         {
             Attack();
+        }
+        else if(currState == State.DELAY)
+        {
+            currDelay -= Time.deltaTime;
+            if (currDelay <= 0f)
+                currState = State.ATTACK;
         }
         else if (!durationEnded)
         {
@@ -52,7 +64,7 @@ public class MouseMafia : BossAction
         if (duration < Time.deltaTime)
         {
             durationEnded = true;
-            pause = false;
+            currState = State.MOVE;
             // Default position
             targetX = returnPosition.x;
             targetY = returnPosition.y;
@@ -60,7 +72,7 @@ public class MouseMafia : BossAction
             Move();
 
             // if we reached the default mosition
-            if(pause == true)
+            if(currState == State.DELAY)
             {
                 duration = -1;
             }
@@ -78,9 +90,11 @@ public class MouseMafia : BossAction
             if (bulletsLeft == 0)
             {
                 // Get ready to start Move()-ing if we've ran out of bullets
-                pause = false;
+                currState = State.MOVE;
                 targetX = UnityEngine.Random.Range(minX, maxX);
                 targetY = UnityEngine.Random.Range(minY, maxY);
+                // Calculate speed that will allow a constant travel time
+                movementSpeed = Mathf.Sqrt(Mathf.Pow(targetX - transform.position.x, 2) + Mathf.Pow(targetY - transform.position.y, 2)) / moveTime;
             }
             rateOfFireCooldown = rateOfFireTime;
             return;
@@ -118,8 +132,9 @@ public class MouseMafia : BossAction
         if (transform.position.x == targetX && transform.position.y == targetY)
         {
 
-            // Get ready to start Attack()-ing if the boss has finished moving
-            pause = true;
+            // Get ready to pause before Attack()-ing if the boss has finished moving
+            currState = State.DELAY;
+            currDelay = attackDelay;
             bulletsLeft = bulletCount;
             return;
         }
@@ -141,6 +156,8 @@ public class MouseMafia : BossAction
         rateOfFireCooldown = rateOfFireTime;
         targetX = UnityEngine.Random.Range(minX, maxX);
         targetY = UnityEngine.Random.Range(minY, maxY);
+
+        movementSpeed = Mathf.Sqrt(Mathf.Pow(targetX - transform.position.x, 2) + Mathf.Pow(targetY - transform.position.y, 2)) / moveTime;
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
     }
