@@ -407,7 +407,7 @@ MonoBehaviour:
   blacklistedActions: []
   blacklistsSelf: 1
   showGizmos: 1
-  rateOfFireTime: 0.2
+  rateOfFireTime: 0.4
   bulletSpeed: 5
   bulletPosition: {x: 0, y: 5}
   summonRange: {x: 6, y: 0}
