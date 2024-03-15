@@ -270,18 +270,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928b4bc4d42e04dc7b196b8d2869754f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
+  time: 0.5
   weight: 10
   willForceNextAction: 1
   nextForcedAction: {fileID: 40907807}
   blacklistedActions: []
   blacklistsSelf: 1
   showGizmos: 0
-  rateOfFireTime: 0.1
-  bulletSpeed: 10
+  rateOfFireTime: 0.05
+  bulletSpeed: 20
   bulletPosition: {x: 0, y: 0}
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  delaySeconds: 0.1
   playerObj: {fileID: 1865320114}
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &40907816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,12 +352,12 @@ MonoBehaviour:
   blacklistedActions: []
   blacklistsSelf: 1
   showGizmos: 1
-  rateOfFireTime: 0.2
+  rateOfFireTime: 0.15
   bulletCount: 3
-  bulletSpeed: 8
-  attackDelay: 0
+  bulletSpeed: 10
+  attackDelay: 0.05
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
-  moveTime: 0
+  moveTime: 0.2
   playerObj: {fileID: 0}
   minX: -3.5
   minY: 4.5
@@ -401,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 1.5
-  weight: 10000
+  weight: 10
   willForceNextAction: 1
   nextForcedAction: {fileID: 40907807}
   blacklistedActions: []
@@ -2428,7 +2430,9 @@ MonoBehaviour:
     m_Bits: 1024
   bulletObject: {fileID: 8291372549811847577, guid: 8fbdee69bc102bb4da099ea009af1ed3, type: 3}
   firingPoint: {fileID: 2002448550}
-  reloadSeconds: 1
+  hitDelaySeconds: 0.75
+  maxAmmo: 4
+  reloadSeconds: 3
 --- !u!1 &1853724753
 GameObject:
   m_ObjectHideFlags: 0

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyFX: {fileID: 3198946992483261678, guid: 9fda26540f4d44fcd974198a9b92d296, type: 3}
-  TotalLifeSeconds: 2
+  TotalLifeSeconds: 5
 --- !u!50 &7219193188569898612
 Rigidbody2D:
   serializedVersion: 4
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5880790655251771083, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: effects.Array.data[0].genericFloat
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 759971891367763135, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: m_Name

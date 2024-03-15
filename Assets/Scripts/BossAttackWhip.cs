@@ -13,12 +13,22 @@ public class BossAttackWhip : BossAction
     [Header("Note: Position and Direction should have the same length,\ndon't worry about the errors\n")]
     [SerializeField] Vector2 bulletPosition;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] private float delaySeconds;
+    private float delayLeftSeconds;
 
     [SerializeField] GameObject playerObj;
+    [SerializeField] private Vector3 playerPosition;
 
     public override void Action()
     {
-        Attack();
+        if (delayLeftSeconds > 0)
+        {
+            delayLeftSeconds -= Time.deltaTime;
+        }
+        else
+        {
+            Attack();
+        }
         duration -= Time.deltaTime;
     }
 
@@ -41,9 +51,9 @@ public class BossAttackWhip : BossAction
         Vector2 transformPosition = new Vector2(transform.position.x, transform.position.y);
 
 
-        if (playerObj != null)
+        if (playerPosition != null)
         {
-            Vector3 direction = playerObj.transform.position - transform.position;
+            Vector3 direction = playerPosition - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
 
@@ -60,9 +70,11 @@ public class BossAttackWhip : BossAction
 
     public override void BeginAction()
     {
+        delayLeftSeconds = delaySeconds;
         duration = time;
         rateOfFireCooldown = rateOfFireTime;
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerPosition = playerObj.transform.position;
     }
 }

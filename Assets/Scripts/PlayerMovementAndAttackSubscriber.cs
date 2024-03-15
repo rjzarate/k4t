@@ -35,6 +35,10 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // shooting objects
     [SerializeField] private GameObject bulletObject;
     [SerializeField] private Transform firingPoint;
+    [SerializeField] private float hitDelaySeconds;
+    private float hitDelayLeftSeconds;
+    [SerializeField] private float maxAmmo;
+    private float ammoLeft;
     [SerializeField] private float reloadSeconds;
     private float reloadTimeLeftSeconds;
 
@@ -49,6 +53,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         InputHandler.Instance.OnPressEvent += HandlePress;
         InputHandler.Instance.OnReleaseEvent += HandleRelease;
         InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
+        ammoLeft = maxAmmo;
     }
 
 
@@ -58,7 +63,16 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         if (reloadTimeLeftSeconds > 0)
         {
             reloadTimeLeftSeconds -= Time.deltaTime;
+            if (reloadTimeLeftSeconds < 0)
+            {
+                ammoLeft = maxAmmo;
+                reloadTimeLeftSeconds = 0;
+            }
         }
+        if (hitDelayLeftSeconds > 0)
+        {
+            hitDelayLeftSeconds -= Time.deltaTime;
+        } 
         // checks whether the player is allowed to move, which is dependent on the press event
         if (playerCanMove) // true if the player is allowed to move
         {
@@ -83,10 +97,15 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // What to do on Consecutive Tap
     public void HandleConsecutiveTap()
     {
-        if (reloadTimeLeftSeconds <= 0)
+        if (reloadTimeLeftSeconds <= 0 && hitDelayLeftSeconds <= 0)
         {
             Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
-            reloadTimeLeftSeconds = reloadSeconds;
+            hitDelayLeftSeconds = hitDelaySeconds;
+            ammoLeft--;
+            if (ammoLeft <= 0)
+            {
+                reloadTimeLeftSeconds = reloadSeconds;
+            }
         }
         
         Debug.Log("Consecutive Tap detected!");
