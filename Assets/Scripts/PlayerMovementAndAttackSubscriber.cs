@@ -88,15 +88,6 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // What to do on Tap
     public void HandleTap()
     {
-        Debug.Log("Tap detected!");
-
-        // TODO
-    }
-
-
-    // What to do on Consecutive Tap
-    public void HandleConsecutiveTap()
-    {
         if (reloadTimeLeftSeconds <= 0 && hitDelayLeftSeconds <= 0)
         {
             Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
@@ -107,6 +98,16 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
                 reloadTimeLeftSeconds = reloadSeconds;
             }
         }
+
+        Debug.Log("Tap detected!");
+
+        // TODO
+    }
+
+
+    // What to do on Consecutive Tap
+    public void HandleConsecutiveTap()
+    {
         
         Debug.Log("Consecutive Tap detected!");
 
