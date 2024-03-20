@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 200455680}
   m_Layer: 6
   m_Name: playerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1131,6 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7323c6e49bc24cd0a09d7942800416a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClipReferencesSO: {fileID: 11400000, guid: 82b37c6578b9045dcb73b63fb7a8393d, type: 2}
 --- !u!1 &684847748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1181,7 @@ GameObject:
   - component: {fileID: 767903349}
   m_Layer: 6
   m_Name: PlayerReceiveHit
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1728,7 +1729,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1c51612869159429c887fce4e06c376d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.401
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2613,7 +2614,7 @@ GameObject:
   - component: {fileID: 1865320115}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2946,7 +2947,7 @@ GameObject:
   - component: {fileID: 2002448550}
   m_Layer: 0
   m_Name: PlayerShoot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

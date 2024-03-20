@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 {
+    public static PlayerMovementAndAttackSubscriber Instance { get; private set; }
+
     // enums
     public enum PlayerMoveDirection // Labels for movement direction
     {
@@ -41,6 +43,11 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     private float ammoLeft;
     [SerializeField] private float reloadSeconds;
     private float reloadTimeLeftSeconds;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +98,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         if (reloadTimeLeftSeconds <= 0 && hitDelayLeftSeconds <= 0)
         {
             Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
+            OnTapSoundEvent();
             hitDelayLeftSeconds = hitDelaySeconds;
             ammoLeft--;
             if (ammoLeft <= 0)
@@ -103,6 +111,9 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
         // TODO
     }
+
+    public delegate void TapSoundEventHandler();
+    public event TapSoundEventHandler OnTapSoundEvent;
 
 
     // What to do on Consecutive Tap
