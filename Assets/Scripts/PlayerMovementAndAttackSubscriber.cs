@@ -76,10 +76,13 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
                 reloadTimeLeftSeconds = 0;
             }
         }
+
         if (hitDelayLeftSeconds > 0)
         {
             hitDelayLeftSeconds -= Time.deltaTime;
-        } 
+        }
+
+
         // checks whether the player is allowed to move, which is dependent on the press event
         if (playerCanMove) // true if the player is allowed to move
         {
@@ -134,6 +137,8 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
         // sets the status of playerCanMove to true since the player is pressing
         playerCanMove = true;
+
+        OnWalkSoundEvent(playerCanMove); // allows walking noise to play
     }
 
 
@@ -157,6 +162,8 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
         // sets the status of playerCanMove to false sicne the player isn't pressing any longer
         playerCanMove = false;
+
+        OnWalkSoundEvent(playerCanMove); // allows walking noise to stop
     }
 
 
@@ -198,9 +205,15 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
             // new position Vecotr3 of <0f, 0f, 0f>
             playerMovementVector = new Vector3(0f, 0f, 0f);
+            OnWalkSoundEvent(playerCanKeepMoving); // makes the walking noise stop
         }
 
         // transforms the sprite on the x-axis
         transform.position += playerMovementVector * moveSpeed * Time.deltaTime;
     }
+
+
+    // delegated event for player movement sounds
+    public delegate void WalkSoundEventHandler(bool playerCanMakeWalkingSound);
+    public event WalkSoundEventHandler OnWalkSoundEvent;
 }
