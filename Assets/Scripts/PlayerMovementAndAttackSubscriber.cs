@@ -67,20 +67,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (reloadTimeLeftSeconds > 0)
-        {
-            reloadTimeLeftSeconds -= Time.deltaTime;
-            if (reloadTimeLeftSeconds < 0)
-            {
-                ammoLeft = maxAmmo;
-                reloadTimeLeftSeconds = 0;
-            }
-        }
-
-        if (hitDelayLeftSeconds > 0)
-        {
-            hitDelayLeftSeconds -= Time.deltaTime;
-        }
+        HandlePlayerWeapon(); // deals with player's weapon ammo and reload
 
 
         // checks whether the player is allowed to move, which is dependent on the press event
@@ -213,7 +200,29 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     }
 
 
+    // function to handle the reloading and ammo count of the player's weapon
+    private void HandlePlayerWeapon()
+    {
+        if (reloadTimeLeftSeconds > 0)
+        {
+            reloadTimeLeftSeconds -= Time.deltaTime;
+            if (reloadTimeLeftSeconds < 0)
+            {
+                ammoLeft = maxAmmo;
+                reloadTimeLeftSeconds = 0;
+            }
+        }
+
+        if (hitDelayLeftSeconds > 0)
+        {
+            hitDelayLeftSeconds -= Time.deltaTime;
+        }
+    }
+
+
     // delegated event for player movement sounds
     public delegate void WalkSoundEventHandler(bool playerCanMakeWalkingSound);
     public event WalkSoundEventHandler OnWalkSoundEvent;
+
+
 }

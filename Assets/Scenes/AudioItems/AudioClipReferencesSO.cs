@@ -8,5 +8,5 @@ public class AudioClipReferencesSO : ScriptableObject
     public AudioClip[] playerFire;
     public AudioClip[] bossFire;
     public AudioClip[] meateorSplat;
-    //public AudioClip[] playerWalk;
+    public AudioClip[] metalicBossDamageTaken;
 }

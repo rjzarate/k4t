@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         PlayerMovementAndAttackSubscriber.Instance.OnTapSoundEvent += Player_OnTapSoundEvent;
+        BossReceiveHit.Instance.OnBossDamageSoundEvent += Boss_OnBossDamageSoundEvent;
     }
 
     private void Player_OnTapSoundEvent()
@@ -17,6 +18,14 @@ public class SoundManager : MonoBehaviour
         PlayerMovementAndAttackSubscriber playerMovementAndAttackSubscriber = PlayerMovementAndAttackSubscriber.Instance;
         PlaySound(audioClipReferencesSO.playerFire, playerMovementAndAttackSubscriber.transform.position);
     }
+
+   
+    private void Boss_OnBossDamageSoundEvent()
+    {
+        BossReceiveHit bossRecieveHit = BossReceiveHit.Instance;
+        PlaySound(audioClipReferencesSO.metalicBossDamageTaken, bossRecieveHit.transform.position);
+    }
+    
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {

@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 561d2719503ee463e8848c8ba5509785, type: 3}
   meateorSplat:
   - {fileID: 8300000, guid: 43e23b3c8f815430a99e463d927a5c82, type: 3}
+  metalicBossDamageTaken: []
