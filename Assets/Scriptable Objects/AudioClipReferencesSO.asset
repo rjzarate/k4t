@@ -17,6 +17,12 @@ MonoBehaviour:
   bossFire:
   - {fileID: 8300000, guid: 81662e0caaae046568d0440292ac2919, type: 3}
   - {fileID: 8300000, guid: 561d2719503ee463e8848c8ba5509785, type: 3}
-  meateorSplat:
+  metalicBossDamageTaken:
+  - {fileID: 8300000, guid: 759dbc44474c74314b5f19cb9c7eb424, type: 3}
+  bossAttackWhip:
+  - {fileID: 8300000, guid: 81662e0caaae046568d0440292ac2919, type: 3}
+  - {fileID: 8300000, guid: 561d2719503ee463e8848c8ba5509785, type: 3}
+  bossAttackHazardLaunch:
+  - {fileID: 8300000, guid: 3d80abc000f044af397873206d7fc472, type: 3}
+  bossAttackHazardLand:
   - {fileID: 8300000, guid: 43e23b3c8f815430a99e463d927a5c82, type: 3}
-  metalicBossDamageTaken: []

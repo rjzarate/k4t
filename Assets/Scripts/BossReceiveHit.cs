@@ -13,32 +13,37 @@ public class BossReceiveHit : MonoBehaviour, IHittable
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
-    
+
     void Start()
     {
         health = GetComponent<Health>();
     }
 
+    public delegate void BossDamageSoundEventHandler();
+    public event BossDamageSoundEventHandler OnBossDamageSoundEvent;
 
     public void TriggerEffects(List<Effect> effects)
     {
-        foreach(Effect effect in effects) {
+        foreach (Effect effect in effects)
+        {
             if (effect.GetEffectType() == Effect.EffectType.Damage)
             {
                 ApplyEffectDamage(effect);
 
-                // plays the sound for boss taking damage
+                // plays the sound for the boss taking damage
                 OnBossDamageSoundEvent();
             }
         }
     }
-
-    // delegated event for the boss's damage receive sound sounds
-    public delegate void BossDamageSoundEventHandler();
-    public event BossDamageSoundEventHandler OnBossDamageSoundEvent;
-
 
     private void ApplyEffectDamage(IEffectDamage effectDamage)
     {

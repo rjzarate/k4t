@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossAttackWhip : BossAction
 {
+    public static BossAttackWhip Instance { get; private set; }
+
 
     [Header("Attack Attributes")]
     [SerializeField] float rateOfFireTime = 0.5f;
@@ -18,6 +20,18 @@ public class BossAttackWhip : BossAction
 
     [SerializeField] GameObject playerObj;
     [SerializeField] private Vector3 playerPosition;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     public override void Action()
     {
@@ -64,9 +78,15 @@ public class BossAttackWhip : BossAction
             {
                 bullet.GetComponent<Bullet>().speed = bulletSpeed;
             }
-        }
 
+            // plays the sound for the boss's whip attack
+            OnBossAttackWhipSoundEvent();
+        }
     }
+
+    // delegated event for the boss's whip attack sound
+    public delegate void BossAttackWhipSoundEventHandler();
+    public event BossAttackWhipSoundEventHandler OnBossAttackWhipSoundEvent;
 
     public override void BeginAction()
     {
@@ -77,4 +97,6 @@ public class BossAttackWhip : BossAction
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerPosition = playerObj.transform.position;
     }
+
+
 }

@@ -7,6 +7,9 @@ public class AudioClipReferencesSO : ScriptableObject
 {
     public AudioClip[] playerFire;
     public AudioClip[] bossFire;
-    public AudioClip[] meateorSplat;
+    //public AudioClip[] meateorSplat;
     public AudioClip[] metalicBossDamageTaken;
+    public AudioClip[] bossAttackWhip;
+    public AudioClip[] bossAttackHazardLaunch;
+    public AudioClip[] bossAttackHazardLand;
 }

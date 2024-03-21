@@ -10,8 +10,10 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         PlayerMovementAndAttackSubscriber.Instance.OnTapSoundEvent += Player_OnTapSoundEvent;
-        BossReceiveHit.Instance.OnBossDamageSoundEvent += Boss_OnBossDamageSoundEvent;
+        BossReceiveHit.Instance.OnBossDamageSoundEvent += BossDamageTaken_OnBossDamageSoundEvent;
+        BossAttackWhip.Instance.OnBossAttackWhipSoundEvent += BossAttack_OnBossAttackWhipSoundEvent;
     }
+
 
     private void Player_OnTapSoundEvent()
     {
@@ -19,13 +21,20 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipReferencesSO.playerFire, playerMovementAndAttackSubscriber.transform.position);
     }
 
-   
-    private void Boss_OnBossDamageSoundEvent()
+    private void BossDamageTaken_OnBossDamageSoundEvent()
     {
         BossReceiveHit bossRecieveHit = BossReceiveHit.Instance;
         PlaySound(audioClipReferencesSO.metalicBossDamageTaken, bossRecieveHit.transform.position);
     }
-    
+
+    private void BossAttack_OnBossAttackWhipSoundEvent()
+    {
+        BossAttackWhip bossAttackWhip = BossAttackWhip.Instance;
+        PlaySound(audioClipReferencesSO.bossAttackWhip, bossAttackWhip.transform.position);
+    }
+
+
+    // functions to play the sounds
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
@@ -37,3 +46,13 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
     }
 }
+
+
+// used to implement further sounds
+
+/*// plays the sound for the boss taking damage
+ * OnBossDamageSoundEvent();
+ * // delegated event for the boss's damage receive sound sounds
+public delegate void BossDamageSoundEventHandler();
+public event BossDamageSoundEventHandler OnBossDamageSoundEvent;
+ */
