@@ -245,7 +245,7 @@ MonoBehaviour:
   showGizmos: 0
   chargeSeconds: 1
   attackSeconds: 1
-  bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
+  bulletPrefab: {fileID: 8291372549811847577, guid: 450afbf54dedb4efb94c97e353d90a39, type: 3}
   stageHazard: {fileID: 6236887681492775216, guid: fecfaa92db31ee240839bdc71935fc49, type: 3}
   groundTransform: {fileID: 1779542992}
   hazardSeconds: 10
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0.5
-  weight: 10
+  weight: 1000000
   willForceNextAction: 1
   nextForcedAction: {fileID: 40907807}
   blacklistedActions: []

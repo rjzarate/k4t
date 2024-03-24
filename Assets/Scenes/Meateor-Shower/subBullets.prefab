@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyFX: {fileID: 3198946992483261678, guid: 9fda26540f4d44fcd974198a9b92d296, type: 3}
-  TotalLifeSeconds: 5
+  TotalLifeSeconds: 2.5
 --- !u!50 &7219193188569898612
 Rigidbody2D:
   serializedVersion: 4
