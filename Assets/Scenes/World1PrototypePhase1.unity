@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0.5
-  weight: 1000000
+  weight: 10
   willForceNextAction: 1
   nextForcedAction: {fileID: 40907807}
   blacklistedActions: []
