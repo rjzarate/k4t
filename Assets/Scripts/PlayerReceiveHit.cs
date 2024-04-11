@@ -47,6 +47,11 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     {
         Debug.Log("Damage: " + effectDamage.GetDamage());
         GetComponent<Health>().Damage(effectDamage.GetDamage());
+        TakeDamageEvent();
     }
+
+    // event
+    public delegate void TakeDamageEventHandler();
+    public event TakeDamageEventHandler TakeDamageEvent;
 }
 
