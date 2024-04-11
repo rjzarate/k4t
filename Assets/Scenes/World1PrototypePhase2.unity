@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 1.5
-  weight: 10
+  weight: 1000
   willForceNextAction: 1
   nextForcedAction: {fileID: 40907807}
   blacklistedActions: []
