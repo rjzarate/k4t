@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MeateorIdle
+  m_Name: FlamingMeateorIdle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: e1e68379b556c0a4fabab55b44866f0f, type: 3}
+      value: {fileID: 21300000, guid: 22f68ca0c6df0904eaffaa330aee63e6, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 30a4dfcff67390a4d9ac936d7b9fd947, type: 3}
+      value: {fileID: 21300000, guid: a4b1aba4494938d46b6dfa9d7188d42b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: e1e68379b556c0a4fabab55b44866f0f, type: 3}
-    - {fileID: 21300000, guid: 30a4dfcff67390a4d9ac936d7b9fd947, type: 3}
+    - {fileID: 21300000, guid: 22f68ca0c6df0904eaffaa330aee63e6, type: 3}
+    - {fileID: 21300000, guid: a4b1aba4494938d46b6dfa9d7188d42b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
