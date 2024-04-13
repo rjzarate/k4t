@@ -21,9 +21,12 @@ public class PlayerSpriteAnimator : SpriteAnimator
         }
     }
 
-    private void HurtAnimation()
+    private void HurtAnimation(float health)
     {
-        SetTrigger("Hurt");
+        if (health > 0)
+        {
+            SetTrigger("Hurt");
+        }
     }
 
     // Update is called once per frame

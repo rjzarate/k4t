@@ -47,11 +47,11 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     {
         Debug.Log("Damage: " + effectDamage.GetDamage());
         GetComponent<Health>().Damage(effectDamage.GetDamage());
-        TakeDamageEvent();
+        TakeDamageEvent(health.GetHealth());
     }
 
     // event
-    public delegate void TakeDamageEventHandler();
+    public delegate void TakeDamageEventHandler(float newHealth);
     public event TakeDamageEventHandler TakeDamageEvent;
 }
 

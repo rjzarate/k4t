@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7316426644239259787}
   - component: {fileID: 8244166120915004816}
   - component: {fileID: -6897814453904256098}
-  - component: {fileID: 1521452940968076719}
   - component: {fileID: 8895141026604028117}
+  - component: {fileID: 1784410816202152213}
   m_Layer: 0
   m_Name: CheeseGrating
   m_TagString: Bullet
@@ -102,51 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyFX: {fileID: 0}
   TotalLifeSeconds: 2
---- !u!61 &1521452940968076719
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8622931999737368900}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.18, y: 1.29}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.88622695, y: 0.88622695}
-  m_EdgeRadius: 0
 --- !u!114 &8895141026604028117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +117,23 @@ MonoBehaviour:
   speed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+--- !u!114 &1784410816202152213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622931999737368900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84bf4e8c58d05e47867e5a58f4fe16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1353751559, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
+  - {fileID: 746454717, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
+  - {fileID: 711843951, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
+  - {fileID: 1010844262, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
 --- !u!1001 &7091954477663593427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,6 +153,14 @@ PrefabInstance:
     - target: {fileID: -5880790655251771083, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: effects.Array.data[0].genericFloat
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4305384358794820606, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4305384358794820606, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -4305384358794820606, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits

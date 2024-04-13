@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5432596482438304788}
   - component: {fileID: -2261251924097634684}
   m_Layer: 0
-  m_Name: BoomFX
+  m_Name: BoomFX2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1310,7 +1310,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.50980395, b: 0, a: 1}
+        key0: {r: 0.9647059, g: 1, b: 0.4745098, a: 1}
         key1: {r: 0, g: 0, b: 0, a: 0}
         key2: {r: 1, g: 0.9917268, b: 0.17647058, a: 1}
         key3: {r: 0.16983688, g: 1, b: 0, a: 0}

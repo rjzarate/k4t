@@ -1534,7 +1534,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0.7992277, a: 1}
+        key0: {r: 1, g: 0.36836088, b: 0, a: 1}
         key1: {r: 0, g: 0, b: 0, a: 0}
         key2: {r: 1, g: 0.9917268, b: 0.17647058, a: 1}
         key3: {r: 0.16983688, g: 1, b: 0, a: 0}
@@ -5095,6 +5095,10 @@ PrefabInstance:
     - target: {fileID: 759971891367763135, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: m_Name
       value: ProjectileHitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 759971891367763135, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6504814198634460971, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: m_LocalPosition.x

@@ -39,8 +39,8 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     [SerializeField] private Transform firingPoint;
     [SerializeField] private float hitDelaySeconds;
     private float hitDelayLeftSeconds;
-    [SerializeField] private float maxAmmo;
-    private float ammoLeft;
+    [SerializeField] private int maxAmmo;
+    private int ammoLeft;
     [SerializeField] private float reloadSeconds;
     private float reloadTimeLeftSeconds;
 
@@ -91,6 +91,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
             OnTapSoundEvent();
             hitDelayLeftSeconds = hitDelaySeconds;
             ammoLeft--;
+            AmmoCountChangeEvent(ammoLeft);
             if (ammoLeft <= 0)
             {
                 reloadTimeLeftSeconds = reloadSeconds;
@@ -209,6 +210,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
             if (reloadTimeLeftSeconds < 0)
             {
                 ammoLeft = maxAmmo;
+                AmmoCountChangeEvent(ammoLeft);
                 reloadTimeLeftSeconds = 0;
             }
         }
@@ -224,5 +226,6 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     public delegate void WalkSoundEventHandler(bool playerCanMakeWalkingSound);
     public event WalkSoundEventHandler OnWalkSoundEvent;
 
-
+    public delegate void AmmoCountChangeHandler(int ammoCount);
+    public event AmmoCountChangeHandler AmmoCountChangeEvent;
 }
