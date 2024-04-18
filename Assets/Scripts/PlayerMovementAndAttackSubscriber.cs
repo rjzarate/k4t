@@ -33,6 +33,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     private Rigidbody2D rigidBody2D;
 
     private BoxCollider2D boxCollider2D;
+    [SerializeField] private Health playerHealth;
 
     // shooting objects
     [SerializeField] private GameObject bulletObject;
@@ -43,6 +44,8 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     private int ammoLeft;
     [SerializeField] private float reloadSeconds;
     private float reloadTimeLeftSeconds;
+
+    private bool dead = false;
 
     private void Awake()
     {
@@ -60,6 +63,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         InputHandler.Instance.OnPressEvent += HandlePress;
         InputHandler.Instance.OnReleaseEvent += HandleRelease;
         InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
+        playerHealth.DeathEvent += HandlePlayerDeath;
         ammoLeft = maxAmmo;
     }
 
@@ -71,7 +75,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
 
         // checks whether the player is allowed to move, which is dependent on the press event
-        if (playerCanMove) // true if the player is allowed to move
+        if (!dead && playerCanMove) // true if the player is allowed to move
         {
             // calls function to move the player
             PlayerMove();
@@ -85,7 +89,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     // What to do on Tap
     public void HandleTap()
     {
-        if (reloadTimeLeftSeconds <= 0 && hitDelayLeftSeconds <= 0)
+        if (!dead && reloadTimeLeftSeconds <= 0 && hitDelayLeftSeconds <= 0)
         {
             Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
             OnTapSoundEvent();
@@ -124,9 +128,13 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         Debug.Log("Press detected!");
 
         // sets the status of playerCanMove to true since the player is pressing
-        playerCanMove = true;
+        if (!dead)
+        {
+            playerCanMove = true;
 
-        OnWalkSoundEvent(playerCanMove); // allows walking noise to play
+            OnWalkSoundEvent(playerCanMove); // allows walking noise to play
+        }
+        
     }
 
 
@@ -135,23 +143,26 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     {
         // used to ensure the event launches correctly
         Debug.Log("Release detected!");
-
-        // switches direction of player movement for next press
-        if (playerMoveDirection == PlayerMoveDirection.Negative_X) // true if the current direction for the player to move is left
+        if (!dead)
         {
-            // switches the next direction to right
-            playerMoveDirection = PlayerMoveDirection.Positive_X;
-        }
-        else if (playerMoveDirection == PlayerMoveDirection.Positive_X) // true if the current direction for the player to move is right
-        {
-            // switches the next direction to left
-            playerMoveDirection = PlayerMoveDirection.Negative_X;
-        }
+            // switches direction of player movement for next press
+            if (playerMoveDirection == PlayerMoveDirection.Negative_X) // true if the current direction for the player to move is left
+            {
+                // switches the next direction to right
+                playerMoveDirection = PlayerMoveDirection.Positive_X;
+            }
+            else if (playerMoveDirection == PlayerMoveDirection.Positive_X) // true if the current direction for the player to move is right
+            {
+                // switches the next direction to left
+                playerMoveDirection = PlayerMoveDirection.Negative_X;
+            }
 
-        // sets the status of playerCanMove to false sicne the player isn't pressing any longer
-        playerCanMove = false;
+            // sets the status of playerCanMove to false sicne the player isn't pressing any longer
+            playerCanMove = false;
 
-        OnWalkSoundEvent(playerCanMove); // allows walking noise to stop
+            OnWalkSoundEvent(playerCanMove); // allows walking noise to stop
+        }
+        
     }
 
 
@@ -219,6 +230,13 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         {
             hitDelayLeftSeconds -= Time.deltaTime;
         }
+    }
+
+    private void HandlePlayerDeath()
+    {
+        dead = true;
+        playerCanMove = false;
+        OnWalkSoundEvent(false);
     }
 
 

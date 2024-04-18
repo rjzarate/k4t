@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth; // maximum health of the player
     private float health;
+    private bool dead = false;
 
     private void Start() 
     {
@@ -43,10 +44,19 @@ public class Health : MonoBehaviour
 
         // Modify health
         health -= damage;
-        if (health <= 0f)
+        if (TakeDamageEvent != null)
         {
+            TakeDamageEvent(health);
+        }
+        if (health <= 0f && !dead)
+        {
+            if (DeathEvent != null)
+            {
+                DeathEvent();
+            }
+            dead = true;
             // TODO: change sprite to death animation and disable player interaction system
-            Destroy(gameObject.transform.parent.gameObject);
+            //Destroy(gameObject.transform.parent.gameObject);
         }
     }
 
@@ -71,4 +81,11 @@ public class Health : MonoBehaviour
     {
         return health <= 0;
     }
+
+    // events
+    public delegate void TakeDamageEventHandler(float newHealth);
+    public event TakeDamageEventHandler TakeDamageEvent;
+
+    public delegate void DeathEventHandler();
+    public event DeathEventHandler DeathEvent;
 }   

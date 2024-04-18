@@ -7,11 +7,18 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class PlayerReceiveHit : MonoBehaviour, IHittable
 {
-    private Health health; // player's instance of health
+    public static Health PlayerHealth
+    {
+        get; private set;
+    }
+    private void Awake()
+    {
+        PlayerHealth = GetComponent<Health>();
+    }
 
     void Start()
     {
-        health = GetComponent<Health>();
+
     }
 
 
@@ -47,11 +54,8 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     {
         Debug.Log("Damage: " + effectDamage.GetDamage());
         GetComponent<Health>().Damage(effectDamage.GetDamage());
-        TakeDamageEvent(health.GetHealth());
     }
 
-    // event
-    public delegate void TakeDamageEventHandler(float newHealth);
-    public event TakeDamageEventHandler TakeDamageEvent;
+    
 }
 

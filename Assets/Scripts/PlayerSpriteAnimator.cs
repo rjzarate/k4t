@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerSpriteAnimator : SpriteAnimator
 {
-    [SerializeField] private PlayerReceiveHit hitReceiver;
     // Start is called before the first frame update
     void Start()
     {
         PlayerMovementAndAttackSubscriber.Instance.OnWalkSoundEvent += UpdateMove;
-        hitReceiver.TakeDamageEvent += HurtAnimation;
+        PlayerReceiveHit.PlayerHealth.TakeDamageEvent += HurtAnimation;
+        PlayerReceiveHit.PlayerHealth.DeathEvent += DeathAnimation;
     }
 
     private void UpdateMove(bool moving)
@@ -29,9 +29,14 @@ public class PlayerSpriteAnimator : SpriteAnimator
         }
     }
 
+    private void DeathAnimation()
+    {
+        SetTrigger("Dead");
+    }
+
     // Update is called once per frame
     void Update()
-    {
+    {   
         
     }
 }
