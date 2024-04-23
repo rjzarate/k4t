@@ -32,5 +32,4 @@ public class PlayerWalkingSound : MonoBehaviour
             audioSource.Pause();
         }
     }
-
 }

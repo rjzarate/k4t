@@ -24,8 +24,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7c8d018d37401024cac6d20d4c42213b, type: 3}
   - {fileID: 8300000, guid: 52d4f3f1ef02a6945853be55fa464b28, type: 3}
   bossAttackWhip:
-  - {fileID: 8300000, guid: 81662e0caaae046568d0440292ac2919, type: 3}
   - {fileID: 8300000, guid: 561d2719503ee463e8848c8ba5509785, type: 3}
+  - {fileID: 8300000, guid: 8f4d324ec7fc18645a18f462b50df2e6, type: 3}
+  - {fileID: 8300000, guid: 683147bec8bd40b4aa29ba93b640ef9b, type: 3}
+  - {fileID: 8300000, guid: 94a6bb91cac563749bc1af6843f540e8, type: 3}
   bossAttackHazardLaunch:
   - {fileID: 8300000, guid: 3d80abc000f044af397873206d7fc472, type: 3}
   bossAttackHazardLand:

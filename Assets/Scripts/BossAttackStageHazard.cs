@@ -123,4 +123,10 @@ public class BossAttackStageHazard : BossAction
 
         hazardPosition = new Vector2(targetPosition.x, targetPosition.y);
     }
+
+    /*
+    // delegated event for the boss's damage receive sound sounds
+    public delegate void BossDamageSoundEventHandler();
+    public event BossDamageSoundEventHandler OnBossDamageSoundEvent;
+    */
 }
