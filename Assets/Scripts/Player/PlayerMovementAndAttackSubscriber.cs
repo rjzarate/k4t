@@ -217,6 +217,9 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     {
         if (reloadTimeLeftSeconds > 0)
         {
+            // Call event that weapon is reloading
+            AmmoReloadEvent(reloadSeconds, reloadTimeLeftSeconds);
+            
             reloadTimeLeftSeconds -= Time.deltaTime;
             if (reloadTimeLeftSeconds < 0)
             {
@@ -246,4 +249,6 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
     public delegate void AmmoCountChangeHandler(int ammoCount);
     public event AmmoCountChangeHandler AmmoCountChangeEvent;
+    public delegate void AmmoReloadHandler(float reloadSeconds, float reloadTimeLeftSeconds);
+    public event AmmoReloadHandler AmmoReloadEvent;
 }
