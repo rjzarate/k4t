@@ -5,7 +5,12 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth; // maximum health of the player
-    private float health;
+    [SerializeField] private float health;
+
+    // i-frame
+    [SerializeField] float iFrameDuration = 2.5f;
+    bool iFrameMode = false;
+
     private bool dead = false;
 
     private void Start() 
@@ -58,6 +63,8 @@ public class Health : MonoBehaviour
             // TODO: change sprite to death animation and disable player interaction system
             //Destroy(gameObject.transform.parent.gameObject);
         }
+
+        beginiFrame();
     }
 
     public void Heal(float heal)
@@ -88,4 +95,21 @@ public class Health : MonoBehaviour
 
     public delegate void DeathEventHandler();
     public event DeathEventHandler DeathEvent;
-}   
+
+
+
+
+    // This is the iFrame:
+
+    IEnumerator iFrameTime()
+    {
+        iFrameMode = false;
+        yield return new WaitForSeconds(iFrameDuration);
+    }
+
+    void beginiFrame()
+    {
+        iFrameMode = true;
+        StartCoroutine(iFrameTime());
+    }
+}

@@ -579,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
+  health: 0
 --- !u!1 &217566319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAttack: {fileID: 3009742}
   ammoImage: {fileID: 1780459115}
+  ammoReloadBar: {fileID: 0}
   ammoSprites:
   - {fileID: 1066679045, guid: fd9f55beb2c0ac5488f600a756b6aeb5, type: 3}
   - {fileID: -763761223, guid: fd9f55beb2c0ac5488f600a756b6aeb5, type: 3}
@@ -2225,6 +2227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 9
+  health: 0
 --- !u!114 &1742738229
 MonoBehaviour:
   m_ObjectHideFlags: 0
