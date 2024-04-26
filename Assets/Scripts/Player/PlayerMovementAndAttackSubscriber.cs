@@ -99,6 +99,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
             if (ammoLeft <= 0)
             {
                 reloadTimeLeftSeconds = reloadSeconds;
+                AmmoReloadToggleEvent(true);
             }
         }
 
@@ -217,14 +218,16 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     {
         if (reloadTimeLeftSeconds > 0)
         {
+            reloadTimeLeftSeconds -= Time.deltaTime;
+
             // Call event that weapon is reloading
             AmmoReloadEvent(reloadSeconds, reloadTimeLeftSeconds);
-            
-            reloadTimeLeftSeconds -= Time.deltaTime;
+
             if (reloadTimeLeftSeconds < 0)
             {
                 ammoLeft = maxAmmo;
                 AmmoCountChangeEvent(ammoLeft);
+                AmmoReloadToggleEvent(false);
                 reloadTimeLeftSeconds = 0;
             }
         }
@@ -251,4 +254,6 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     public event AmmoCountChangeHandler AmmoCountChangeEvent;
     public delegate void AmmoReloadHandler(float reloadSeconds, float reloadTimeLeftSeconds);
     public event AmmoReloadHandler AmmoReloadEvent;
+    public delegate void AmmoReloadToggleHandler(bool showImage);
+    public event AmmoReloadToggleHandler AmmoReloadToggleEvent;
 }

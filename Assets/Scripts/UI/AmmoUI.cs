@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,10 @@ public class AmmoUI : MonoBehaviour
         UpdateAmmoUI(startingAmmo);
         playerAttack.AmmoCountChangeEvent += UpdateAmmoUI;
         playerAttack.AmmoReloadEvent += UpdateAmmoBarUI;
+        playerAttack.AmmoReloadToggleEvent += ShowAmmoBar;
+
+        // Hide reload bar
+        ammoReloadBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,6 +39,11 @@ public class AmmoUI : MonoBehaviour
     }
 
     private void UpdateAmmoBarUI(float reloadSeconds, float reloadTimeLeftSeconds) {
-        Debug.Log("test");
+        ammoReloadBar.fillAmount = 1 - (reloadTimeLeftSeconds / reloadSeconds);
+    }
+
+    private void ShowAmmoBar(bool showImage)
+    {
+        ammoReloadBar.gameObject.SetActive(showImage);
     }
 }
