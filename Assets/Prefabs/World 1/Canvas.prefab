@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 1299974921528037109}
   - component: {fileID: 4989498063686354670}
   m_Layer: 5
-  m_Name: Phase2Canvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
