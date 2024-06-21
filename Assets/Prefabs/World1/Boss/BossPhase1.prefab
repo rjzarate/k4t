@@ -144,14 +144,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7160509913981245846}
   - component: {fileID: 4420689354388631811}
-  - component: {fileID: 6630501104549132512}
   - component: {fileID: 2152607566000407804}
   - component: {fileID: 6814885042345512348}
   - component: {fileID: 3987779710405517494}
   - component: {fileID: 9026040083070636539}
   - component: {fileID: 2522956785432526226}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: BossPhase1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,27 +191,6 @@ MonoBehaviour:
   - {fileID: 3987779710405517494}
   - {fileID: 9026040083070636539}
   currentAction: {fileID: 2152607566000407804}
---- !u!95 &6630501104549132512
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211630815840588473}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e141995279654fdbafef1cb5f27d177, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2152607566000407804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +317,7 @@ GameObject:
   - component: {fileID: 6455413391347149707}
   - component: {fileID: 2109590680261379334}
   m_Layer: 0
-  m_Name: GFX
+  m_Name: BossSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
