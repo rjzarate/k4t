@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4565268257766282574}
   - component: {fileID: 7657341338929060878}
   m_Layer: 0
-  m_Name: CheeseHaz
+  m_Name: CheeseHazard
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

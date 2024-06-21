@@ -33,10 +33,4 @@ public class PlayerSpriteAnimator : SpriteAnimator
     {
         SetTrigger("Dead");
     }
-
-    // Update is called once per frame
-    void Update()
-    {   
-        
-    }
 }

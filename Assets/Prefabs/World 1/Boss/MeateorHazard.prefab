@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -2363225719912670500}
   - component: {fileID: 4565268257766282574}
   m_Layer: 0
-  m_Name: BullHaz
+  m_Name: MeateorHazard
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHealth; // maximum health of the player
+    [SerializeField] private float maxHealth;
     [SerializeField] private float health;
+    private bool hasTriggeredDeathEvent = false;
 
     // i-frame
     [SerializeField] float iFrameDuration = 2.5f;
     bool iFrameMode = false;
 
-    private bool dead = false;
+    // events
+    public delegate void TakeDamageEventHandler(float newHealth);
+    public event TakeDamageEventHandler TakeDamageEvent;
+
+    public delegate void DeathEventHandler();
+    public event DeathEventHandler DeathEvent;
 
     private void Start() 
     {
@@ -33,15 +39,24 @@ public class Health : MonoBehaviour
         return health;
     }
 
-    public void SetHealth(int newHealth)
+    public bool IsDead() {
+        return health <= 0f;
+    }
+
+    public void SetHealth(int newHealth, bool bypassNonpositiveHealth = false)
     {
+        if (!bypassNonpositiveHealth && newHealth <= 0) {
+            Debug.LogWarning("New Health is nonpositive: " + newHealth + "\n Exiting SetHealth function.");
+            return;
+        }
+
         health = newHealth;
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, bool bypassNegativeDamage = false)
     {
         // Edge case: damage is negative
-        if (damage < 0)
+        if (!bypassNegativeDamage && damage < 0)
         {
             Debug.LogWarning("Damage is negative: " + damage + "\n Exiting Damage function.");
             return;
@@ -49,22 +64,17 @@ public class Health : MonoBehaviour
 
         // Modify health
         health -= damage;
-        if (TakeDamageEvent != null)
+        TakeDamageEvent(health);
+        
+        if (health <= 0f && !hasTriggeredDeathEvent)
         {
-            TakeDamageEvent(health);
-        }
-        if (health <= 0f && !dead)
-        {
-            if (DeathEvent != null)
-            {
-                DeathEvent();
-            }
-            dead = true;
+            DeathEvent();
+            hasTriggeredDeathEvent = true;
             // TODO: change sprite to death animation and disable player interaction system
             //Destroy(gameObject.transform.parent.gameObject);
         }
 
-        beginiFrame();
+        BeginIFrame();
     }
 
     public void Heal(float heal)
@@ -89,27 +99,22 @@ public class Health : MonoBehaviour
         return health <= 0;
     }
 
-    // events
-    public delegate void TakeDamageEventHandler(float newHealth);
-    public event TakeDamageEventHandler TakeDamageEvent;
 
-    public delegate void DeathEventHandler();
-    public event DeathEventHandler DeathEvent;
 
 
 
 
     // This is the iFrame:
 
-    IEnumerator iFrameTime()
+    IEnumerator IFrameTime()
     {
         iFrameMode = false;
         yield return new WaitForSeconds(iFrameDuration);
     }
 
-    void beginiFrame()
+    void BeginIFrame()
     {
         iFrameMode = true;
-        StartCoroutine(iFrameTime());
+        StartCoroutine(IFrameTime());
     }
 }
