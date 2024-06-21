@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,22 +8,16 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     public static PlayerMovementAndAttackSubscriber Instance { get; private set; }
 
     // enums
-    public enum PlayerMoveDirection // Labels for movement direction
+    public enum MovementDirection // Labels for movement direction
     {
-        Negative_X,
-        Positive_X
+        LEFT = -1,
+        RIGHT = 1
     }
-
-
-
     // initialize variables:
 
-    private PlayerMoveDirection playerMoveDirection = PlayerMoveDirection.Positive_X; // starting movement direction of right
+    private MovementDirection movementDirection = MovementDirection.RIGHT; // starting movement direction of right
 
-    private const int AMOUNT_TO_MOVE_IN_NEGATIVE_X = -1; // amount for the player to move in the negative x direction (possibly left)
-    private const int AMOUNT_TO_MOVE_IN_POSITIVE_X = 1; // amount for the player to move in the negative x direction (possibly right)
-
-    private bool playerCanMove = false; // variable to determine whether the player can move or not
+    private bool canMove = false; // variable to determine whether the player can move or not
 
     [SerializeField] private float moveSpeed = 7f; // configurable speed of the player's movement
 
@@ -33,13 +28,13 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     private Rigidbody2D rigidBody2D;
 
     private BoxCollider2D boxCollider2D;
-    [SerializeField] private Health playerHealth;
+    [SerializeField] private Health health;
 
     // shooting objects
     [SerializeField] private GameObject bulletObject;
     [SerializeField] private Transform firingPoint;
-    [SerializeField] private float hitDelaySeconds;
-    private float hitDelayLeftSeconds;
+    [SerializeField] private float attackDelaySeconds;
+    private float attackDelayLeftSeconds;
     [SerializeField] private int maxAmmo;
     private int ammoLeft;
     [SerializeField] private float reloadSeconds;
@@ -47,53 +42,76 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
 
     private bool dead = false;
 
+    // Events
+    public delegate void WalkSoundEventHandler(bool playerCanMakeWalkingSound);
+    public event WalkSoundEventHandler OnWalkSoundEvent;
+    public delegate void TapSoundEventHandler();
+    public event TapSoundEventHandler OnTapSoundEvent;
+
+    public delegate void AmmoCountChangeHandler(int ammoCount);
+    public event AmmoCountChangeHandler AmmoCountChangeEvent;
+    public delegate void AmmoReloadHandler(float reloadSeconds, float reloadTimeLeftSeconds);
+    public event AmmoReloadHandler AmmoReloadEvent;
+    public delegate void AmmoReloadToggleHandler(bool showImage);
+    public event AmmoReloadToggleHandler AmmoReloadToggleEvent;
+
     private void Awake()
     {
         Instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         rigidBody2D = transform.GetComponent<Rigidbody2D>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
 
         // Subscribe to InputHandler tap, press, release, and consecutive tap events
-        InputHandler.Instance.OnTapEvent += HandleTap;
-        InputHandler.Instance.OnPressEvent += HandlePress;
-        InputHandler.Instance.OnReleaseEvent += HandleRelease;
-        InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
-        playerHealth.DeathEvent += HandlePlayerDeath;
+        ToggleInput(true);
+            // InputHandler.Instance.OnTapEvent += HandleTap;
+            // InputHandler.Instance.OnPressEvent += HandlePress;
+            // InputHandler.Instance.OnReleaseEvent += HandleRelease;
+            // InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
+        
+        // Pausing
+        Pause.Instance.PauseToggleEvent += HandlePause;
+        
+        // Player hitting 0 HP
+        health.DeathEvent += HandleDeath;
+        
+        // Fill ammo to full
         ammoLeft = maxAmmo;
+    }
+
+    private void HandlePause(bool isPaused)
+    {
+        if (isPaused) {
+            ToggleInput(false);
+            return;
+        }
+        ToggleInput(true);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        HandlePlayerWeapon(); // deals with player's weapon ammo and reload
+        HandleAttack(); // deals with player's weapon ammo and reload
 
 
         // checks whether the player is allowed to move, which is dependent on the press event
-        if (!dead && playerCanMove) // true if the player is allowed to move
-        {
-            // calls function to move the player
-            PlayerMove();
-        }
+        if (canMove) Move();
 
         // TODO: Implement the HandleTap() and HandleConsecutiveTap() methods
     }
 
-
-
     // What to do on Tap
     public void HandleTap()
     {
-        if (!dead && reloadTimeLeftSeconds <= 0 && hitDelayLeftSeconds <= 0)
+        if (reloadTimeLeftSeconds <= 0 && attackDelayLeftSeconds <= 0)
         {
             Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
             OnTapSoundEvent();
-            hitDelayLeftSeconds = hitDelaySeconds;
+            attackDelayLeftSeconds = attackDelaySeconds;
             ammoLeft--;
             AmmoCountChangeEvent(ammoLeft);
             if (ammoLeft <= 0)
@@ -108,8 +126,7 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         // TODO
     }
 
-    public delegate void TapSoundEventHandler();
-    public event TapSoundEventHandler OnTapSoundEvent;
+    
 
 
     // What to do on Consecutive Tap
@@ -129,12 +146,10 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
         Debug.Log("Press detected!");
 
         // sets the status of playerCanMove to true since the player is pressing
-        if (!dead)
-        {
-            playerCanMove = true;
+        canMove = true;
 
-            OnWalkSoundEvent(playerCanMove); // allows walking noise to play
-        }
+        OnWalkSoundEvent(canMove); // allows walking noise to play
+        
         
     }
 
@@ -144,77 +159,35 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
     {
         // used to ensure the event launches correctly
         Debug.Log("Release detected!");
-        if (!dead)
-        {
-            // switches direction of player movement for next press
-            if (playerMoveDirection == PlayerMoveDirection.Negative_X) // true if the current direction for the player to move is left
-            {
-                // switches the next direction to right
-                playerMoveDirection = PlayerMoveDirection.Positive_X;
-            }
-            else if (playerMoveDirection == PlayerMoveDirection.Positive_X) // true if the current direction for the player to move is right
-            {
-                // switches the next direction to left
-                playerMoveDirection = PlayerMoveDirection.Negative_X;
-            }
 
-            // sets the status of playerCanMove to false sicne the player isn't pressing any longer
-            playerCanMove = false;
+        // Invert direction
+        movementDirection = (MovementDirection) ((int) movementDirection * -1);
 
-            OnWalkSoundEvent(playerCanMove); // allows walking noise to stop
-        }
-        
-    }
+        // sets the status of playerCanMove to false sicne the player isn't pressing any longer
+        canMove = false;
 
-
-
-
-    // function to determine the direction 
-    private void PlayerMove()
-    {
-        // determines the direction that the player will move as the player presses
-        if (playerMoveDirection == PlayerMoveDirection.Negative_X) // true if the current direction for the player to move is left
-        {
-            // moves the player to the left
-            PlayerMovement(AMOUNT_TO_MOVE_IN_NEGATIVE_X);
-
-        }
-        else if (playerMoveDirection == PlayerMoveDirection.Positive_X) // true if the current direction for the player to move is right
-        {
-            // moves the player to the right
-            PlayerMovement(AMOUNT_TO_MOVE_IN_POSITIVE_X);
-        }
+        OnWalkSoundEvent(canMove); // allows walking noise to stop
     }
 
     // function to handle the implementation for moving the sprite
-    private void PlayerMovement(int playerMovementAmountAlongX)
+    private void Move()
     {
-        // vector for the transformation of the player
-        Vector3 playerMovementVector = new Vector3(playerMovementAmountAlongX, 0f, 0f);
-
         // boolean to check if the player has collied with a wall entity (needs to have a box collider)
-        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, new Vector2(5 * playerMovementAmountAlongX, 0f),
-                                                    boxCollider2D.bounds.extents.x + 0.09f, wallLayerMask);
-        
-        bool playerCanKeepMoving = (raycastHit.collider == null);
-
-        // checks to see if the player should'nt move because of a collition
-        if (!playerCanKeepMoving) // returns true if there is a collision
+        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, new Vector2((int) movementDirection * 5, 0f), boxCollider2D.bounds.extents.x + 0.09f, wallLayerMask);
+        bool isNearWall = (raycastHit.collider != null);
+        if (isNearWall)
         {
-            Debug.Log("Player should stop moving!!"); // makes sure the collision is active
-
-            // new position Vecotr3 of <0f, 0f, 0f>
-            playerMovementVector = new Vector3(0f, 0f, 0f);
-            OnWalkSoundEvent(playerCanKeepMoving); // makes the walking noise stop
+            Debug.Log("Player should stop moving!!");
+            OnWalkSoundEvent(false); // makes the walking noise stop
+            return;
         }
 
-        // transforms the sprite on the x-axis
-        transform.position += playerMovementVector * moveSpeed * Time.deltaTime;
+        // move player
+        transform.position += new Vector3((int) movementDirection, 0f, 0f) * moveSpeed * Time.deltaTime;
     }
 
-
     // function to handle the reloading and ammo count of the player's weapon
-    private void HandlePlayerWeapon()
+    private void HandleAttack()
     {
         if (reloadTimeLeftSeconds > 0)
         {
@@ -232,28 +205,38 @@ public class PlayerMovementAndAttackSubscriber : MonoBehaviour
             }
         }
 
-        if (hitDelayLeftSeconds > 0)
+        if (attackDelayLeftSeconds > 0)
         {
-            hitDelayLeftSeconds -= Time.deltaTime;
+            attackDelayLeftSeconds -= Time.deltaTime;
         }
     }
 
-    private void HandlePlayerDeath()
+    private void HandleDeath()
     {
         dead = true;
-        playerCanMove = false;
+        canMove = false;
         OnWalkSoundEvent(false);
+
+        // Unsubscribes from player inputs so that the player cannot shoot, move, etc.
+        ToggleInput(false);
     }
 
+    private void ToggleInput(bool isEnabled) 
+    {
+        if (isEnabled)
+        {
+            Debug.Log("Enabling Player Input");
+            InputHandler.Instance.OnTapEvent += HandleTap;
+            InputHandler.Instance.OnPressEvent += HandlePress;
+            InputHandler.Instance.OnReleaseEvent += HandleRelease;
+            InputHandler.Instance.OnConsecutiveTapEvent += HandleConsecutiveTap;
+            return;
+        }
 
-    // delegated event for player movement sounds
-    public delegate void WalkSoundEventHandler(bool playerCanMakeWalkingSound);
-    public event WalkSoundEventHandler OnWalkSoundEvent;
-
-    public delegate void AmmoCountChangeHandler(int ammoCount);
-    public event AmmoCountChangeHandler AmmoCountChangeEvent;
-    public delegate void AmmoReloadHandler(float reloadSeconds, float reloadTimeLeftSeconds);
-    public event AmmoReloadHandler AmmoReloadEvent;
-    public delegate void AmmoReloadToggleHandler(bool showImage);
-    public event AmmoReloadToggleHandler AmmoReloadToggleEvent;
+        Debug.Log("Disabling Player Input");
+        InputHandler.Instance.OnTapEvent -= HandleTap;
+        InputHandler.Instance.OnPressEvent -= HandlePress;
+        InputHandler.Instance.OnReleaseEvent -= HandleRelease;
+        InputHandler.Instance.OnConsecutiveTapEvent -= HandleConsecutiveTap;
+    }
 }
