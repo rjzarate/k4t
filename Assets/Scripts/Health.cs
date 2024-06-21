@@ -64,11 +64,12 @@ public class Health : MonoBehaviour
 
         // Modify health
         health -= damage;
-        TakeDamageEvent(health);
-        
+        TakeDamageEvent?.Invoke(health);
+
+
         if (health <= 0f && !hasTriggeredDeathEvent)
         {
-            DeathEvent();
+            DeathEvent?.Invoke();
             hasTriggeredDeathEvent = true;
             // TODO: change sprite to death animation and disable player interaction system
             //Destroy(gameObject.transform.parent.gameObject);

@@ -87,10 +87,10 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  health: {fileID: 0}
+  health: {fileID: 842757904544820166}
   bulletObject: {fileID: 8291372549811847577, guid: 8fbdee69bc102bb4da099ea009af1ed3, type: 3}
   firingPoint: {fileID: 6264005317573771130}
-  attackDelaySeconds: 0
+  attackDelaySeconds: 0.4
   maxAmmo: 4
   reloadSeconds: 3
 --- !u!61 &2994493083583339853
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4454849812197148979}
   - component: {fileID: 3026038494036953176}
   m_Layer: 0
-  m_Name: rocketlauncher
+  m_Name: RocketLauncherVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6264005317573771130}
   m_Layer: 0
-  m_Name: PlayerShoot
+  m_Name: PlayerShootLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +329,6 @@ GameObject:
   - component: {fileID: 842757904544820166}
   - component: {fileID: 2039720511855314417}
   - component: {fileID: 4395836723558858632}
-  - component: {fileID: 6243893228407332263}
   m_Layer: 6
   m_Name: PlayerReceiveHit
   m_TagString: Untagged
@@ -451,22 +450,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6243893228407332263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7111192075499239792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93c2de33f2dba4f4a838ba951b6bf893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 7
-  wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!1 &8182387913090677185
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +463,7 @@ GameObject:
   - component: {fileID: 205232010342529911}
   - component: {fileID: 659841630064442881}
   m_Layer: 6
-  m_Name: playerSprite
+  m_Name: PlayerVisual
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
