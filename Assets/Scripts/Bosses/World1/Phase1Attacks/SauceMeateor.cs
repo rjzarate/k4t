@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossAttackStageHazard : BossAction
+public class SauceMeateor : BossAction
 {
     [SerializeField] private float chargeSeconds;
     [SerializeField] private float attackSeconds; // time for the meateor to hit the ground after being made

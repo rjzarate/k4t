@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     {
         PlayerMovementAndAttackSubscriber.Instance.OnTapSoundEvent += Player_OnTapSoundEvent;
         BossReceiveHit.Instance.OnBossDamageSoundEvent += BossDamageTaken_OnBossDamageSoundEvent;
-        BossAttackWhip.Instance.OnBossAttackWhipSoundEvent += BossAttack_OnBossAttackWhipSoundEvent;
+        SpaghettiWhip.Instance.OnBossAttackWhipSoundEvent += BossAttack_OnBossAttackWhipSoundEvent;
     }
 
 
@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
 
     private void BossAttack_OnBossAttackWhipSoundEvent()
     {
-        BossAttackWhip bossAttackWhip = BossAttackWhip.Instance;
+        SpaghettiWhip bossAttackWhip = SpaghettiWhip.Instance;
         PlaySound(audioClipReferencesSO.bossAttackWhip, bossAttackWhip.transform.position);
     }
 

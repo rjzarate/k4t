@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttackRain : BossAction
+public class MeateorShower : BossAction
 {
     [Header("Attack Attributes")]
     [SerializeField] float rateOfFireTime = 0.5f;

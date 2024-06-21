@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttackWhip : BossAction
+public class SpaghettiWhip : BossAction
 {
-    public static BossAttackWhip Instance { get; private set; }
+    public static SpaghettiWhip Instance { get; private set; }
 
 
     [Header("Attack Attributes")]

@@ -158,10 +158,10 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  playerHealth: {fileID: 1742738228}
+  health: {fileID: 0}
   bulletObject: {fileID: 8291372549811847577, guid: 8fbdee69bc102bb4da099ea009af1ed3, type: 3}
   firingPoint: {fileID: 581865850}
-  hitDelaySeconds: 0.75
+  attackDelaySeconds: 0
   maxAmmo: 4
   reloadSeconds: 3
 --- !u!50 &3009743
@@ -1516,6 +1516,22 @@ PrefabInstance:
     - target: {fileID: 7528910252112990696, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480288954144105881, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480288954144105881, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480288954144105881, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480288954144105881, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Pause, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
