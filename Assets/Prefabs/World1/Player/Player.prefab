@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 205232010342529911}
+  playerMovement: {fileID: 0}
 --- !u!1 &8226717290662683131
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573b2844eac4e4c90a6283f4dd209f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovementAndAttackSubscriber: {fileID: 0}
 --- !u!1 &8896888024843237983
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9073632574339395019}
+  - component: {fileID: 6579512656390356665}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -726,3 +727,21 @@ Transform:
   - {fileID: 7632343785097200246}
   m_Father: {fileID: 7742997755006040690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6579512656390356665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896888024843237983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f351919944825f448b151b7db36318e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationMovementMultiplier: 1000
+  rotationEqualizerMultiplier: 10
+  rotationReduction: 0.5
+  rotationVelocityMax: 100
+  rotationVelocity: 0
+  health: {fileID: 842757904544820166}

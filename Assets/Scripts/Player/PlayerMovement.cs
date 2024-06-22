@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private MovementDirection movementDirection = MovementDirection.RIGHT;
+    private bool isNearWall;
     private bool tryMoving = false;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private LayerMask wallLayerMask;
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // boolean to check if the player has collied with a wall entity (needs to have a box collider)
         RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, new Vector2((int) movementDirection * 5, 0f), boxCollider2D.bounds.extents.x + 0.09f, wallLayerMask);
-        bool isNearWall = (raycastHit.collider != null);
+        isNearWall = (raycastHit.collider != null);
         if (isNearWall)
         {
             Debug.Log("Player should stop moving!!");
@@ -111,5 +112,13 @@ public class PlayerMovement : MonoBehaviour
         InputHandler.Instance.OnPressEvent -= HandlePress;
         InputHandler.Instance.OnReleaseEvent -= HandleRelease;
         // InputHandler.Instance.OnConsecutiveTapEvent -= HandleConsecutiveTap;
+    }
+
+    public MovementDirection GetMovementDirection() {
+        return movementDirection;
+    }
+
+    public bool IsNearWall() {
+        return isNearWall;
     }
 }
