@@ -332,7 +332,9 @@ PrefabInstance:
       value: Pause, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3756697969234880945, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
+    - {fileID: 3910043122936689680, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
