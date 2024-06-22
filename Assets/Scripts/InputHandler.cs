@@ -58,17 +58,11 @@ public class InputHandler : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("Tap!");
-            if (OnTapEvent != null)
-            {
-                OnTapEvent();
-            }
+            OnTapEvent?.Invoke();
             if(timeLeftToTapInSeconds > 0)
             {
                 Debug.Log("Consecutive Tap!");
-                if (OnConsecutiveTapEvent != null)
-                {
-                    OnConsecutiveTapEvent();
-                }
+                OnConsecutiveTapEvent?.Invoke();
             }
             timeLeftToTapInSeconds = consecutiveTapWindowSeconds;
         }
@@ -88,20 +82,14 @@ public class InputHandler : MonoBehaviour
             if (heldDown)
             {
                 Debug.Log("Release!");
-                if (OnReleaseEvent != null)
-                {
-                    OnReleaseEvent();
-                }
+                OnReleaseEvent?.Invoke();
             }
             heldDown = false;
         }
         else if (context.performed)
         {
             Debug.Log("Press!");
-            if (OnPressEvent != null)
-            {
-                OnPressEvent();
-            }
+            OnPressEvent?.Invoke();
             heldDown = true;
         }
     }
