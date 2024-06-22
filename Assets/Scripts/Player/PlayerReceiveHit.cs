@@ -31,7 +31,7 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
                 ApplyEffectDamage(effect);
                 break;
             case Effect.EffectType.Invincibility:
-                ApplyEffectInvincitibility(effect);
+                ApplyEffectInvincibility(effect);
                 break;
             case Effect.EffectType.Slow:
                 ApplyEffectSlow(effect);
@@ -42,7 +42,7 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
         }
     }
 
-    private void ApplyEffectInvincitibility(IEffectInvincibility effectInvincibility)
+    private void ApplyEffectInvincibility(IEffectInvincibility effectInvincibility)
     {
         float invincibility = effectInvincibility.GetInvincibility();
         Debug.Log("Invincibility Effect: " + invincibility);

@@ -19,6 +19,11 @@ public class Health : MonoBehaviour
     public delegate void DeathEventHandler();
     public event DeathEventHandler DeathEvent;
 
+    public delegate void InvinciblityStartEventHandler();
+    public event InvinciblityStartEventHandler InvincibilityStartEvent;
+    public delegate void InvincibilityEndEventHandler();
+    public event InvincibilityEndEventHandler InvincibilityEndEvent;
+
     private void Start() 
     {
         health = maxHealth;
@@ -102,25 +107,27 @@ public class Health : MonoBehaviour
         }
     }
 
-
-    public bool Death() 
-    {
-        return health <= 0;
-    }
-
     IEnumerator InvincibilityRoutine(float invincibilityDurationSeconds)
     {
+        // Become invincible. Throw event to change sprites
+        isInvincible = true;
+        InvincibilityStartEvent?.Invoke();
+
         while (invincibilityDurationSeconds >= 0f)
         {
+            this.invincibilityDurationSeconds -= Time.deltaTime;
             invincibilityDurationSeconds -= Time.deltaTime;
             yield return null;
         }
+
+        // Remove invincibility. Throw event to change sprite
         isInvincible = false;
+        InvincibilityEndEvent?.Invoke();
     }
 
     public void SetInvincibility(float invincibilityDurationSeconds, bool bypassNegativeDuration = false, bool bypassAlreadyInvincible = false)
     {
-        if (!bypassNegativeDuration) 
+        if (!bypassNegativeDuration && invincibilityDurationSeconds < 0f) 
         {
             Debug.LogWarning("Invincibility Duration is negative: " + invincibilityDurationSeconds + "\n Exiting SetInvincibility function.");
             return;
@@ -128,11 +135,11 @@ public class Health : MonoBehaviour
 
         if (!bypassAlreadyInvincible && isInvincible) 
         {
-            Debug.LogWarning(this.gameObject + " is already invincible. " + "\n Invicible Duration: " + this.invincibilityDurationSeconds + "\n Exiting SetInvincibility function.");
+            Debug.Log(this.gameObject + " is already invincible. " + "\n Invicible Duration: " + this.invincibilityDurationSeconds + "\n Exiting SetInvincibility function.");
             return;
         }
 
-        isInvincible = true;
+        this.invincibilityDurationSeconds = invincibilityDurationSeconds;
         StartCoroutine(InvincibilityRoutine(invincibilityDurationSeconds));
     }
 }
