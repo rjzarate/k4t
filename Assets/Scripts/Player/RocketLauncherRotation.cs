@@ -33,7 +33,6 @@ public class RocketLauncherRotation : MonoBehaviour
     {
         // When player attacks, multiply rotation velocity
         rotationVelocity *= rotationAttackMultiplier;
-        Debug.Log("attack");
     }
 
 

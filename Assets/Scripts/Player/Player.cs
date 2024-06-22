@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAttack), typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    private static PlayerAttack playerAttack;
-    private static PlayerMovement playerMovement;
+    private PlayerAttack playerAttack;
+    private PlayerMovement playerMovement;
 
     public static Player Instance { get; private set; }
 
@@ -26,4 +26,6 @@ public class Player : MonoBehaviour
     public PlayerMovement GetPlayerMovement() {
         return playerMovement;
     }
+
+
 }

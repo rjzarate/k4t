@@ -651,6 +651,10 @@ PrefabInstance:
       propertyPath: groundTransform
       value: 
       objectReference: {fileID: 1779542992}
+    - target: {fileID: 6814885042345512348, guid: 7c4fc3ccecc271f4fa6afc939198b7d0, type: 3}
+      propertyPath: hazardTimeAffectsTotalActionDuration
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7160509913981245846, guid: 7c4fc3ccecc271f4fa6afc939198b7d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

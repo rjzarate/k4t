@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5880790655251771083, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: effects.Array.data[1].genericFloat
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -4305384358794820606, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: m_Size.x

@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d03052dc9526394ba1a09b10a288472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealthSO: {fileID: 11400000, guid: a908c8b76d2955846ae87f5fcffff44c, type: 2}
 --- !u!1 &4294440789403563490
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e5f843b7cb42f409f892c0a51064bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSO: {fileID: 11400000, guid: a908c8b76d2955846ae87f5fcffff44c, type: 2}
   maxHealth: 9
   health: 0
   isInvincible: 0

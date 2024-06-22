@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartUIObject: {fileID: 3467559192529424168}
   scene: World1PrototypePhase1
+  playerHealthSO: {fileID: 11400000, guid: a908c8b76d2955846ae87f5fcffff44c, type: 2}
 --- !u!1 &1277856864001812578
 GameObject:
   m_ObjectHideFlags: 0
