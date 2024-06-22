@@ -35,11 +35,14 @@ public class RocketLauncherRotation : MonoBehaviour
         // If rotated right (360f-180f), use negative (-0f - -180f)
         rotationVelocity -= (transform.eulerAngles.z >= 180f) ? Time.deltaTime * (transform.eulerAngles.z - 360f) * rotationEqualizerMultiplier : Time.deltaTime * transform.eulerAngles.z * rotationEqualizerMultiplier;
 
+        // Max rotation velocity
         if (rotationVelocity > rotationVelocityMax) rotationVelocity = rotationVelocityMax;
-        
         if (rotationVelocity < -rotationVelocityMax) rotationVelocity = -rotationVelocityMax;
 
+        // Update rotation
         transform.Rotate(0f, 0f, Time.deltaTime * rotationVelocity);
+        
+        // Reduce rotation
         rotationVelocity /= 1f + Time.deltaTime / rotationReduction;
     }
 
