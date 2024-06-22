@@ -8,6 +8,9 @@ public class PlayerSpriteInvincibility : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private Health playerHealth;
 
+    [SerializeField] private Color playerColorDefault = Color.white;
+    [SerializeField] private Color playerColorHurt = Color.red;
+
 
     private void Start() {
         playerHealth.InvincibilityStartEvent += playerHealth_InvincibilityStartEvent;
@@ -16,13 +19,11 @@ public class PlayerSpriteInvincibility : MonoBehaviour
 
     private void playerHealth_InvincibilityStartEvent()
     {
-        playerSprite.color = Color.red;
-        Debug.Log("Start");
+        playerSprite.color = playerColorHurt;
     }
 
         private void playerHealth_InvincibilityEndEvent()
     {
-        playerSprite.color = Color.white;
-        Debug.Log("End");
+        playerSprite.color = playerColorDefault;
     }
 }

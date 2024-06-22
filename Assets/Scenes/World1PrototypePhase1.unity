@@ -1354,6 +1354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 1926201054}
   playerHealth: {fileID: 1269094933}
+  playerColorDefault: {r: 1, g: 1, b: 1, a: 1}
+  playerColorHurt: {r: 1, g: 0.8632076, b: 0.8632076, a: 1}
 --- !u!1 &1971572574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1527,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 514503627092141382, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514503627092141382, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514503627092141382, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000170036961492099, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
       propertyPath: m_Name
       value: Player
