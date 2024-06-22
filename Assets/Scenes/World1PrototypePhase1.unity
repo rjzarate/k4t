@@ -1641,10 +1641,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 2109590680261379334, guid: 7c4fc3ccecc271f4fa6afc939198b7d0, type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 6814885042345512348, guid: 7c4fc3ccecc271f4fa6afc939198b7d0, type: 3}
       propertyPath: groundTransform
       value: 
