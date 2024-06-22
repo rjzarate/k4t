@@ -10,6 +10,7 @@ public class RocketLauncherRotation : MonoBehaviour
     [SerializeField] private float rotationEqualizerMultiplier = 10f;
     [SerializeField] private float rotationReduction = 0.5f;
     [SerializeField] private float rotationVelocityMax = 100f;
+    [SerializeField] private float rotationAttackMultiplier = 3f;
     private float rotationVelocity;
     private PlayerMovement playerMovement;
 
@@ -18,12 +19,23 @@ public class RocketLauncherRotation : MonoBehaviour
     private void Start() 
     {
         playerMovement = Player.Instance.GetPlayerMovement();
+        PlayerAttack playerAttack = Player.Instance.GetPlayerAttack();
 
         ToggleInput(true);
 
         // Player hitting 0 HP
         health.DeathEvent += HandleDeath;
+
+        playerAttack.AttackEvent += HandleAttack;
     }
+
+    private void HandleAttack()
+    {
+        // When player attacks, multiply rotation velocity
+        rotationVelocity *= rotationAttackMultiplier;
+        Debug.Log("attack");
+    }
+
 
     private void Update()
     {

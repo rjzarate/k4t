@@ -771,5 +771,6 @@ MonoBehaviour:
   rotationMovementMultiplier: 1000
   rotationEqualizerMultiplier: 10
   rotationReduction: 0.5
-  rotationVelocityMax: 100
+  rotationVelocityMax: 150
+  rotationAttackMultiplier: 100
   health: {fileID: 842757904544820166}

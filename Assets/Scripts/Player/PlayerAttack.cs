@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
     public event AmmoReloadHandler AmmoReloadEvent;
     public delegate void AmmoReloadToggleHandler(bool showImage);
     public event AmmoReloadToggleHandler AmmoReloadToggleEvent;
+    public delegate void AttackEventHandler();
+    public event AttackEventHandler AttackEvent;
 
     void Start()
     {
@@ -63,8 +65,10 @@ public class PlayerAttack : MonoBehaviour
 
     public void HandleTap()
     {
+        // Can fire
         if (reloadTimeLeftSeconds <= 0 && attackDelayLeftSeconds <= 0)
         {
+            AttackEvent?.Invoke();
             Instantiate(bulletObject, firingPoint.position, firingPoint.rotation);
             OnTapSoundEvent();
             attackDelayLeftSeconds = attackDelaySeconds;
