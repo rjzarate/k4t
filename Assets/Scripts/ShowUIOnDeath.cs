@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ShowUIOnDeath : MonoBehaviour
 {
     [SerializeField] private Health health;
-    [SerializeField] private GameObject gameObject;
+    [SerializeField] private GameObject hiddenGameObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +15,7 @@ public class ShowUIOnDeath : MonoBehaviour
 
     public void ShowObject()
     {
-        gameObject.SetActive(true);
+        hiddenGameObject.SetActive(true);
     }
 
 }

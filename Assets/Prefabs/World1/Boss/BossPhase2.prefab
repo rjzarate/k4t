@@ -213,6 +213,8 @@ MonoBehaviour:
   direction: 1
   leftEdge: -3.5
   rightEdge: 3.5
+  switchDirectionTimeMinimumSeconds: 1
+  switchDirectionTimeMaximumSeconds: 4
 --- !u!114 &5142439826306033401
 MonoBehaviour:
   m_ObjectHideFlags: 0
