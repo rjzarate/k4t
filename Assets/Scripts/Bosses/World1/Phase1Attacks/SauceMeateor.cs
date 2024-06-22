@@ -65,7 +65,7 @@ public class SauceMeateor : BossAction
                 if (hazardPosition.x != 0f)
                 {
                     GameObject hazard = Instantiate(stageHazard, hazardPosition, Quaternion.identity);
-                    DestroyOnTime hazardDestroyScript = hazard.GetComponent<DestroyOnTime>();
+                    DestroyAfterTime hazardDestroyScript = hazard.GetComponent<DestroyAfterTime>();
                     if (hazardDestroyScript == null)
                         Debug.LogError("bulletDestroyScript not found");
                     else
@@ -115,7 +115,7 @@ public class SauceMeateor : BossAction
             Debug.LogError("bulletScript not found");
         else
             bulletScript.speed = distanceToTargetPosition / attackSeconds;
-        DestroyOnTime bulletDestroyScript = bullet.GetComponent<DestroyOnTime>();
+        DestroyAfterTime bulletDestroyScript = bullet.GetComponent<DestroyAfterTime>();
         if (bulletDestroyScript == null)
             Debug.LogError("bulletDestroyScript not found");
         else

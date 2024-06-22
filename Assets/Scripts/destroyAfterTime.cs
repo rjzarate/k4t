@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOnTime : MonoBehaviour
+public class DestroyAfterTime : MonoBehaviour
 {
     // effects before destrying self and after time is up
-    [SerializeField] GameObject DestroyFX;
+    [SerializeField] GameObject DestroyEffectPrefab;
     //The time in seconds the gameObject has before it gets deleted from the scene, starting from when it was loaded into it
     public float TotalLifeSeconds;
 
@@ -21,9 +21,9 @@ public class DestroyOnTime : MonoBehaviour
     {
         yield return new WaitForSeconds(deathTime);
 
-        if (DestroyFX)
+        if (DestroyEffectPrefab)
         {
-            Instantiate(DestroyFX, transform.position, Quaternion.identity);
+            Instantiate(DestroyEffectPrefab, transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject);

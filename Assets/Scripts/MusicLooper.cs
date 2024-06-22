@@ -11,7 +11,7 @@ public class MusicLooper: MonoBehaviour
     [SerializeField] private AudioSource loopSource;
     //private AudioSource audioSource;
     // Start is called before the first frame update
-    async void Start()
+    private void Start()
     {
 
         StartCoroutine(PlayMusicRoutine());

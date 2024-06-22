@@ -13,8 +13,8 @@ public sealed class Effect : IEffectDamage, IEffectInvincibility, IEffectSlow, I
     [SerializeField] private EffectType effectType = EffectType.Null;
     
     [SerializeField] private float genericFloat = 0;
-    [SerializeField] private float genericFloat1 = 0;
-    [SerializeField] private float genericFloat2 = 0;
+    // [SerializeField] private float genericFloat1 = 0;
+    // [SerializeField] private float genericFloat2 = 0;
 
     [SerializeField] [Range(0, 1)] private float genericUnitInterval = 0;
 

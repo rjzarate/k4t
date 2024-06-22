@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5432596482438304788}
   - component: {fileID: -4200497102386841447}
   m_Layer: 0
-  m_Name: cheesemeteorfx
+  m_Name: CheeseMeateorSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

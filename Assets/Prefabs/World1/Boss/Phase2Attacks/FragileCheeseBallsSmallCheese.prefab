@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7219193188569898612}
   - component: {fileID: 5452217658426120706}
   m_Layer: 0
-  m_Name: cheesesub
+  m_Name: FragileCheeseBallsSmallCheese
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,9 +16,9 @@ public class Ricochet : MonoBehaviour
         {
             GameObject bulletSub = Instantiate(ricochetBullets, transform.position, Quaternion.Euler(0, 0, bulletRotationSpread[i]));
 
-            if (bulletSub.GetComponent<applyForce>() && initForces.Length >= i)
+            if (bulletSub.GetComponent<ApplyForce>() && initForces.Length >= i)
             {
-                bulletSub.GetComponent<applyForce>().initForce = initForces[i];
+                bulletSub.GetComponent<ApplyForce>().initForce = initForces[i];
             }
         }
     }

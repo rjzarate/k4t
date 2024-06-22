@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class applyForce : MonoBehaviour
+public class ApplyForce : MonoBehaviour
 {
     // this is just applying initial force forward
 
