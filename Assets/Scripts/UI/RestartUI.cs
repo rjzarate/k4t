@@ -8,11 +8,11 @@ public class RestartUI : MonoBehaviour
     [SerializeField] private GameObject restartUIObject;
     [SerializeField] private string scene;
 
-    [SerializeField] private HealthSO playerHealthSO;
+    // [SerializeField] private HealthSO playerHealthSO;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerReceiveHit.PlayerHealth.DeathEvent += ShowUI;
+        Player.Instance.GetPlayerHealth().DeathEvent += ShowUI;
     }
 
     private void ShowUI()
@@ -28,7 +28,7 @@ public class RestartUI : MonoBehaviour
 
     public void Restart()
     {
-        playerHealthSO.health = 9f;
+        // playerHealthSO.health = 9f;
         SceneManager.LoadSceneAsync(scene);
         Time.timeScale = 1f;
     }

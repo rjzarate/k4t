@@ -14,19 +14,23 @@ public class RocketLauncherRotation : MonoBehaviour
     private float rotationVelocity;
     private PlayerMovement playerMovement;
 
-    [SerializeField] private Health health;
-
     private void Start() 
     {
-        playerMovement = Player.Instance.GetPlayerMovement();
-        PlayerAttack playerAttack = Player.Instance.GetPlayerAttack();
+        Player player = Player.Instance;
+        playerMovement = player.GetPlayerMovement();
+        PlayerAttack playerAttack = player.GetPlayerAttack();
+        Health playerHealth = player.GetPlayerHealth();
 
         ToggleInput(true);
 
         // Player hitting 0 HP
-        health.DeathEvent += HandleDeath;
+        playerHealth.DeathEvent += HandleDeath;
 
         playerAttack.AttackEvent += HandleAttack;
+
+        // Add some velocity in start
+        System.Random random = new System.Random();
+        rotationVelocity += random.Next((int) -rotationVelocityMax / 10, (int) rotationVelocityMax / 10);
     }
 
     private void HandleAttack()

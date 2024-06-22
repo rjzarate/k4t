@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SpaghettiWhip : BossAction
 {
-    public static SpaghettiWhip Instance { get; private set; }
-
-
     [Header("Attack Attributes")]
     [SerializeField] float rateOfFireTime = 0.5f;
     float rateOfFireCooldown;
@@ -19,18 +16,6 @@ public class SpaghettiWhip : BossAction
     private float delayLeftSeconds;
 
     [SerializeField] private Vector3 playerPosition;
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
 
     public override void Action()
     {

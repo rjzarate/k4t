@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 564259350634602346}
   - component: {fileID: 896034496441188662}
   - component: {fileID: 2890973618065254550}
-  - component: {fileID: 3567625604354421154}
   - component: {fileID: 1804557222764024340}
   m_Layer: 7
   m_Name: Receiver
@@ -107,21 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3567625604354421154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497683504437740647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e5f843b7cb42f409f892c0a51064bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 15
-  health: 0
-  isInvincible: 0
 --- !u!114 &1804557222764024340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +133,8 @@ GameObject:
   - component: {fileID: 3987779710405517494}
   - component: {fileID: 9026040083070636539}
   - component: {fileID: 2522956785432526226}
+  - component: {fileID: 2031314461109894450}
+  - component: {fileID: 7872112595432471314}
   m_Layer: 0
   m_Name: BossPhase1
   m_TagString: Untagged
@@ -304,8 +290,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f439d21119348442b147f80152edda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 3567625604354421154}
+  health: {fileID: 2031314461109894450}
   scene: World1PrototypePhase2
+--- !u!114 &2031314461109894450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211630815840588473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e5f843b7cb42f409f892c0a51064bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 15
+  health: 0
+  isInvincible: 0
+--- !u!114 &7872112595432471314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211630815840588473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bd63fb92974d84aadcfc12fa7481b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2992700932490426983
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a319fe2df3e82f48aa981b9f13bdfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossHealth: {fileID: 3567625604354421154}
   bossSprite: {fileID: 2109590680261379334}
   showHurtDuration: 0.2
   bossColorDefault: {r: 1, g: 1, b: 1, a: 1}

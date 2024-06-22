@@ -3,19 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[RequireComponent(typeof(Health))]
 public class PlayerReceiveHit : MonoBehaviour, IHittable
 {
-    public static Health PlayerHealth
-    {
-        get; private set;
-    }
-    private void Awake()
-    {
-        PlayerHealth = GetComponent<Health>();
-    }
-
     public void TriggerEffects(List<Effect> effects)
     {
         foreach(Effect effect in effects) {
@@ -46,7 +35,7 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     {
         float invincibility = effectInvincibility.GetInvincibility();
         Debug.Log("Invincibility Effect: " + invincibility);
-        PlayerHealth.SetInvincibility(invincibility);
+        Player.Instance.GetPlayerHealth().SetInvincibility(invincibility);
 
     }
 
@@ -59,7 +48,7 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
     {
         float damage = effectDamage.GetDamage();
         Debug.Log("Damage Effect: " + damage);
-        PlayerHealth.Damage(damage);
+        Player.Instance.GetPlayerHealth().Damage(damage);
     }
 }
 

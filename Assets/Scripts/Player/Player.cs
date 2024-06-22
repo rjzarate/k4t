@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerAttack), typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerAttack), typeof(PlayerMovement), typeof(Health))]
 public class Player : MonoBehaviour
 {
     private PlayerAttack playerAttack;
     private PlayerMovement playerMovement;
+    private Health playerHealth;
 
     public static Player Instance { get; private set; }
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 
         playerAttack = GetComponent<PlayerAttack>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<Health>();
     }
 
     public PlayerAttack GetPlayerAttack() {
@@ -25,6 +27,10 @@ public class Player : MonoBehaviour
 
     public PlayerMovement GetPlayerMovement() {
         return playerMovement;
+    }
+
+    public Health GetPlayerHealth() {
+        return playerHealth;
     }
 
 

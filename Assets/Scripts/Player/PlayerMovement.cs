@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rigidBody2D;
     private BoxCollider2D boxCollider2D;
-    [SerializeField] private Health health;
 
     // Events
     public delegate void WalkSoundEventHandler(bool playerCanMakeWalkingSound);
@@ -37,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
         Pause.Instance.PauseToggleEvent += HandlePause;
         
         // Player hitting 0 HP
-        health.DeathEvent += HandleDeath;
+        Player player = Player.Instance;
+        Health playerHealth = player.GetPlayerHealth();
+        playerHealth.DeathEvent += HandleDeath;
     }
 
     void Update()

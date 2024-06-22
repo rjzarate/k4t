@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7812285732080397580}
   - component: {fileID: 1819538184923197979}
   - component: {fileID: 5941126870449324359}
+  - component: {fileID: 5482453244389339921}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -128,7 +129,6 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  health: {fileID: 842757904544820166}
 --- !u!114 &1819538184923197979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a9c33eef610c94f97022f13bdbecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 842757904544820166}
   bulletObject: {fileID: 8291372549811847577, guid: 8fbdee69bc102bb4da099ea009af1ed3, type: 3}
   firingPoint: {fileID: 6264005317573771130}
   attackDelaySeconds: 0.4
@@ -159,7 +158,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d03052dc9526394ba1a09b10a288472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthSO: {fileID: 11400000, guid: a908c8b76d2955846ae87f5fcffff44c, type: 2}
+--- !u!114 &5482453244389339921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000170036961492099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e5f843b7cb42f409f892c0a51064bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 9
+  health: 0
+  isInvincible: 0
 --- !u!1 &4294440789403563490
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +334,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5312522741575972846}
   - component: {fileID: 4197169411271349913}
-  - component: {fileID: 842757904544820166}
   - component: {fileID: 2039720511855314417}
   - component: {fileID: 4395836723558858632}
   m_Layer: 6
@@ -358,22 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cc1b9438d394142b9facb4ecaa95ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &842757904544820166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7111192075499239792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e5f843b7cb42f409f892c0a51064bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSO: {fileID: 11400000, guid: a908c8b76d2955846ae87f5fcffff44c, type: 2}
-  maxHealth: 9
-  health: 0
-  isInvincible: 0
 --- !u!61 &2039720511855314417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -580,7 +576,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 514503627092141382}
-  playerHealth: {fileID: 842757904544820166}
   playerColorDefault: {r: 1, g: 1, b: 1, a: 1}
   playerColorHurt: {r: 1, g: 0.8632076, b: 0.8632076, a: 1}
 --- !u!1 &8226717290662683131
@@ -750,7 +745,7 @@ Transform:
   m_GameObject: {fileID: 8896888024843237983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -775,4 +770,3 @@ MonoBehaviour:
   rotationReduction: 0.5
   rotationVelocityMax: 150
   rotationAttackMultiplier: 100
-  health: {fileID: 842757904544820166}

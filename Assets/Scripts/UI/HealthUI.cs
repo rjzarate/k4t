@@ -13,8 +13,8 @@ public class HealthUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateUI(PlayerReceiveHit.PlayerHealth.GetMaxHealth());
-        PlayerReceiveHit.PlayerHealth.TakeDamageEvent += UpdateUI;
+        UpdateUI(Player.Instance.GetPlayerHealth().GetMaxHealth());
+        Player.Instance.GetPlayerHealth().TakeDamageEvent += UpdateUI;
     }
 
     // Update is called once per frame

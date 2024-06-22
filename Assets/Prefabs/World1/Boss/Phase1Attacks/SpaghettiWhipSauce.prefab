@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyFX: {fileID: 0}
+  DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 1.5
 --- !u!61 &-6957949451152697165
 BoxCollider2D:
@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5880790655251771083, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: effects.Array.data[1].genericFloat
-      value: 0.5
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -4305384358794820606, guid: c5fcdbe2212ca2242b4e13fb972e8607, type: 3}
       propertyPath: m_Size.x

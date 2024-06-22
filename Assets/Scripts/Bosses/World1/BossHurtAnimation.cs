@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BossHurtAnimation : MonoBehaviour
 {
-    [SerializeField] private Health bossHealth;
+    private Health bossHealth;
     [SerializeField] private SpriteRenderer bossSprite;
     [SerializeField] private float showHurtDuration = 0.2f;
 
@@ -16,6 +16,7 @@ public class BossHurtAnimation : MonoBehaviour
 
 
     private void Start() {
+        bossHealth = Boss.Instance.GetBossHealth();
         bossHealth.TakeDamageEvent += HandleTakeDamage;
     }
 

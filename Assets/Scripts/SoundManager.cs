@@ -6,32 +6,42 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClipReferencesSO audioClipReferencesSO;
 
+    private Player player;
+    private Boss boss;
+    private SpaghettiWhip spaghettiWhip;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        PlayerAttack playerAttack = Player.Instance.GetPlayerAttack();
+        // Player sounds
+        player = Player.Instance;
+        PlayerAttack playerAttack = player.GetPlayerAttack();
         playerAttack.OnTapSoundEvent += Player_OnTapSoundEvent;
-        BossReceiveHit.Instance.OnBossDamageSoundEvent += BossDamageTaken_OnBossDamageSoundEvent;
-        SpaghettiWhip.Instance.OnBossAttackWhipSoundEvent += BossAttack_OnBossAttackWhipSoundEvent;
-    }
 
+        // Boss sounds
+        boss = Boss.Instance;
+        Health bossHealth = boss.GetBossHealth();
+        bossHealth.TakeDamageEvent += Boss_TakeDamageSoundEvent;
+
+        List<BossAction> bossActions = boss.GetBossActions();
+        spaghettiWhip = bossActions.Find(b => b.GetComponent<SpaghettiWhip>() != null).GetComponent<SpaghettiWhip>();
+        spaghettiWhip.OnBossAttackWhipSoundEvent += BossAttack_OnBossAttackWhipSoundEvent;
+    }
 
     private void Player_OnTapSoundEvent()
     {
-        Player player = Player.Instance;
-        PlaySound(audioClipReferencesSO.playerFire, Player.Instance.transform.position);
+        PlaySound(audioClipReferencesSO.playerFire, player.transform.position);
     }
 
-    private void BossDamageTaken_OnBossDamageSoundEvent()
+    private void Boss_TakeDamageSoundEvent(float newHealth)
     {
-        BossReceiveHit bossRecieveHit = BossReceiveHit.Instance;
-        PlaySound(audioClipReferencesSO.metalicBossDamageTaken, bossRecieveHit.transform.position);
+        PlaySound(audioClipReferencesSO.metalicBossDamageTaken, boss.transform.position);
     }
 
     private void BossAttack_OnBossAttackWhipSoundEvent()
     {
-        SpaghettiWhip bossAttackWhip = SpaghettiWhip.Instance;
-        PlaySound(audioClipReferencesSO.bossAttackWhip, bossAttackWhip.transform.position);
+        PlaySound(audioClipReferencesSO.bossAttackWhip, spaghettiWhip.transform.position);
     }
 
 

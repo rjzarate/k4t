@@ -7,7 +7,6 @@ public class PlayerAttack : MonoBehaviour
 {
     private Rigidbody2D rigidBody2D;
     private BoxCollider2D boxCollider2D;
-    [SerializeField] private Health health;
 
     // shooting objects
     [SerializeField] private GameObject bulletObject;
@@ -41,9 +40,10 @@ public class PlayerAttack : MonoBehaviour
         
         // Pausing
         Pause.Instance.PauseToggleEvent += HandlePause;
-        
-        // Player hitting 0 HP
-        health.DeathEvent += HandleDeath;
+
+        Player player = Player.Instance;
+        Health playerHealth = player.GetPlayerHealth();
+        playerHealth.DeathEvent += HandleDeath;
         
         // Fill ammo to full
         ammoLeft = maxAmmo;

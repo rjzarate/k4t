@@ -6,13 +6,14 @@ using UnityEngine;
 public class PlayerSpriteInvincibility : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer playerSprite;
-    [SerializeField] private Health playerHealth;
+    private Health playerHealth;
 
     [SerializeField] private Color playerColorDefault = Color.white;
     [SerializeField] private Color playerColorHurt = Color.red;
 
 
     private void Start() {
+        playerHealth = Player.Instance.GetPlayerHealth();
         playerHealth.InvincibilityStartEvent += playerHealth_InvincibilityStartEvent;
         playerHealth.InvincibilityEndEvent += playerHealth_InvincibilityEndEvent;
     }

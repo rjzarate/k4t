@@ -8,8 +8,8 @@ public class PlayerSpriteAnimator : SpriteAnimator
     void Start()
     {
         Player.Instance.GetPlayerMovement().OnWalkSoundEvent += UpdateMove;
-        PlayerReceiveHit.PlayerHealth.TakeDamageEvent += HurtAnimation;
-        PlayerReceiveHit.PlayerHealth.DeathEvent += DeathAnimation;
+        Player.Instance.GetPlayerHealth().TakeDamageEvent += HurtAnimation;
+        Player.Instance.GetPlayerHealth().DeathEvent += DeathAnimation;
     }
 
     private void UpdateMove(bool moving)
