@@ -5,10 +5,10 @@ using UnityEditor.Search;
 using UnityEngine;
 
 [Serializable]
-public sealed class Effect : IEffectDamage, IEffectSlow, IEffectPoison
+public sealed class Effect : IEffectDamage, IEffectInvincibility, IEffectSlow, IEffectPoison
 {
     public enum EffectType {
-        Null, Damage, Slow, Poison
+        Null, Damage, Invincibility, Slow, Poison
     }
 
     [SerializeField] private EffectType effectType = EffectType.Null;
@@ -27,9 +27,14 @@ public sealed class Effect : IEffectDamage, IEffectSlow, IEffectPoison
         return genericFloat;
     }
 
+    float IEffectInvincibility.GetInvincibility()
+    {
+        return genericFloat;
+    }
+
     float IEffectSlow.GetSlow() {
         if (effectType != EffectType.Slow) {
-            Debug.LogError("Effect is not a Damage Effect: " + effectType);
+            Debug.LogError("Effect is not a Slow Effect: " + effectType);
         }
 
         return genericUnitInterval;
@@ -44,4 +49,6 @@ public sealed class Effect : IEffectDamage, IEffectSlow, IEffectPoison
     {
         return new float[1];
     }
+
+    
 }

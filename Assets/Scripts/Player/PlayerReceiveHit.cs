@@ -16,12 +16,6 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
         PlayerHealth = GetComponent<Health>();
     }
 
-    void Start()
-    {
-
-    }
-
-
     public void TriggerEffects(List<Effect> effects)
     {
         foreach(Effect effect in effects) {
@@ -36,6 +30,9 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
             case Effect.EffectType.Damage:
                 ApplyEffectDamage(effect);
                 break;
+            case Effect.EffectType.Invincibility:
+                ApplyEffectInvincitibility(effect);
+                break;
             case Effect.EffectType.Slow:
                 ApplyEffectSlow(effect);
                 break;
@@ -45,6 +42,14 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
         }
     }
 
+    private void ApplyEffectInvincitibility(IEffectInvincibility effectInvincibility)
+    {
+        float invincibility = effectInvincibility.GetInvincibility();
+        Debug.Log("Invincibility Effect: " + invincibility);
+        PlayerHealth.SetInvincibility(invincibility);
+
+    }
+
     private void ApplyEffectSlow(IEffectSlow effectSlow)
     {
         throw new NotImplementedException();
@@ -52,10 +57,9 @@ public class PlayerReceiveHit : MonoBehaviour, IHittable
 
     private void ApplyEffectDamage(IEffectDamage effectDamage)
     {
-        Debug.Log("Damage: " + effectDamage.GetDamage());
-        GetComponent<Health>().Damage(effectDamage.GetDamage());
+        float damage = effectDamage.GetDamage();
+        Debug.Log("Damage Effect: " + damage);
+        PlayerHealth.Damage(damage);
     }
-
-    
 }
 

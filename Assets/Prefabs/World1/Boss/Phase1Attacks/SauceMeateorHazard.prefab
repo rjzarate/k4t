@@ -4863,7 +4863,7 @@ GameObject:
   - component: {fileID: 6601350951566241315}
   - component: {fileID: 6251677587629900248}
   m_Layer: 0
-  m_Name: StageHazard
+  m_Name: SauceMeateorHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5014,7 +5014,12 @@ MonoBehaviour:
     genericFloat1: 0
     genericFloat2: 0
     genericUnitInterval: 0
-  hitDelaySeconds: 0.2
+  - effectType: 2
+    genericFloat: 0.5
+    genericFloat1: 0
+    genericFloat2: 0
+    genericUnitInterval: 0
+  hitDelaySeconds: 0.1
   delayRemainingSeconds: 0
 --- !u!82 &5650670902749771650
 AudioSource:

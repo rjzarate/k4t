@@ -35,6 +35,10 @@ public class EffectPropertyDrawer : PropertyDrawer
                 OnGUIDamage(genericFloat);
                 break;
 
+            case Effect.EffectType.Invincibility:
+                OnGUIInvincibility(genericFloat);
+                break;
+
             case Effect.EffectType.Slow:
                 OnGUISlow(genericUnitInterval);
                 break;
@@ -50,6 +54,11 @@ public class EffectPropertyDrawer : PropertyDrawer
 
 
         EditorGUI.EndProperty();
+    }
+
+    private void OnGUIInvincibility(SerializedProperty genericFloat)
+    {
+        EditorGUILayout.PropertyField(genericFloat, new GUIContent("Invincibility Duration Seconds"));
     }
 
     private void OnGUIPoison(SerializedProperty genericFloat, SerializedProperty genericFloat1, SerializedProperty genericFloat2)

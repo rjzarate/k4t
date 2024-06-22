@@ -8,9 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField] private float health;
     private bool hasTriggeredDeathEvent = false;
 
-    // i-frame
-    [SerializeField] float iFrameDuration = 2.5f;
-    bool iFrameMode = false;
+    // invincibility frames
+    private float invincibilityDurationSeconds;
+    [SerializeField] private bool isInvincible;
 
     // events
     public delegate void TakeDamageEventHandler(float newHealth);
@@ -43,6 +43,10 @@ public class Health : MonoBehaviour
         return health <= 0f;
     }
 
+    public bool IsInvincible() {
+        return isInvincible;
+    }
+
     public void SetHealth(int newHealth, bool bypassNonpositiveHealth = false)
     {
         if (!bypassNonpositiveHealth && newHealth <= 0) {
@@ -53,12 +57,18 @@ public class Health : MonoBehaviour
         health = newHealth;
     }
 
-    public void Damage(float damage, bool bypassNegativeDamage = false)
+    public void Damage(float damage, bool bypassInvincibility = false, bool bypassNegativeDamage = false)
     {
         // Edge case: damage is negative
         if (!bypassNegativeDamage && damage < 0)
         {
             Debug.LogWarning("Damage is negative: " + damage + "\n Exiting Damage function.");
+            return;
+        }
+
+        // Edge case: is invincible
+        if (!bypassInvincibility && isInvincible)
+        {
             return;
         }
 
@@ -74,8 +84,6 @@ public class Health : MonoBehaviour
             // TODO: change sprite to death animation and disable player interaction system
             //Destroy(gameObject.transform.parent.gameObject);
         }
-
-        BeginIFrame();
     }
 
     public void Heal(float heal)
@@ -100,22 +108,31 @@ public class Health : MonoBehaviour
         return health <= 0;
     }
 
-
-
-
-
-
-    // This is the iFrame:
-
-    IEnumerator IFrameTime()
+    IEnumerator InvincibilityRoutine(float invincibilityDurationSeconds)
     {
-        iFrameMode = false;
-        yield return new WaitForSeconds(iFrameDuration);
+        while (invincibilityDurationSeconds >= 0f)
+        {
+            invincibilityDurationSeconds -= Time.deltaTime;
+            yield return null;
+        }
+        isInvincible = false;
     }
 
-    void BeginIFrame()
+    public void SetInvincibility(float invincibilityDurationSeconds, bool bypassNegativeDuration = false, bool bypassAlreadyInvincible = false)
     {
-        iFrameMode = true;
-        StartCoroutine(IFrameTime());
+        if (!bypassNegativeDuration) 
+        {
+            Debug.LogWarning("Invincibility Duration is negative: " + invincibilityDurationSeconds + "\n Exiting SetInvincibility function.");
+            return;
+        }
+
+        if (!bypassAlreadyInvincible && isInvincible) 
+        {
+            Debug.LogWarning(this.gameObject + " is already invincible. " + "\n Invicible Duration: " + this.invincibilityDurationSeconds + "\n Exiting SetInvincibility function.");
+            return;
+        }
+
+        isInvincible = true;
+        StartCoroutine(InvincibilityRoutine(invincibilityDurationSeconds));
     }
 }
