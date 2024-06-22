@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   health: 0
-  iFrameDuration: 2.5
+  isInvincible: 0
 --- !u!114 &1804557222764024340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +264,6 @@ MonoBehaviour:
   bulletPosition: {x: 0, y: 0}
   bulletPrefab: {fileID: 8291372549811847577, guid: 9063ae7c42f284c3f86e78c95142ef75, type: 3}
   delaySeconds: 0.1
-  playerObj: {fileID: 0}
   playerPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &9026040083070636539
 MonoBehaviour:
@@ -291,7 +290,6 @@ MonoBehaviour:
   summonRange: {x: 6, y: 0}
   globalRotation: -170
   bulletPrefab: {fileID: 8291372549811847577, guid: e353ab885fc9d42789581b2b53f5dc28, type: 3}
-  playerObj: {fileID: 0}
 --- !u!114 &2522956785432526226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6455413391347149707}
   - component: {fileID: 2109590680261379334}
+  - component: {fileID: 7066273073557037970}
   m_Layer: 0
   m_Name: BossSprite
   m_TagString: Untagged
@@ -390,3 +389,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7066273073557037970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992700932490426983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a319fe2df3e82f48aa981b9f13bdfaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHealth: {fileID: 3567625604354421154}
+  bossSprite: {fileID: 2109590680261379334}
+  showHurtDuration: 0.2
+  bossColorDefault: {r: 1, g: 1, b: 1, a: 1}
+  bossColorMinimumHurt: {r: 1, g: 1, b: 1, a: 1}
+  bossColorMaximumHurt: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
