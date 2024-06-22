@@ -29,7 +29,6 @@ public class MouseMafia : BossAction
     // DEPRECATED
     // Where the boss will aim at (Will be the player's x value later)
     // [SerializeField] private float playerX = 0, playerY = -3.14f;
-    [SerializeField] GameObject playerObj;
 
     [Header("Boss Movement Range")]
     [SerializeField] private float minX;
@@ -105,8 +104,8 @@ public class MouseMafia : BossAction
     private void Fire()
     {
         // Get player position
-        float playerX = playerObj.transform.position.x;
-        float playerY = playerObj.transform.position.y;
+        float playerX = Player.Instance.transform.position.x;
+        float playerY = Player.Instance.transform.position.y;
 
         float rotationDirection;
         if (transform.position.x - playerX == 0)
@@ -158,8 +157,6 @@ public class MouseMafia : BossAction
         targetY = UnityEngine.Random.Range(minY, maxY);
 
         movementSpeed = Mathf.Sqrt(Mathf.Pow(targetX - transform.position.x, 2) + Mathf.Pow(targetY - transform.position.y, 2)) / moveTime;
-
-        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnDrawGizmosSelected()

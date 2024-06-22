@@ -9,7 +9,8 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerMovementAndAttackSubscriber.Instance.OnTapSoundEvent += Player_OnTapSoundEvent;
+        PlayerAttack playerAttack = Player.Instance.GetPlayerAttack();
+        playerAttack.OnTapSoundEvent += Player_OnTapSoundEvent;
         BossReceiveHit.Instance.OnBossDamageSoundEvent += BossDamageTaken_OnBossDamageSoundEvent;
         SpaghettiWhip.Instance.OnBossAttackWhipSoundEvent += BossAttack_OnBossAttackWhipSoundEvent;
     }
@@ -17,8 +18,8 @@ public class SoundManager : MonoBehaviour
 
     private void Player_OnTapSoundEvent()
     {
-        PlayerMovementAndAttackSubscriber playerMovementAndAttackSubscriber = PlayerMovementAndAttackSubscriber.Instance;
-        PlaySound(audioClipReferencesSO.playerFire, playerMovementAndAttackSubscriber.transform.position);
+        Player player = Player.Instance;
+        PlaySound(audioClipReferencesSO.playerFire, Player.Instance.transform.position);
     }
 
     private void BossDamageTaken_OnBossDamageSoundEvent()

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerSpriteAnimator : SpriteAnimator
 {
+    [SerializeField] private PlayerMovement playerMovement;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerMovementAndAttackSubscriber.Instance.OnWalkSoundEvent += UpdateMove;
+        playerMovement.OnWalkSoundEvent += UpdateMove;
         PlayerReceiveHit.PlayerHealth.TakeDamageEvent += HurtAnimation;
         PlayerReceiveHit.PlayerHealth.DeathEvent += DeathAnimation;
     }

@@ -18,7 +18,6 @@ public class SpaghettiWhip : BossAction
     [SerializeField] private float delaySeconds;
     private float delayLeftSeconds;
 
-    [SerializeField] GameObject playerObj;
     [SerializeField] private Vector3 playerPosition;
 
     private void Awake()
@@ -94,8 +93,7 @@ public class SpaghettiWhip : BossAction
         duration = time;
         rateOfFireCooldown = rateOfFireTime;
 
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        playerPosition = playerObj.transform.position;
+        playerPosition = Player.Instance.transform.position;
     }
 
 

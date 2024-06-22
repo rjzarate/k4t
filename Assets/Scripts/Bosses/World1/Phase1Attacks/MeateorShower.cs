@@ -16,8 +16,6 @@ public class MeateorShower : BossAction
     [SerializeField] float globalRotation;
     [SerializeField] GameObject bulletPrefab;
 
-    [SerializeField] GameObject playerObj;
-
     public override void Action()
     {
         Attack();
@@ -43,7 +41,7 @@ public class MeateorShower : BossAction
         Vector2 transformPosition = new Vector2(transform.position.x, transform.position.y);
 
 
-        if (playerObj != null)
+        if (Player.Instance != null)
         {
             Quaternion rotation = Quaternion.AngleAxis(globalRotation, Vector3.forward);
 
@@ -63,7 +61,5 @@ public class MeateorShower : BossAction
     {
         duration = time;
         rateOfFireCooldown = rateOfFireTime;
-
-        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 }

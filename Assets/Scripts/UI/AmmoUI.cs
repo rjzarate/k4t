@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class AmmoUI : MonoBehaviour
 {
-    [SerializeField] private PlayerMovementAndAttackSubscriber playerAttack;
     [SerializeField] private Image ammoImage;
     [SerializeField] private Image ammoReloadBar;
     [SerializeField] private List<Sprite> ammoSprites;
@@ -15,6 +14,7 @@ public class AmmoUI : MonoBehaviour
     void Start()
     {
         UpdateAmmoUI(startingAmmo);
+        PlayerAttack playerAttack = Player.Instance.GetPlayerAttack();
         playerAttack.AmmoCountChangeEvent += UpdateAmmoUI;
         playerAttack.AmmoReloadEvent += UpdateAmmoBarUI;
         playerAttack.AmmoReloadToggleEvent += ShowAmmoBar;
