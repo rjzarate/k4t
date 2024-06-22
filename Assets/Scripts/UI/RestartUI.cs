@@ -27,6 +27,7 @@ public class RestartUI : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadSceneAsync(scene);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3057181593042799643}
   - component: {fileID: 7812285732080397580}
   - component: {fileID: 1819538184923197979}
+  - component: {fileID: 5941126870449324359}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -146,6 +147,18 @@ MonoBehaviour:
   attackDelaySeconds: 0.4
   maxAmmo: 4
   reloadSeconds: 3
+--- !u!114 &5941126870449324359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000170036961492099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d03052dc9526394ba1a09b10a288472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4294440789403563490
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +456,7 @@ GameObject:
   - component: {fileID: 514503627092141382}
   - component: {fileID: 205232010342529911}
   - component: {fileID: 659841630064442881}
+  - component: {fileID: 3214299169067668488}
   m_Layer: 6
   m_Name: PlayerVisual
   m_TagString: Player
@@ -551,7 +565,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 205232010342529911}
-  playerMovement: {fileID: 0}
+--- !u!114 &3214299169067668488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182387913090677185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780e17f8120566d4fa5e9e71c73732ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 514503627092141382}
+  playerHealth: {fileID: 842757904544820166}
+  playerColorDefault: {r: 1, g: 1, b: 1, a: 1}
+  playerColorHurt: {r: 1, g: 0.8632076, b: 0.8632076, a: 1}
 --- !u!1 &8226717290662683131
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,5 +772,4 @@ MonoBehaviour:
   rotationEqualizerMultiplier: 10
   rotationReduction: 0.5
   rotationVelocityMax: 100
-  rotationVelocity: 0
   health: {fileID: 842757904544820166}
