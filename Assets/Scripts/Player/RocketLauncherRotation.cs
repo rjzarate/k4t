@@ -63,8 +63,15 @@ public class RocketLauncherRotation : MonoBehaviour
 
     private void HandleMovementRotation()
     {
-        int playerMovementDirection = (int) Player.Instance.GetPlayerMovement().GetMovementDirection();
+        int playerMovementDirection = (int) playerMovement.GetMovementDirection();
         rotationVelocity += Time.deltaTime * playerMovementDirection * rotationMovementMultiplier;
+
+        // Fix offset of rocket
+        if (transform.localPosition.x != 0.1f * playerMovementDirection) {
+            Debug.Log("t");
+            transform.localPosition = new Vector3(0.1f * playerMovementDirection, transform.localPosition.y, transform.localPosition.z);
+        }
+        
     }
 
     private void ToggleInput(bool isEnabled) 
