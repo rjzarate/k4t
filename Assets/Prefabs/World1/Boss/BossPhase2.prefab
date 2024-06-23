@@ -239,7 +239,7 @@ MonoBehaviour:
   chargeSeconds: 1
   attackSeconds: 1
   bulletPrefab: {fileID: 8291372549811847577, guid: b55d1b5661c9d8e4cb4f51133fd62ea8, type: 3}
-  stageHazard: {fileID: 6236887681492775216, guid: fecfaa92db31ee240839bdc71935fc49, type: 3}
+  stageHazard: {fileID: 6236887681492775216, guid: a4dcf4f3705e6264f97adc7cddec316d, type: 3}
   groundTransform: {fileID: 0}
   hazardSeconds: 10
   hazardTimeAffectsTotalActionDuration: 0
