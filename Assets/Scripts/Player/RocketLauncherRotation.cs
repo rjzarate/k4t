@@ -68,7 +68,6 @@ public class RocketLauncherRotation : MonoBehaviour
 
         // Fix offset of rocket
         if (transform.localPosition.x != 0.1f * playerMovementDirection) {
-            Debug.Log("t");
             transform.localPosition = new Vector3(0.1f * playerMovementDirection, transform.localPosition.y, transform.localPosition.z);
         }
         
