@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SauceMeateor : BossAction
@@ -9,6 +10,8 @@ public class SauceMeateor : BossAction
     [SerializeField] private Transform groundTransform; // the position of the ground
     [SerializeField] private float hazardSeconds;
     [SerializeField] private bool hazardTimeAffectsTotalActionDuration;
+    [SerializeField] private float leftEdge; //left and right screen boundaries set to -7.5 and 7.5 respectively, 3/5/2024
+    [SerializeField] private float rightEdge;
 
     private Vector2 targetPosition;
     private float bulletHeight;
@@ -93,13 +96,16 @@ public class SauceMeateor : BossAction
         float screenWidth = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - mainCamera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x;
         float screenHeight = mainCamera.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y - mainCamera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y;
 
-        // Calculate the left and right bounds of the screen
+        // Calculate the left and right bounds of the screen. make sure it doesn't go out the play field
         float leftBound = mainCamera.transform.position.x - (screenWidth / 2f) + (stageHazardWidth / 2f);
         float rightBound = mainCamera.transform.position.x + (screenWidth / 2f) - (stageHazardWidth / 2f);
-
+        
+        leftBound = (leftBound < (leftEdge + (stageHazardWidth / 2f))) ? (leftEdge + (stageHazardWidth / 2f)) : leftBound;
+        rightBound = (rightBound > (rightEdge - (stageHazardWidth / 2f))) ? (rightEdge - (stageHazardWidth / 2f)) : rightBound;
+        
         //Calculate positions for the meateor to land (on top of ground and either on the left or right side)
-        targetPositions[0] = new Vector2(leftBound, groundTransform.position.y + topOfGroundHeight / 2f + bulletHeight /2f);
-        targetPositions[1] = new Vector2(rightBound, groundTransform.position.y + topOfGroundHeight /2f + bulletHeight /2f);
+        targetPositions[0] = new Vector2(leftBound, groundTransform.position.y + topOfGroundHeight / 2f + bulletHeight / 2f);
+        targetPositions[1] = new Vector2(rightBound, groundTransform.position.y + topOfGroundHeight / 2f + bulletHeight / 2f);
 
         // create the meateor at the top of the screen and with a random x position and calculate its speed and direction
         float bulletWidth = bulletPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size.x;

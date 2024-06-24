@@ -99,7 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossSprite: {fileID: 7448480483879509356}
   showHurtDuration: 0.2
-  bossColorDefault: {r: 1, g: 1, b: 1, a: 1}
   bossColorMinimumHurt: {r: 1, g: 1, b: 1, a: 1}
   bossColorMaximumHurt: {r: 1, g: 0.4575472, b: 0.4575472, a: 1}
 --- !u!1 &3862171363242523155
@@ -243,6 +242,8 @@ MonoBehaviour:
   groundTransform: {fileID: 0}
   hazardSeconds: 10
   hazardTimeAffectsTotalActionDuration: 0
+  leftEdge: -7.5
+  rightEdge: 7.5
 --- !u!114 &4239849469658562470
 MonoBehaviour:
   m_ObjectHideFlags: 0
