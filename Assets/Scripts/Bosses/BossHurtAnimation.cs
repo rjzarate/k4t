@@ -10,12 +10,14 @@ public class BossHurtAnimation : MonoBehaviour
     [SerializeField] private SpriteRenderer bossSprite;
     [SerializeField] private float showHurtDuration = 0.2f;
 
-    [SerializeField] private Color bossColorDefault = Color.white;
+    private Color bossColorDefault;
     [SerializeField] private Color bossColorMinimumHurt = Color.red;
     [SerializeField] private Color bossColorMaximumHurt = Color.red;
 
 
     private void Start() {
+        bossColorDefault = bossSprite.color;
+
         bossHealth = Boss.Instance.GetBossHealth();
         bossHealth.TakeDamageEvent += HandleTakeDamage;
     }
