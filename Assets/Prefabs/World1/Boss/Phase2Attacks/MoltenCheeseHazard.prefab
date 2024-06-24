@@ -4845,6 +4845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 1
+  particlesKept: []
 --- !u!1 &6236887681492775216
 GameObject:
   m_ObjectHideFlags: 0
@@ -4951,6 +4952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 5
+  particlesKept: []
 --- !u!61 &1206218367240831423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9920,7 +9922,7 @@ Animator:
   m_GameObject: {fileID: 6236887681492775216}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1f181c9dba18640498403573ba23bbc3, type: 2}
+  m_Controller: {fileID: 9100000, guid: c93bcdbc5a8dc424384023e1a690ed2c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
