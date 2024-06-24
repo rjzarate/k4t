@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyFX: {fileID: 0}
+  DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 5
+  particlesKept: []
 --- !u!82 &-4200497102386841447
 AudioSource:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f64d9d36e8044548bf547aa475a6b57, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
