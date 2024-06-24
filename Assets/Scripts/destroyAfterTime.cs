@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DestroyAfterTime : MonoBehaviour
@@ -24,10 +25,12 @@ public class DestroyAfterTime : MonoBehaviour
         yield return new WaitForSeconds(deathTime);
 
         // Keep particles on self distruct. Detaches particle system and them destroys for it's given particle duration
-        foreach (ParticleSystem particleSystem in particlesKept) {
-            particleSystem.transform.parent = null;
-            particleSystem.Stop();
-            Destroy(particleSystem, particleSystem.main.duration + 1f);
+        if (particlesKept != null) {
+            foreach (ParticleSystem particleSystem in particlesKept) {
+                particleSystem.transform.parent = null;
+                particleSystem.Stop();
+                particleSystem.AddComponent<DestroyAfterTime>().TotalLifeSeconds = particleSystem.main.duration + 1f;
+            }
         }
         
         // Effects on self distruct
