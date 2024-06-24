@@ -9,6 +9,8 @@ public class DestroyAfterTime : MonoBehaviour
     //The time in seconds the gameObject has before it gets deleted from the scene, starting from when it was loaded into it
     public float TotalLifeSeconds;
 
+    [SerializeField] private ParticleSystem[] particlesKept;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,14 @@ public class DestroyAfterTime : MonoBehaviour
     {
         yield return new WaitForSeconds(deathTime);
 
+        // Keep particles on self distruct. Detaches particle system and them destroys for it's given particle duration
+        foreach (ParticleSystem particleSystem in particlesKept) {
+            particleSystem.transform.parent = null;
+            particleSystem.Stop();
+            Destroy(particleSystem, particleSystem.main.duration + 1f);
+        }
+        
+        // Effects on self distruct
         if (DestroyEffectPrefab)
         {
             Instantiate(DestroyEffectPrefab, transform.position, Quaternion.identity);

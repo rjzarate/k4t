@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rocket
+  m_Name: MoltenCheeseHazardIdle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 689633831, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
-    - time: 0.25
-      value: {fileID: -300781397, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
+      value: {fileID: 21300000, guid: 1c51cb74a8c700049ba4c4d9519c689e, type: 3}
     - time: 0.5
-      value: {fileID: 1068435191, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
-    - time: 0.75
-      value: {fileID: 868008168, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
+      value: {fileID: 21300000, guid: 116d76946ac97d44e9dc27c0c4d55055, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 4
+  m_SampleRate: 2
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,10 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 689633831, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
-    - {fileID: -300781397, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
-    - {fileID: 1068435191, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
-    - {fileID: 868008168, guid: 9d8f669288c634d4e8577a879dfd978c, type: 3}
+    - {fileID: 21300000, guid: 1c51cb74a8c700049ba4c4d9519c689e, type: 3}
+    - {fileID: 21300000, guid: 116d76946ac97d44e9dc27c0c4d55055, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

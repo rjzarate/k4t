@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class ProjectileHitter : MonoBehaviour
     [SerializeField] private List<Effect> effects;
     [SerializeField] private bool destroyOnHit = true;
     [SerializeField] private GameObject destroyFX;
+
+    [SerializeField] private ParticleSystem[] particlesKept;
 
     private void Awake()
     {
@@ -31,8 +34,17 @@ public class ProjectileHitter : MonoBehaviour
             hittable.TriggerEffects(effects);
         }
         
+        // Self destruct
         if (destroyOnHit)
         {
+            // Keep particles on self distruct. Detaches particle system and them destroys for it's given particle duration
+            foreach (ParticleSystem particleSystem in particlesKept) {
+                particleSystem.transform.parent = null;
+                particleSystem.Stop();
+                Destroy(particleSystem, particleSystem.main.duration + 1f);
+            }
+            
+            // Effects on self distruct
             if (destroyFX)
             {
                 Instantiate(destroyFX, transform.position, transform.rotation);
