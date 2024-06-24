@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a34c81260dca44781969ac5cb567c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 7.5
   weight: 10
   willForceNextAction: 0
   nextForcedAction: {fileID: 0}
