@@ -567,6 +567,22 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7868075138239342760, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868075138239342760, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.13238695
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868075138239342760, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.71524566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868075138239342760, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.8018868
+      objectReference: {fileID: 0}
     - target: {fileID: 8182387913090677185, guid: 2bb628adf84d81840ae46c689f6ddca6, type: 3}
       propertyPath: m_Name
       value: PlayerVisual
