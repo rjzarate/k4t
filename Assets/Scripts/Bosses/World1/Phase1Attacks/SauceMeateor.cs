@@ -102,7 +102,7 @@ public class SauceMeateor : BossAction
         targetPositions[1] = new Vector2(rightBound, groundTransform.position.y + topOfGroundHeight /2f + bulletHeight /2f);
 
         // create the meateor at the top of the screen and with a random x position and calculate its speed and direction
-        float bulletWidth = bulletPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
+        float bulletWidth = bulletPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
         float randomX = UnityEngine.Random.Range(leftBound + bulletWidth, rightBound - bulletWidth);
         Vector2 initialPosition = new Vector2(randomX, screenHeight / 2f);
         Vector2 targetPosition = targetPositions[UnityEngine.Random.Range(0, 2)];
