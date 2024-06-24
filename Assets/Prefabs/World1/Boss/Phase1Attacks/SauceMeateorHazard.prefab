@@ -4843,7 +4843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyFX: {fileID: 0}
+  DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 1
 --- !u!1 &6236887681492775216
 GameObject:
@@ -4949,7 +4949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b6108510875f64bb302cb126073e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyFX: {fileID: 0}
+  DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 5
 --- !u!61 &1206218367240831423
 BoxCollider2D:
@@ -5011,13 +5011,9 @@ MonoBehaviour:
   effects:
   - effectType: 1
     genericFloat: 1
-    genericFloat1: 0
-    genericFloat2: 0
     genericUnitInterval: 0
   - effectType: 2
     genericFloat: 0.5
-    genericFloat1: 0
-    genericFloat2: 0
     genericUnitInterval: 0
   hitDelaySeconds: 0.1
   delayRemainingSeconds: 0
@@ -5371,7 +5367,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
