@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: playerAttack
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1277856864001812578, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1321410850841227834, guid: 10b01d764761a764f8d7dfd6b3c22705, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -613,6 +617,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6740336273071531698, guid: b117818cf46cc0c409774edf6235923b, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bfc7d017bedbd564c9de4502d9cc8bbf, type: 3}
+    - target: {fileID: 7977436743768736310, guid: b117818cf46cc0c409774edf6235923b, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 860a0b900f43eb24093e431032ba5c8d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
