@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +11,23 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private List<Sprite> outerHealthSprites;
     [SerializeField] private List<Sprite> innerHealthSprites; // should have sprites for health 0 to maxInnerHealth
     [SerializeField] private int maxInnerHealth;
+
+    private Color healthOuterDefaultColor;
+    private Color healthInnerDefaultColor;
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateUI(Player.Instance.GetPlayerHealth().GetMaxHealth());
         Player.Instance.GetPlayerHealth().TakeDamageEvent += UpdateUI;
+        Player.Instance.GetPlayerHealth().TakeDamageEvent += AnimateUI;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void AnimateUI(float newHealth)
     {
-        
+        // Animate health to move (wobble)
+        healthOuter.GetComponent<Animator>().SetTrigger("TakeDamage");
+        healthInner.GetComponent<Animator>().SetTrigger("TakeDamage");
     }
 
     private void UpdateUI(float health)
