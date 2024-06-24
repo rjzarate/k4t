@@ -11,7 +11,7 @@
                     "id": "e289f18b-db17-4ff5-bd76-4bf3de87b73f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "Tap(duration=0.15)",
                     "initialStateCheck": false
                 },
                 {
@@ -20,7 +20,7 @@
                     "id": "fc429996-43d3-4577-84dd-43361b2d4ea3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=0.2,pressPoint=0.2)",
+                    "interactions": "Hold(duration=0.15,pressPoint=0.15)",
                     "initialStateCheck": false
                 }
             ],
@@ -29,6 +29,17 @@
                     "name": "",
                     "id": "bfd6053b-ec1f-4f8f-96f1-ba7dc59bfa44",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9df2e91-669e-4e99-98a3-b7ba01752c0b",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -51,6 +62,17 @@
                     "name": "",
                     "id": "c0ded192-8f4b-4216-9411-d7a21437a034",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4df5cf2f-562b-4dce-8cfb-b09342746bac",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
