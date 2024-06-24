@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4727340130748933607}
   - component: {fileID: 4962485756254824918}
   - component: {fileID: 3271151357562775759}
+  - component: {fileID: 7089369014606221201}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -102,6 +103,19 @@ MonoBehaviour:
   - {fileID: 746454717, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
   - {fileID: 711843951, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
   - {fileID: 1010844262, guid: fd9a66cfa48759243acaa8f9470120e6, type: 3}
+--- !u!114 &7089369014606221201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086928604506285194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742e898e00637444b9d16b8852d2911b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 0, z: 5}
 --- !u!1 &8291372549811847577
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyEffectPrefab: {fileID: 0}
   TotalLifeSeconds: 5
+  particlesKept: []
 --- !u!1001 &7386694998793650916
 PrefabInstance:
   m_ObjectHideFlags: 0
