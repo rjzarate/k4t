@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/References/GenericPlayerMovement/GenericPlayerMovementTestScene.unity
     guid: 9dc007a0c301c824fbc22110dec67c9d
   - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: c3b35930657ba22429b01989ec0d3e4b
+  - enabled: 1
     path: Assets/Scenes/World1PrototypePhase1.unity
     guid: 56d17b6a71dd3474483c4920421ba2ea
   - enabled: 1
@@ -26,9 +29,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/References/SceneLoading/SceneLoading2.unity
     guid: 329829fc7754a4b148bba35423b4a2b7
-  - enabled: 1
-    path: Assets/Scenes/TitleScreen.unity
-    guid: c3b35930657ba22429b01989ec0d3e4b
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 5c430c195ceaecf449290e1b9a3dc9f8, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 53c13ad005de1430c906b9d17d62daea, type: 2}
